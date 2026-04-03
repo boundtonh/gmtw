@@ -17,12 +17,12 @@ export function GalleryLightbox({ items, initialIndex }: GalleryLightboxProps) {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!isOpen) return
       if (e.key === 'Escape') setIsOpen(false)
-      if (e.key === 'ArrowLeft') goToPrevious()
-      if (e.key === 'ArrowRight') goToNext()
+      if (e.key === 'ArrowLeft') setCurrentIndex((prev) => (prev === 0 ? items.length - 1 : prev - 1))
+      if (e.key === 'ArrowRight') setCurrentIndex((prev) => (prev === items.length - 1 ? 0 : prev + 1))
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [isOpen, currentIndex])
+  }, [isOpen, items.length])
 
   const goToPrevious = () => {
     setCurrentIndex((prev) => (prev === 0 ? items.length - 1 : prev - 1))
