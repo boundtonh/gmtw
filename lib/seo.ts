@@ -10,7 +10,7 @@ export function buildMetadata({
   path: string
 }): Metadata {
   const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL ?? 'https://greenmountaintableworx.com'
+    process.env.NEXT_PUBLIC_SITE_URL ?? 'https://greenmountaintable.com'
 
   return {
     title,

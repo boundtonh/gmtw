@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     'Handcrafted live edge, river & ocean tables. Custom orders for New England homes. Two showrooms: Concord NH & Smithfield RI. In-room delivery across New England.',
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? 'https://greenmountaintableworx.com'
+    process.env.NEXT_PUBLIC_SITE_URL ?? 'https://greenmountaintable.com'
   ),
 }
 
