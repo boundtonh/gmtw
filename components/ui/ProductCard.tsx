@@ -5,19 +5,27 @@ import type { Product } from '@/lib/types'
 
 // Map of slugs to their image filenames
 const IMAGE_MAP: Record<string, string | null> = {
-  'dining-tables': 'dining-table.jpg',
+  'dining-tables': 'dining-tables-main.jpg',
   'conference-tables': 'conference-table.jpg',
-  'console-tables': 'console-table.jpg',
-  'benches': 'bench.png',
-  'floating-shelves-mantels': 'mantel.png',
-  'wall-art-signage': 'wall-art.jpg',
+  'console-tables': 'console-tables-main.jpg',
+  'benches': 'benches-main.jpg',
+  'floating-shelves-mantels': 'mantels-main.jpg',
+  'wall-art-signage': 'signs-main.jpg',
   'coffee-tables': 'coffee-table.webp',
-  'countertops-island-tops': 'countertop.webp',
-  'bars-bar-tops': 'bartop.avif',
+  'countertops-island-tops': 'countertops-main.JPG',
+  'bars-bar-tops': 'standalone-bartops-main.jpg',
 }
 
 export function ProductCard({ name, slug, startingPrice }: Product) {
   const imageSrc = IMAGE_MAP[slug]
+
+  // Custom object positions for specific products
+  const getObjectPosition = (slug: string) => {
+    if (slug === 'benches') return '50% 98%'
+    if (slug === 'dining-tables') return '50% 70%'
+    return undefined
+  }
+
   return (
     <Link href={`/${slug}`} className="group block">
       {/* Thumbnail */}
@@ -29,6 +37,7 @@ export function ProductCard({ name, slug, startingPrice }: Product) {
             alt={`${name} — custom live edge furniture`}
             sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
             className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            style={getObjectPosition(slug) ? { objectPosition: getObjectPosition(slug)! } : undefined}
           />
         ) : (
           <div className="absolute inset-0 bg-gradient-to-br from-gmt-forest to-gmt-charcoal transition-transform duration-700 ease-out group-hover:scale-105" />

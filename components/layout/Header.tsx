@@ -55,15 +55,15 @@ const NAV_ITEMS: NavItem[] = [
 // Items for the desktop mega menu — matches the dropdown array above
 // Map of slugs to their image filenames (matches ProductCard.tsx)
 const IMAGE_MAP: Record<string, string | null> = {
-  'dining-tables': 'dining-table.jpg',
+  'dining-tables': 'dining-tables-main.jpg',
   'conference-tables': 'conference-table.jpg',
-  'console-tables': 'console-table.jpg',
-  'benches': 'bench.png',
-  'floating-shelves-mantels': 'mantel.png',
-  'wall-art-signage': 'wall-art.jpg',
+  'console-tables': 'console-tables-main.jpg',
+  'benches': 'benches-main.jpg',
+  'floating-shelves-mantels': 'mantels-main.jpg',
+  'wall-art-signage': 'signs-main.jpg',
   'coffee-tables': 'coffee-table.webp',
-  'countertops-island-tops': 'countertop.webp',
-  'bars-bar-tops': 'bartop.avif',
+  'countertops-island-tops': 'countertops-main.JPG',
+  'bars-bar-tops': 'standalone-bartops-main.jpg',
 }
 
 const MEGA_MENU_ITEMS = [
@@ -142,7 +142,7 @@ export function Header() {
             {/* Logo */}
             <Link href="/" className="flex-shrink-0">
               <Image
-                src="/images/logo/bmtwlogo.webp"
+                src="/images/logo/untitled.png"
                 alt="Green Mountain Tableworx"
                 width={140}
                 height={81}
@@ -151,7 +151,7 @@ export function Header() {
             </Link>
 
             {/* Desktop Nav */}
-            <nav aria-label="Main navigation" className="hidden md:flex items-center gap-6">
+            <nav aria-label="Main navigation" className="hidden lg:flex items-center gap-6">
               {NAV_ITEMS.map((item) => {
                 // Mega menu — desktop only trigger, no inline dropdown
                 if (item.megaMenu) {
@@ -160,7 +160,7 @@ export function Header() {
                       key={item.label}
                       onMouseEnter={() => handleMouseEnter(item.label)}
                       onMouseLeave={handleMouseLeave}
-                      className="flex items-center gap-1 font-body text-white text-base tracking-wide hover:text-gmt-green transition-colors duration-200"
+                      className="flex items-center gap-1 font-body text-white text-[0.85rem] tracking-wide hover:text-gmt-green transition-colors duration-200"
                       aria-expanded={activeDropdown === item.label}
                       aria-haspopup="true"
                     >
@@ -180,7 +180,7 @@ export function Header() {
                       onMouseLeave={handleMouseLeave}
                     >
                       <button
-                        className="flex items-center gap-1 font-body text-white text-base tracking-wide hover:text-gmt-green transition-colors duration-200"
+                        className="flex items-center gap-1 font-body text-white text-[0.85rem] tracking-wide hover:text-gmt-green transition-colors duration-200"
                         aria-expanded={activeDropdown === item.label}
                         aria-haspopup="true"
                       >
@@ -224,7 +224,7 @@ export function Header() {
                   <Link
                     key={item.label}
                     href={item.href!}
-                    className="font-body text-white text-base tracking-wide hover:text-gmt-green transition-colors duration-200"
+                    className="font-body text-white text-[0.85rem] tracking-wide hover:text-gmt-green transition-colors duration-200"
                   >
                     {item.label}
                   </Link>
@@ -233,7 +233,7 @@ export function Header() {
 
               <Link
                 href="/estimate"
-                className="font-body text-white text-sm bg-gmt-green px-5 py-2 rounded-sm hover:bg-gmt-forest transition-colors duration-300"
+                className="font-body text-white text-[0.85rem] bg-gmt-green px-5 py-2 rounded-sm hover:bg-gmt-forest transition-colors duration-300"
               >
                 Get an Estimate →
               </Link>
@@ -241,7 +241,7 @@ export function Header() {
 
             {/* Mobile Hamburger */}
             <button
-              className="md:hidden flex flex-col justify-center items-center gap-[5px] w-10 h-10"
+              className="lg:hidden flex flex-col justify-center items-center gap-[5px] w-10 h-10"
               onClick={() => setMobileOpen(true)}
               aria-label="Open navigation menu"
             >
@@ -284,6 +284,13 @@ export function Header() {
                               alt={`${item.label} — custom live edge furniture`}
                               sizes="(max-width: 1320px) 20vw, 220px"
                               className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                              style={
+                                item.slug === 'benches'
+                                  ? { objectPosition: '50% 98%' }
+                                  : item.slug === 'dining-tables'
+                                    ? { objectPosition: '50% 70%' }
+                                    : undefined
+                              }
                             />
                           ) : (
                             <>
@@ -330,10 +337,10 @@ export function Header() {
             <div className="flex items-center justify-between px-6 py-3 flex-shrink-0">
               <Link href="/" className="flex-shrink-0">
                 <Image
-                  src="/images/logo/bmtwlogo.webp"
+                  src="/images/logo/untitled.png"
                   alt="Green Mountain Tableworx"
-                  width={62}
-                  height={36}
+                  width={140}
+                  height={81}
                 />
               </Link>
               <button
