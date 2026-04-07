@@ -179,6 +179,9 @@ const STEPS = [
 export function EstimateForm() {
   const [currentStep, setCurrentStep] = useState(0)
   const [activeGroup, setActiveGroup] = useState<'maple' | 'elm' | 'walnut' | null>(null)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitSuccess, setSubmitSuccess] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
   const {
     register,
     control,
@@ -199,8 +202,31 @@ export function EstimateForm() {
     },
   })
 
-  const onSubmit = (data: EstimateFormData) => {
-    console.log('Estimate form submitted:', data)
+  const onSubmit = async (data: EstimateFormData) => {
+    setIsSubmitting(true)
+    setSubmitError(null)
+
+    try {
+      const response = await fetch('/api/estimate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+
+      const result = await response.json()
+
+      if (!response.ok) {
+        setSubmitError(result.error || 'Failed to send estimate')
+        setIsSubmitting(false)
+        return
+      }
+
+      setSubmitSuccess(true)
+      setIsSubmitting(false)
+    } catch (error) {
+      setSubmitError('An error occurred. Please try again or contact us directly.')
+      setIsSubmitting(false)
+    }
   }
 
   const handleNext = () => {
@@ -725,12 +751,27 @@ export function EstimateForm() {
                 Previous
               </button>
 
-              {currentStep === STEPS.length - 1 ? (
+              {submitSuccess ? (
+                <div className="text-center">
+                  <div className="inline-flex items-center gap-2 bg-green-50 border border-green-200 rounded-sm px-6 py-3">
+                    <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span className="font-body text-sm text-green-700">Estimate sent! Check your email.</span>
+                  </div>
+                </div>
+              ) : currentStep === STEPS.length - 1 ? (
                 <button
                   type="submit"
-                  className="font-body text-white bg-gmt-green px-10 py-4 hover:bg-gmt-forest transition-colors duration-300"
+                  disabled={isSubmitting}
+                  className={cn(
+                    'font-body text-white px-10 py-4 transition-colors duration-300',
+                    isSubmitting
+                      ? 'bg-gmt-stone cursor-not-allowed'
+                      : 'bg-gmt-green hover:bg-gmt-forest'
+                  )}
                 >
-                  Send My Estimate Request
+                  {isSubmitting ? 'Sending...' : 'Send My Estimate Request'}
                 </button>
               ) : (
                 <button
@@ -743,7 +784,13 @@ export function EstimateForm() {
               )}
             </div>
 
-            {currentStep === STEPS.length - 1 && (
+            {submitError && (
+              <div className="mt-6 bg-red-50 border border-red-200 rounded-sm p-4 max-w-xl mx-auto">
+                <p className="font-body text-sm text-red-700">{submitError}</p>
+              </div>
+            )}
+
+            {currentStep === STEPS.length - 1 && !submitSuccess && (
               <p className="mt-4 font-body text-xs text-gmt-stone leading-relaxed max-w-xl mx-auto text-center">
                 By submitting this form you agree to be contacted by Green Mountain Tableworx regarding your custom furniture estimate. We will never share your information.
               </p>
