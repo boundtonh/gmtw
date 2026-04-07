@@ -142,7 +142,7 @@ export function Header() {
             {/* Logo */}
             <Link href="/" className="flex-shrink-0">
               <Image
-                src="/images/logo/untitled.png"
+                src="/images/logo/Untitled.png"
                 alt="Green Mountain Tableworx"
                 width={140}
                 height={81}
@@ -337,7 +337,7 @@ export function Header() {
             <div className="flex items-center justify-between px-6 py-3 flex-shrink-0">
               <Link href="/" className="flex-shrink-0">
                 <Image
-                  src="/images/logo/untitled.png"
+                  src="/images/logo/Untitled.png"
                   alt="Green Mountain Tableworx"
                   width={140}
                   height={81}
