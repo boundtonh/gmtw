@@ -1,8 +1,6 @@
 import { Resend } from 'resend'
 import { buildTeamEmailHtml } from '@/lib/emails/EstimateEmailTeam'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function calculatePrice(data: any) {
   const linearFeet = (data.length || 0) / 12
@@ -53,6 +51,7 @@ export async function POST(request: Request) {
     const quotePrice = calculatePrice(data)
 
     // Send email to team (both Jamie and Nikki)
+    const resend = new Resend(process.env.RESEND_API_KEY)
     const teamEmails = ['jamie@greenmountaintable.com', 'nikki@greenmountaintable.com']
     for (const email of teamEmails) {
       await resend.emails.send({
