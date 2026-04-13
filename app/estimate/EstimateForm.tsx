@@ -798,16 +798,60 @@ export function EstimateForm() {
                   A general price range will be sent to you via email based on your specs. A member of our sales team will be in touch with you shortly to confirm the estimate.
                 </p>
 
-                {/* Live price estimate — testing only */}
-                {liveEstimate && (
-                  <div className="bg-gmt-mist/60 border border-gmt-sage rounded-sm px-6 py-4 text-center mb-4">
-                    <p className="font-body text-xs tracking-[0.12em] uppercase text-gmt-stone mb-1">Estimated Price Range</p>
-                    <p className="font-display text-2xl text-gmt-forest">
-                      ${liveEstimate.min.toLocaleString()} — ${liveEstimate.max.toLocaleString()}
-                    </p>
-                    <p className="font-body text-xs text-gmt-stone mt-1">For testing only — final pricing confirmed by our team</p>
-                  </div>
-                )}
+                {/* Live price estimate + breakdown — testing only */}
+                {liveEstimate && (() => {
+                  const linFt = (formValues.length || 0) / 12
+                  const base = linFt * 250
+                  const hasEpoxy = formValues.epoxyColor && formValues.epoxyColor !== 'none'
+                  const epoxyAdd = hasEpoxy ? 75 * linFt : 0
+                  const isOcean = formValues.backgroundColor === 'ocean-style'
+                  const isMedia = formValues.backgroundColor === 'media-style'
+                  const isArtisan = formValues.backgroundColor === 'artisan-series'
+                  const preTheme = base + epoxyAdd
+                  const themeAdd = isOcean ? preTheme * 0.10 : (isMedia || isArtisan) ? 15 * linFt : 0
+                  const preFinish = preTheme + themeAdd
+                  const isHighGloss = formValues.surfaceFinish === 'high-gloss-resin'
+                  const finishAdd = isHighGloss ? preFinish * 0.20 : 0
+                  const isRoundUpcharge = (formValues.tableShape === 'circle' || formValues.tableShape === 'oval') && (formValues.length || 0) > 60
+                  const subtotal = preFinish + finishAdd + (isRoundUpcharge ? 200 : 0)
+
+                  const rows: { label: string; value: number }[] = [
+                    { label: `Wood slab — ${linFt.toFixed(1)} lin ft @ $250/ft`, value: Math.round(base) },
+                    ...(hasEpoxy ? [{ label: `Resin & color — ${linFt.toFixed(1)} lin ft @ $75/ft`, value: Math.round(epoxyAdd) }] : []),
+                    ...(isOcean ? [{ label: 'Ocean Style theme (+10% of subtotal)', value: Math.round(themeAdd) }] : []),
+                    ...(isMedia ? [{ label: `Media Style — ${linFt.toFixed(1)} lin ft @ $15/ft`, value: Math.round(themeAdd) }] : []),
+                    ...(isArtisan ? [{ label: `Artisan Series — ${linFt.toFixed(1)} lin ft @ $15/ft`, value: Math.round(themeAdd) }] : []),
+                    ...(isHighGloss ? [{ label: 'High-Gloss Resin finish (+20% of subtotal)', value: Math.round(finishAdd) }] : []),
+                    ...(isRoundUpcharge ? [{ label: 'Round/oval top over 60" — size upcharge', value: 200 }] : []),
+                  ]
+
+                  return (
+                    <div className="space-y-3">
+                      <div className="bg-gmt-mist/60 border border-gmt-sage rounded-sm px-6 py-4 text-center">
+                        <p className="font-body text-xs tracking-[0.12em] uppercase text-gmt-stone mb-1">Estimated Price Range</p>
+                        <p className="font-display text-2xl text-gmt-forest">
+                          ${liveEstimate.min.toLocaleString()} — ${liveEstimate.max.toLocaleString()}
+                        </p>
+                      </div>
+                      <div className="bg-white border border-gmt-stone/20 rounded-sm px-5 py-4">
+                        <p className="font-body text-xs tracking-[0.12em] uppercase text-gmt-stone mb-3">How we got there</p>
+                        <div className="space-y-2">
+                          {rows.map((row, i) => (
+                            <div key={i} className="flex justify-between gap-4 font-body text-xs text-gmt-stone">
+                              <span>{row.label}</span>
+                              <span className="flex-shrink-0 font-medium text-gmt-forest">${row.value.toLocaleString()}</span>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="flex justify-between gap-4 font-body text-xs text-gmt-forest font-semibold border-t border-gmt-stone/20 pt-2 mt-2">
+                          <span>Subtotal</span>
+                          <span>${Math.round(subtotal).toLocaleString()}</span>
+                        </div>
+                        <p className="font-body text-xs text-gmt-stone/60 pt-2">±20% range accounts for wood variation, hardware, and finishing details.</p>
+                      </div>
+                    </div>
+                  )
+                })()}
 
                 {/* Name */}
                 <div>
