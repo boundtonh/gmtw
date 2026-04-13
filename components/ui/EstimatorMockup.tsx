@@ -1,12 +1,12 @@
+import Image from 'next/image'
 import { cn } from '@/lib/utils'
 
+const BASE = '/images/estimator/wood-species'
+
 const MOCK_SPECIES = [
-  { label: 'Black Walnut', color: 'bg-amber-900' },
-  { label: 'Hard Maple',   color: 'bg-amber-200' },
-  { label: 'Cherry',       color: 'bg-amber-700' },
-  { label: 'White Ash',    color: 'bg-stone-200' },
-  { label: 'Live Edge',    color: 'bg-amber-800' },
-  { label: 'Douglas Fir',  color: 'bg-orange-200' },
+  { label: 'Black Walnut', img: `${BASE}/black-walnut.jpg`,  selected: true },
+  { label: 'Cherry',       img: `${BASE}/cherry.jpg`,        selected: false },
+  { label: 'Douglas Fir',  img: `${BASE}/douglas-fir.jpg`,   selected: false },
 ]
 
 const MOCK_SHAPES = [
@@ -56,32 +56,55 @@ export function EstimatorMockup() {
         <p className="font-display text-xl text-gmt-forest mt-1">Wood Species</p>
       </div>
 
+      {/* Dimensions row */}
+      <div className="flex gap-2">
+        <div className="flex-1">
+          <p className="font-body text-[8px] tracking-[0.1em] uppercase text-gmt-stone mb-1">Length</p>
+          <div className="bg-white ring-1 ring-gmt-green rounded-sm px-2 py-1.5 flex items-center justify-between">
+            <span className="font-body text-xs text-gmt-forest font-medium">60</span>
+            <span className="font-body text-[9px] text-gmt-stone">inches</span>
+          </div>
+        </div>
+        <div className="flex-1">
+          <p className="font-body text-[8px] tracking-[0.1em] uppercase text-gmt-stone mb-1">Width</p>
+          <div className="bg-white ring-1 ring-gmt-stone/30 rounded-sm px-2 py-1.5 flex items-center justify-between">
+            <span className="font-body text-xs text-gmt-forest font-medium">34</span>
+            <span className="font-body text-[9px] text-gmt-stone">inches</span>
+          </div>
+        </div>
+      </div>
+
       {/* Thumbnail grid — wood species */}
-      <div className="grid grid-cols-3 gap-2 flex-1">
-        {MOCK_SPECIES.map((s, i) => (
+      <div className="grid grid-cols-3 gap-2">
+        {MOCK_SPECIES.map((s) => (
           <div
             key={s.label}
             className={cn(
               'rounded-sm overflow-hidden flex flex-col',
-              i === 0 ? 'ring-2 ring-gmt-green shadow-sm' : 'ring-1 ring-gmt-stone/20'
+              s.selected ? 'ring-2 ring-gmt-green shadow-sm' : 'ring-1 ring-gmt-stone/20'
             )}
           >
-            <div className={cn('flex-1 min-h-[36px]', s.color)}>
-              {i === 0 && (
-                <div className="flex items-start justify-end p-1">
-                  <div className="w-4 h-4 bg-gmt-green rounded-full flex items-center justify-center">
-                    <svg width="8" height="6" viewBox="0 0 8 6" fill="none">
-                      <path d="M1 3l2 2 4-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </div>
+            <div className="relative w-full aspect-[4/3] overflow-hidden">
+              <Image
+                src={s.img}
+                fill
+                alt={s.label}
+                sizes="120px"
+                className="object-cover"
+              />
+              {s.selected && (
+                <div className="absolute top-1 right-1 w-4 h-4 bg-gmt-green rounded-full flex items-center justify-center shadow">
+                  <svg width="8" height="6" viewBox="0 0 8 6" fill="none">
+                    <path d="M1 3l2 2 4-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
                 </div>
               )}
             </div>
             <div className={cn(
               'px-1.5 py-1 text-center',
-              i === 0 ? 'bg-gmt-green' : 'bg-white'
+              s.selected ? 'bg-gmt-green' : 'bg-white'
             )}>
-              <p className={cn('font-body text-[8px] leading-tight', i === 0 ? 'text-white' : 'text-gmt-forest')}>
+              <p className={cn('font-body text-[8px] leading-tight', s.selected ? 'text-white' : 'text-gmt-forest')}>
                 {s.label}
               </p>
             </div>
