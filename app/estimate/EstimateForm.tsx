@@ -194,6 +194,8 @@ export function EstimateForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
+  const [submittedPrice, setSubmittedPrice] = useState<{ min: number; max: number } | null>(null)
+  const [submittedValues, setSubmittedValues] = useState<EstimateFormData | null>(null)
   const {
     register,
     control,
@@ -255,6 +257,8 @@ export function EstimateForm() {
         return
       }
 
+      setSubmittedPrice(liveEstimate)
+      setSubmittedValues(data)
       setSubmitSuccess(true)
       setIsSubmitting(false)
     } catch {
@@ -314,7 +318,73 @@ export function EstimateForm() {
         {/* Form content */}
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
           <div className="mx-auto max-w-4xl">
-            {/* Step title */}
+
+            {/* ── Success state ── */}
+            {submitSuccess && submittedPrice && submittedValues && (
+              <div className="max-w-xl mx-auto text-center space-y-8">
+                <div>
+                  <svg className="w-12 h-12 text-gmt-green mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <h2 className="font-display text-3xl text-gmt-forest mb-2">Your Estimate</h2>
+                  <p className="font-body text-gmt-stone text-sm">Our team will be in touch shortly to confirm the details.</p>
+                </div>
+
+                {/* Price range */}
+                <div className="bg-gmt-mist/60 border border-gmt-sage rounded-sm px-8 py-6">
+                  <p className="font-body text-xs tracking-[0.12em] uppercase text-gmt-stone mb-2">Estimated Price Range</p>
+                  <p className="font-display text-4xl text-gmt-forest">
+                    ${submittedPrice.min.toLocaleString()} — ${submittedPrice.max.toLocaleString()}
+                  </p>
+
+                  {/* Logic breakdown */}
+                  <div className="mt-5 text-left space-y-1 border-t border-gmt-stone/20 pt-4">
+                    {(() => {
+                      const linFt = (submittedValues.length || 0) / 12
+                      const base = linFt * 250
+                      const hasEpoxy = submittedValues.epoxyColor && submittedValues.epoxyColor !== 'none'
+                      const epoxyAdd = hasEpoxy ? 75 * linFt : 0
+                      const isOcean = submittedValues.backgroundColor === 'ocean-style'
+                      const isMedia = submittedValues.backgroundColor === 'media-style' || submittedValues.backgroundColor === 'artisan-series'
+                      const preTheme = base + epoxyAdd
+                      const themeAdd = isOcean ? preTheme * 0.10 : isMedia ? 15 * linFt : 0
+                      const preFinish = preTheme + themeAdd
+                      const isHighGloss = submittedValues.surfaceFinish === 'high-gloss-resin'
+                      const finishAdd = isHighGloss ? preFinish * 0.20 : 0
+                      const isRoundUpcharge = (submittedValues.tableShape === 'circle' || submittedValues.tableShape === 'oval') && (submittedValues.length || 0) > 60
+                      const rows = [
+                        { label: `Base slab (${linFt.toFixed(1)} lin ft × $250)`, value: base },
+                        hasEpoxy && { label: `Resin & Color (${linFt.toFixed(1)} lin ft × $75)`, value: epoxyAdd },
+                        isOcean && { label: 'Ocean Style (+10%)', value: themeAdd },
+                        isMedia && { label: `${submittedValues.backgroundColor === 'media-style' ? 'Media Style' : 'Artisan Series'} (${linFt.toFixed(1)} lin ft × $15)`, value: themeAdd },
+                        isHighGloss && { label: 'High-Gloss Resin Finish (+20%)', value: finishAdd },
+                        isRoundUpcharge && { label: 'Round/oval over 60" upcharge', value: 200 },
+                      ].filter(Boolean) as { label: string; value: number }[]
+                      const total = rows.reduce((sum, r) => sum + r.value, 0)
+                      return (
+                        <>
+                          {rows.map((row, i) => (
+                            <div key={i} className="flex justify-between font-body text-xs text-gmt-stone">
+                              <span>{row.label}</span>
+                              <span>${row.value.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
+                            </div>
+                          ))}
+                          <div className="flex justify-between font-body text-xs text-gmt-forest font-semibold border-t border-gmt-stone/20 pt-1 mt-1">
+                            <span>Subtotal</span>
+                            <span>${total.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
+                          </div>
+                          <p className="font-body text-xs text-gmt-stone/70 mt-2">Final range reflects ±20% to account for materials and customization.</p>
+                        </>
+                      )
+                    })()}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Steps — hidden after submission */}
+            {!submitSuccess && (
+            <>
             <h2 className="font-display text-3xl md:text-4xl text-gmt-forest mb-10 text-center">
               {STEPS[currentStep].title.split('<br>').map((line, idx) => (
                 <div key={idx}>{line}</div>
@@ -872,11 +942,13 @@ export function EstimateForm() {
                 </div>
               </div>
             )}
+            </>
+            )}
 
           </div>
 
-          {/* Navigation */}
-          <div className="mt-16 mx-auto max-w-4xl">
+          {/* Navigation — hidden after submission */}
+          {!submitSuccess && <div className="mt-16 mx-auto max-w-4xl">
             <div className="flex items-center justify-between border-t border-gmt-stone/20 pt-8 gap-6">
               <button
                 type="button"
@@ -892,16 +964,7 @@ export function EstimateForm() {
                 Previous
               </button>
 
-              {submitSuccess ? (
-                <div className="text-center">
-                  <div className="inline-flex items-center gap-2 bg-green-50 border border-green-200 rounded-sm px-6 py-3">
-                    <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <span className="font-body text-sm text-green-700">Estimate sent! Check your email.</span>
-                  </div>
-                </div>
-              ) : currentStep === STEPS.length - 1 ? (
+              {submitSuccess ? null : currentStep === STEPS.length - 1 ? (
                 <button
                   type="submit"
                   disabled={isSubmitting}
@@ -931,12 +994,12 @@ export function EstimateForm() {
               </div>
             )}
 
-            {currentStep === STEPS.length - 1 && !submitSuccess && (
+            {currentStep === STEPS.length - 1 && (
               <p className="mt-4 font-body text-xs text-gmt-stone leading-relaxed max-w-xl mx-auto text-center">
                 By submitting this form you agree to be contacted by Green Mountain Tableworx regarding your custom furniture estimate. We will never share your information.
               </p>
             )}
-          </div>
+          </div>}
         </form>
       </Container>
     </div>
