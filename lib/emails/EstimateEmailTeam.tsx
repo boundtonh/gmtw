@@ -7,6 +7,7 @@ function formatPrice(price: number) {
   return `$${price.toLocaleString()}`
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function buildTeamEmailHtml(data: any, quotePrice: { min: number; max: number }): string {
   const deliveryLabel =
     data.deliveryOption === 'pickup-concord'

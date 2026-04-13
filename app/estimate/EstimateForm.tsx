@@ -257,7 +257,7 @@ export function EstimateForm() {
 
       setSubmitSuccess(true)
       setIsSubmitting(false)
-    } catch (error) {
+    } catch {
       setSubmitError('An error occurred. Please try again or contact us directly.')
       setIsSubmitting(false)
     }

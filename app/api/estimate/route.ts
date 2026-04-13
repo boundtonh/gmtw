@@ -3,6 +3,7 @@ import { buildTeamEmailHtml } from '@/lib/emails/EstimateEmailTeam'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function calculatePrice(data: any) {
   const linearFeet = (data.length || 0) / 12
 
