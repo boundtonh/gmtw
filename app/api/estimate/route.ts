@@ -1,6 +1,5 @@
 import { Resend } from 'resend'
-import { EstimateEmail } from '@/lib/emails/EstimateEmail'
-import { EstimateEmailTeam } from '@/lib/emails/EstimateEmailTeam'
+import { buildTeamEmailHtml } from '@/lib/emails/EstimateEmailTeam'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
@@ -52,14 +51,6 @@ export async function POST(request: Request) {
 
     const quotePrice = calculatePrice(data)
 
-    // Send email to customer
-    await resend.emails.send({
-      from: 'estimates@greenmountaintableworx.com',
-      to: data.email,
-      subject: `Your Custom Table Estimate — Green Mountain Tableworx`,
-      react: EstimateEmail({ data, quotePrice }),
-    })
-
     // Send email to team (both Jamie and Nikki)
     const teamEmails = ['jamie@greenmountaintable.com', 'nikki@greenmountaintable.com']
     for (const email of teamEmails) {
@@ -67,13 +58,13 @@ export async function POST(request: Request) {
         from: 'estimates@greenmountaintableworx.com',
         to: email,
         subject: `New Estimate Request — ${data.name}`,
-        react: EstimateEmailTeam({ data, quotePrice }),
+        html: buildTeamEmailHtml(data, quotePrice),
       })
     }
 
     return Response.json({
       success: true,
-      message: 'Your estimate has been sent! Check your email for details.',
+      message: 'Your estimate request has been received!',
       estimatedPrice: quotePrice,
     })
   } catch (error) {
