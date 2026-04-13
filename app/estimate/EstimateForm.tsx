@@ -117,19 +117,27 @@ const EDGE_STYLES = [
 ]
 
 const EPOXY_COLORS = [
-  { value: 'none',       label: 'No Epoxy',    placeholder: 'bg-stone-100' },
-  { value: 'blue',       label: 'Blue',        placeholder: 'bg-blue-500' },
-  { value: 'teal',       label: 'Teal',        placeholder: 'bg-teal-500' },
-  { value: 'ocean-blue', label: 'Ocean Blue',  placeholder: 'bg-cyan-700' },
-  { value: 'black',      label: 'Black',       placeholder: 'bg-stone-900' },
-  { value: 'white',      label: 'White',       placeholder: 'bg-white' },
-  { value: 'custom',     label: 'Custom Color',placeholder: 'bg-gradient-to-br from-purple-400 via-pink-400 to-orange-400' },
+  { value: 'none',   label: 'No Epoxy', placeholder: 'bg-stone-100' },
+  { value: 'black',  label: 'Black',    placeholder: 'bg-stone-900' },
+  { value: 'white',  label: 'White',    placeholder: 'bg-white border border-stone-200' },
+  { value: 'silver', label: 'Silver',   placeholder: 'bg-slate-300' },
+  { value: 'gold',   label: 'Gold',     placeholder: 'bg-yellow-400' },
+  { value: 'bronze', label: 'Bronze',   placeholder: 'bg-amber-700' },
+  { value: 'blue',   label: 'Blue',     placeholder: 'bg-blue-500' },
+  { value: 'teal',   label: 'Teal',     placeholder: 'bg-teal-500' },
+  { value: 'green',  label: 'Green',    placeholder: 'bg-green-600' },
+  { value: 'purple', label: 'Purple',   placeholder: 'bg-purple-600' },
+  { value: 'orange', label: 'Orange',   placeholder: 'bg-orange-500' },
+  { value: 'red',    label: 'Red',      placeholder: 'bg-red-600' },
+  { value: 'yellow', label: 'Yellow',   placeholder: 'bg-yellow-300' },
+  { value: 'brown',  label: 'Brown',    placeholder: 'bg-amber-900' },
 ]
 
 const SPECIALTY_THEMES = [
-  { value: 'ocean-style',    label: 'Ocean Style — Our Specialty', img: '/images/ocean/ocean-style.webp' },
-  { value: 'media-style',    label: 'Media Style',                 placeholder: 'bg-gmt-mist' },
-  { value: 'artisan-series', label: 'Artisan Series',              placeholder: 'bg-amber-100' },
+  { value: 'none',         label: 'None',                        placeholder: 'bg-stone-100' },
+  { value: 'ocean-style',  label: 'Ocean Style — Our Specialty', img: '/images/ocean/ocean-style.webp' },
+  { value: 'media-style',  label: 'Media Style',                 placeholder: 'bg-gmt-mist' },
+  { value: 'artisan-series', label: 'Artisan Series',            placeholder: 'bg-amber-100' },
 ]
 
 const SURFACE_FINISHES_URETHANE = [
@@ -637,8 +645,11 @@ export function EstimateForm() {
 
                 {/* Resin & Color */}
                 <div>
-                  <p className="font-body text-xs tracking-[0.12em] uppercase text-gmt-stone mb-4 text-center">
+                  <p className="font-body text-xs tracking-[0.12em] uppercase text-gmt-stone mb-1 text-center">
                     Resin &amp; Color
+                  </p>
+                  <p className="font-body text-sm text-gmt-stone text-center mb-5">
+                    265+ colors to choose from. We&rsquo;ll show you our color guide after receiving your estimate.
                   </p>
                   <Controller
                     name="epoxyColor"
