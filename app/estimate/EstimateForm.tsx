@@ -224,12 +224,17 @@ export function EstimateForm() {
   const deliveryOption = watch('deliveryOption')
   const tableShape = watch('tableShape')
 
+  // Tier 2 (premium/exotic) species — everything else is Tier 1
+  const TIER2_SPECIES = new Set(['acacia', 'buckeye-burl', 'claro-walnut', 'olivewood', 'monkey-pod'])
+
   // Client-side price estimate (mirrors API formula — for testing only)
   const formValues = watch()
   const liveEstimate = (() => {
+    const sqFt = ((formValues.length || 0) * (formValues.width || 0)) / 144
     const linearFeet = (formValues.length || 0) / 12
-    if (linearFeet === 0) return null
-    let subtotal = linearFeet * 250
+    if (sqFt === 0) return null
+    const woodRate = TIER2_SPECIES.has(formValues.woodSpecies) ? 225 : 168
+    let subtotal = sqFt * woodRate
     if (formValues.epoxyColor && formValues.epoxyColor !== 'none') subtotal += 75 * linearFeet
     if (formValues.backgroundColor === 'ocean-style') subtotal *= 1.10
     else if (formValues.backgroundColor === 'media-style' || formValues.backgroundColor === 'artisan-series') subtotal += 15 * linearFeet
@@ -341,8 +346,11 @@ export function EstimateForm() {
 
                 {/* Logic breakdown */}
                 {(() => {
+                  const sqFt = ((submittedValues.length || 0) * (submittedValues.width || 0)) / 144
                   const linFt = (submittedValues.length || 0) / 12
-                  const base = linFt * 250
+                  const woodRate = TIER2_SPECIES.has(submittedValues.woodSpecies) ? 225 : 168
+                  const isTier2 = TIER2_SPECIES.has(submittedValues.woodSpecies)
+                  const base = sqFt * woodRate
                   const hasEpoxy = submittedValues.epoxyColor && submittedValues.epoxyColor !== 'none'
                   const epoxyAdd = hasEpoxy ? 75 * linFt : 0
                   const isOcean = submittedValues.backgroundColor === 'ocean-style'
@@ -357,7 +365,7 @@ export function EstimateForm() {
                   const subtotal = preFinish + finishAdd + (isRoundUpcharge ? 200 : 0)
 
                   const rows: { label: string; value: number }[] = [
-                    { label: `Wood slab — ${linFt.toFixed(1)} lin ft @ $250/ft`, value: Math.round(base) },
+                    { label: `Wood slab — ${sqFt.toFixed(1)} sq ft @ $${woodRate}/sq ft${isTier2 ? ' (Tier 2)' : ''}`, value: Math.round(base) },
                     ...(hasEpoxy ? [{ label: `Resin & color — ${linFt.toFixed(1)} lin ft @ $75/ft`, value: Math.round(epoxyAdd) }] : []),
                     ...(isOcean ? [{ label: 'Ocean Style theme (+10% of subtotal)', value: Math.round(themeAdd) }] : []),
                     ...(isMedia ? [{ label: `Media Style — ${linFt.toFixed(1)} lin ft @ $15/ft`, value: Math.round(themeAdd) }] : []),
@@ -800,8 +808,11 @@ export function EstimateForm() {
 
                 {/* Live price estimate + breakdown — testing only */}
                 {liveEstimate && (() => {
+                  const sqFt = ((formValues.length || 0) * (formValues.width || 0)) / 144
                   const linFt = (formValues.length || 0) / 12
-                  const base = linFt * 250
+                  const woodRate = TIER2_SPECIES.has(formValues.woodSpecies) ? 225 : 168
+                  const isTier2 = TIER2_SPECIES.has(formValues.woodSpecies)
+                  const base = sqFt * woodRate
                   const hasEpoxy = formValues.epoxyColor && formValues.epoxyColor !== 'none'
                   const epoxyAdd = hasEpoxy ? 75 * linFt : 0
                   const isOcean = formValues.backgroundColor === 'ocean-style'
@@ -816,7 +827,7 @@ export function EstimateForm() {
                   const subtotal = preFinish + finishAdd + (isRoundUpcharge ? 200 : 0)
 
                   const rows: { label: string; value: number }[] = [
-                    { label: `Wood slab — ${linFt.toFixed(1)} lin ft @ $250/ft`, value: Math.round(base) },
+                    { label: `Wood slab — ${sqFt.toFixed(1)} sq ft @ $${woodRate}/sq ft${isTier2 ? ' (Tier 2)' : ''}`, value: Math.round(base) },
                     ...(hasEpoxy ? [{ label: `Resin & color — ${linFt.toFixed(1)} lin ft @ $75/ft`, value: Math.round(epoxyAdd) }] : []),
                     ...(isOcean ? [{ label: 'Ocean Style theme (+10% of subtotal)', value: Math.round(themeAdd) }] : []),
                     ...(isMedia ? [{ label: `Media Style — ${linFt.toFixed(1)} lin ft @ $15/ft`, value: Math.round(themeAdd) }] : []),

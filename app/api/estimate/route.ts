@@ -1,12 +1,17 @@
 import { Resend } from 'resend'
 import { buildTeamEmailHtml } from '@/lib/emails/EstimateEmailTeam'
 
+// Tier 2 (premium/exotic) species — everything else is Tier 1
+const TIER2_SPECIES = new Set(['acacia', 'buckeye-burl', 'claro-walnut', 'olivewood', 'monkey-pod'])
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function calculatePrice(data: any) {
+  const sqFt = ((data.length || 0) * (data.width || 0)) / 144
   const linearFeet = (data.length || 0) / 12
 
-  // Base: wood slab cost per linear foot
-  let subtotal = linearFeet * 250
+  // Base: wood slab by square footage
+  const woodRate = TIER2_SPECIES.has(data.woodSpecies) ? 225 : 168
+  let subtotal = sqFt * woodRate
 
   // Resin & Color: $75/lin ft if any epoxy selected
   if (data.epoxyColor && data.epoxyColor !== 'none') {
@@ -15,9 +20,9 @@ function calculatePrice(data: any) {
 
   // Specialty Resin Themes
   if (data.backgroundColor === 'ocean-style') {
-    subtotal *= 1.10                                                              // +10%
+    subtotal *= 1.10                                          // +10%
   } else if (data.backgroundColor === 'media-style' || data.backgroundColor === 'artisan-series') {
-    subtotal += 15 * linearFeet                                                   // +$15/lin ft
+    subtotal += 15 * linearFeet                              // +$15/lin ft
   }
 
   // Surface Finish: High-Gloss Resin +20%
