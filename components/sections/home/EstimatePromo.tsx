@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Container } from '@/components/layout/Container'
 import { SectionLabel } from '@/components/ui/SectionLabel'
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll'
+import { EstimatorMockup } from '@/components/ui/EstimatorMockup'
 
 const specs = [
   'Wood species & slab dimensions',
@@ -57,26 +58,10 @@ export function EstimatePromo() {
             </div>
           </RevealOnScroll>
 
-          {/* Image */}
+          {/* Estimator mockup */}
           <RevealOnScroll direction="right">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-gradient-to-br from-gmt-forest to-gmt-charcoal">
-              {/*
-                TODO: Replace with client-supplied estimate/lifestyle photo:
-                <Image
-                  src="/images/estimate/estimate-hero.jpg"
-                  fill
-                  alt="Custom live edge dining table being built at Green Mountain Tableworx"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover"
-                />
-              */}
-              {/* Decorative accent line */}
-              <div className="absolute left-8 top-8 bottom-8 w-px bg-gmt-green/40" />
-              <div className="absolute inset-0 flex items-end p-10">
-                <p className="font-display italic text-2xl text-white/60 leading-snug">
-                  &ldquo;Every detail,<br />your way.&rdquo;
-                </p>
-              </div>
+            <div className="relative aspect-[4/5] rounded-sm overflow-hidden shadow-xl ring-1 ring-gmt-stone/10">
+              <EstimatorMockup />
             </div>
           </RevealOnScroll>
 
