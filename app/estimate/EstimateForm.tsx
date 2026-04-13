@@ -12,17 +12,21 @@ export interface EstimateFormData {
   woodSpecies: string
   length: number
   width: number
-  tableShape: 'rectangle' | 'circle' | 'oval' | 'other'
-  edgeStyle: 'live-edge' | 'straight' | 'bevel' | 'c-shaped' | 'lake-shaped' | 'chiseled'
+  tableShape: 'rectangle' | 'circle' | 'oval' | 'square'
+  edgeStyle: 'live-edge' | 'straight' | 'bevel' | 'pencil'
   epoxyColor: string
   backgroundColor: string
-  surfaceFinish: 'full-gloss' | 'full-matte' | 'matte-wood-glossy-resin'
+  surfaceFinish: 'dull' | 'matte' | 'satin' | 'semi-gloss' | 'gloss' | 'high-gloss-resin'
   engraving: boolean
   tableBase: string
   name: string
   email: string
   phone: string
-  preferredLocation: 'concord-nh' | 'smithfield-ri' | 'remote'
+  deliveryOption: 'pickup-concord' | 'pickup-smithfield' | 'delivery'
+  deliveryStreet?: string
+  deliveryCity?: string
+  deliveryState?: string
+  deliveryZip?: string
   notes: string
 }
 
@@ -52,6 +56,7 @@ const ELM_VARIETIES = [
 const WALNUT_VARIETIES = [
   { value: 'black-walnut',   label: 'Black Walnut' },
   { value: 'english-walnut', label: 'English Walnut' },
+  { value: 'butternut',      label: 'Butternut' },
 ]
 
 const MAPLE_VALUES = new Set(MAPLE_VARIETIES.map(v => v.value))
@@ -85,35 +90,30 @@ const WOOD_TIER1 = [
   { value: 'spruce',         label: 'Spruce',         img: `${BASE}/spruce.jpg` },
   { value: 'sycamore',       label: 'Sycamore',       img: `${BASE}/sycamore.jpg` },
   { value: 'tulip',          label: 'Tulip',          img: `${BASE}/tulip.webp` },
-  { value: 'walnut',         label: 'Walnut (2 Types)', img: `${BASE}/black-walnut.jpg` },
+  { value: 'walnut',         label: 'Walnut (3 Types)', img: `${BASE}/black-walnut.jpg` },
   { value: 'willow',         label: 'Willow',         img: `${BASE}/willow.jpg` },
-  { value: 'butternut',      label: 'Butternut',      img: `${BASE}/butternut.jpg` },
 ]
 
 const WOOD_TIER2 = [
-  { value: 'acacia',            label: 'Indonesian / Mexican Acacia', img: `${BASE}/acacia.webp` },
-  { value: 'brazilian-catalpa', label: 'Brazilian Catalpa',           img: `${BASE}/brazilian-catalpa.jpg` },
-  { value: 'guanacaste',        label: 'Costa Rican Guanacaste',      img: `${BASE}/gunacoste.jpg` },
-  { value: 'buckeye-burl',      label: 'Buckeye Burl',                img: `${BASE}/Buckeye-burl.jpg` },
-  { value: 'claro-walnut',      label: 'Claro Walnut',                img: `${BASE}/ClaroWalnut.jpg` },
-  { value: 'olivewood',         label: 'Olivewood',                   img: `${BASE}/olive-wood.jpg` },
-  { value: 'monkey-pod',        label: 'Costa Rican Monkey Pod',      img: `${BASE}/monkey-pod.webp` },
+  { value: 'acacia',        label: 'Indonesian / Mexican Acacia', img: `${BASE}/acacia.webp` },
+  { value: 'buckeye-burl',  label: 'Buckeye Burl',                img: `${BASE}/Buckeye-burl.jpg` },
+  { value: 'claro-walnut',  label: 'Claro Walnut',                img: `${BASE}/ClaroWalnut.jpg` },
+  { value: 'olivewood',     label: 'Olivewood',                   img: `${BASE}/olive-wood.jpg` },
+  { value: 'monkey-pod',    label: 'Costa Rican Monkey Pod',      img: `${BASE}/gunacoste.jpg` },
 ]
 
 const TABLE_SHAPES = [
   { value: 'rectangle', label: 'Rectangle', placeholder: 'bg-gmt-mist' },
+  { value: 'square',    label: 'Square',    placeholder: 'bg-gmt-mist' },
   { value: 'circle',    label: 'Circle',    placeholder: 'bg-gmt-mist' },
   { value: 'oval',      label: 'Oval',      placeholder: 'bg-gmt-mist' },
-  { value: 'other',     label: 'Other / Custom', placeholder: 'bg-gmt-mist' },
 ]
 
 const EDGE_STYLES = [
-  { value: 'live-edge',  label: 'Live Edge',     placeholder: 'bg-gmt-sage' },
-  { value: 'straight',   label: 'Straight Edge', placeholder: 'bg-gmt-mist' },
-  { value: 'bevel',      label: 'Bevel Edge',    placeholder: 'bg-gmt-mist' },
-  { value: 'c-shaped',   label: 'C-Shaped Edge', placeholder: 'bg-gmt-mist' },
-  { value: 'lake-shaped',label: 'Lake Shaped',   placeholder: 'bg-gmt-mist' },
-  { value: 'chiseled',   label: 'Chiseled Edge', placeholder: 'bg-gmt-mist' },
+  { value: 'live-edge', label: 'Live Edge',     placeholder: 'bg-gmt-sage' },
+  { value: 'straight',  label: 'Straight Edge', placeholder: 'bg-gmt-mist' },
+  { value: 'bevel',     label: 'Bevel Edge',    placeholder: 'bg-gmt-mist' },
+  { value: 'pencil',    label: 'Pencil Edge',   placeholder: 'bg-gmt-mist' },
 ]
 
 const EPOXY_COLORS = [
@@ -126,42 +126,54 @@ const EPOXY_COLORS = [
   { value: 'custom',     label: 'Custom Color',placeholder: 'bg-gradient-to-br from-purple-400 via-pink-400 to-orange-400' },
 ]
 
-const BACKGROUND_COLORS = [
-  { value: 'ocean-style', label: 'Ocean Style',  img: '/images/ocean/ocean-style.webp' },
-  { value: 'stone-style', label: 'Stone Style',  img: '/images/ocean/stone-style.webp' },
-  { value: 'custom',      label: 'Custom',       placeholder: 'bg-gmt-mist' },
+const SPECIALTY_THEMES = [
+  { value: 'ocean-style',    label: 'Ocean Style — Our Specialty', img: '/images/ocean/ocean-style.webp' },
+  { value: 'media-style',    label: 'Media Style',                 placeholder: 'bg-gmt-mist' },
+  { value: 'artisan-series', label: 'Artisan Series',              placeholder: 'bg-amber-100' },
 ]
 
-const SURFACE_FINISHES = [
-  { value: 'full-gloss',             label: 'Full Gloss',              placeholder: 'bg-sky-100' },
-  { value: 'full-matte',             label: 'Full Matte',              placeholder: 'bg-stone-200' },
-  { value: 'matte-wood-glossy-resin',label: 'Matte Wood / Glossy Resin', placeholder: 'bg-amber-100' },
+const SURFACE_FINISHES_URETHANE = [
+  { value: 'dull',       label: 'Dull',       placeholder: 'bg-stone-300' },
+  { value: 'matte',      label: 'Matte',      placeholder: 'bg-stone-200' },
+  { value: 'satin',      label: 'Satin',      placeholder: 'bg-stone-100' },
+  { value: 'semi-gloss', label: 'Semi-Gloss', placeholder: 'bg-sky-100'   },
+  { value: 'gloss',      label: 'Gloss',      placeholder: 'bg-sky-200'   },
+]
+
+const SURFACE_FINISHES_EPOXY = [
+  { value: 'high-gloss-resin', label: 'High-Gloss Resin', placeholder: 'bg-sky-300' },
 ]
 
 const ENGRAVING_OPTIONS = [
-  { value: 'yes', label: 'Yes — Add Engraving', placeholder: 'bg-gmt-forest' },
-  { value: 'no',  label: 'No Engraving',        placeholder: 'bg-stone-100' },
+  { value: 'yes', label: 'Yes — Add Custom Inscription or Engraving', placeholder: 'bg-gmt-forest' },
+  { value: 'no',  label: 'No',                                         placeholder: 'bg-stone-100' },
 ]
 
-const TABLE_BASES = [
-  { value: 'haru-pedestal',            label: 'Haru Pedestal',           img: '/images/bases/haru-pedestal.webp' },
-  { value: 'wine-glass',               label: 'Wine Glass',              img: '/images/bases/wine-glass.webp' },
-  { value: 'lithe-pedestal',           label: 'Lithe Pedestal',          img: '/images/bases/lithe-pedestal.webp' },
-  { value: 'summa',                    label: 'Summa',                   img: '/images/bases/Summa.webp' },
-  { value: 'center-prong',             label: 'Center Prong',            img: '/images/bases/center-prong.webp' },
-  { value: 'x-cross',                  label: 'X Cross',                 img: '/images/bases/x-cross.webp' },
-  { value: 'iron-trapezoid',           label: 'Iron Trapezoid',          img: '/images/bases/iron-trapezoid.webp' },
-  { value: 'iron-a-frame',             label: 'Iron A-Frame',            img: '/images/bases/iron-a-frame.webp' },
-  { value: 'iron-h-design',            label: 'Iron H-Design',           img: '/images/bases/iron-h-design.webp' },
-  { value: 'rectangle',                label: 'Rectangle',               img: '/images/bases/rectangle.webp' },
-  { value: 'reverse-trapezoid',        label: 'Reverse Trapezoid',       img: '/images/bases/reverse-trapezoid.webp' },
-  { value: 'contemporary-hairpins',    label: 'Contemporary Hairpins',   img: '/images/bases/contemporary-hairpins.webp' },
-  { value: 'slab-post-trestle',        label: 'Slab Post Trestle',       img: '/images/bases/slab-post-tressle.webp' },
-  { value: 'center-arch-pedestal',     label: 'Center Arch Pedestal',    img: '/images/bases/center-arch-pedestal.webp' },
-  { value: 'arch-trestle',             label: 'Arch Trestle',            img: '/images/bases/arch-trestle.webp' },
-  { value: 'stump-base',               label: 'Stump Base',              img: '/images/bases/stump-base.webp' },
-  { value: 'classic-turned-legs',      label: 'Classic Turned Legs',     img: '/images/bases/classic-turned-legs.webp' },
-  { value: 'namu-pedestal',            label: 'Namu Pedestal',           img: '/images/bases/namu-pedestal.webp' },
+const TABLE_BASES_STANDARD_IRON = [
+  { value: 'iron-trapezoid',    label: 'Iron Trapezoid',    img: '/images/bases/iron-trapezoid.webp' },
+  { value: 'iron-a-frame',      label: 'Iron A-Frame',      img: '/images/bases/iron-a-frame.webp' },
+  { value: 'iron-h-design',     label: 'Iron H-Design',     img: '/images/bases/iron-h-design.webp' },
+  { value: 'rectangle',         label: 'Rectangle',         img: '/images/bases/rectangle.webp' },
+  { value: 'reverse-trapezoid', label: 'Reverse Trapezoid', img: '/images/bases/reverse-trapezoid.webp' },
+]
+
+const TABLE_BASES_ELEGANT_IRON = [
+  { value: 'haru-pedestal',         label: 'Haru Pedestal',         img: '/images/bases/haru-pedestal.webp' },
+  { value: 'wine-glass',            label: 'Wine Glass',            img: '/images/bases/wine-glass.webp' },
+  { value: 'lithe-pedestal',        label: 'Lithe Pedestal',        img: '/images/bases/lithe-pedestal.webp' },
+  { value: 'summa',                 label: 'Summa',                 img: '/images/bases/Summa.webp' },
+  { value: 'center-prong',          label: 'Center Prong',          img: '/images/bases/center-prong.webp' },
+  { value: 'x-cross',               label: 'X Cross',               img: '/images/bases/x-cross.webp' },
+  { value: 'contemporary-hairpins', label: 'Contemporary Hairpins', img: '/images/bases/contemporary-hairpins.webp' },
+  { value: 'center-arch-pedestal',  label: 'Center Arch Pedestal',  img: '/images/bases/center-arch-pedestal.webp' },
+]
+
+const TABLE_BASES_WOOD = [
+  { value: 'slab-post-trestle',   label: 'Slab Post Trestle',   img: '/images/bases/slab-post-tressle.webp' },
+  { value: 'arch-trestle',        label: 'Arch Trestle',        img: '/images/bases/arch-trestle.webp' },
+  { value: 'stump-base',          label: 'Stump Base',          img: '/images/bases/stump-base.webp' },
+  { value: 'classic-turned-legs', label: 'Classic Turned Legs', img: '/images/bases/classic-turned-legs.webp' },
+  { value: 'namu-pedestal',        label: 'Namu Pedestal',       img: '/images/bases/namu-pedestal.webp' },
 ]
 
 const STEPS = [
@@ -185,6 +197,7 @@ export function EstimateForm() {
   const {
     register,
     control,
+    watch,
     formState: { errors },
     handleSubmit,
   } = useForm<EstimateFormData>({
@@ -198,9 +211,30 @@ export function EstimateForm() {
       surfaceFinish: undefined,
       engraving: false,
       tableBase: '',
-      preferredLocation: undefined,
+      deliveryOption: undefined,
+      deliveryStreet: '',
+      deliveryCity: '',
+      deliveryState: '',
+      deliveryZip: '',
     },
   })
+
+  const deliveryOption = watch('deliveryOption')
+  const tableShape = watch('tableShape')
+
+  // Client-side price estimate (mirrors API formula — for testing only)
+  const formValues = watch()
+  const liveEstimate = (() => {
+    const linearFeet = (formValues.length || 0) / 12
+    if (linearFeet === 0) return null
+    let subtotal = linearFeet * 250
+    if (formValues.epoxyColor && formValues.epoxyColor !== 'none') subtotal += 75 * linearFeet
+    if (formValues.backgroundColor === 'ocean-style') subtotal *= 1.10
+    else if (formValues.backgroundColor === 'media-style' || formValues.backgroundColor === 'artisan-series') subtotal += 15 * linearFeet
+    if (formValues.surfaceFinish === 'high-gloss-resin') subtotal *= 1.20
+    if ((formValues.tableShape === 'circle' || formValues.tableShape === 'oval') && (formValues.length || 0) > 60) subtotal += 200
+    return { min: Math.round(subtotal * 0.80), max: Math.round(subtotal * 1.20) }
+  })()
 
   const onSubmit = async (data: EstimateFormData) => {
     setIsSubmitting(true)
@@ -467,11 +501,6 @@ export function EstimateForm() {
             {/* ── Step 2: Table Shape ── */}
             {currentStep === 2 && (
               <div className="space-y-8">
-                <div className="border-l-4 border-gmt-green bg-gmt-mist/50 p-6 rounded-sm max-w-2xl mx-auto">
-                  <p className="font-body text-sm text-gmt-forest leading-relaxed">
-                    <span className="font-semibold">We can make practically any shape.</span> Select &ldquo;Other&rdquo; if you&rsquo;d like a custom shape. Live edge pieces are not naturally straight, and there can be slight inconsistencies in the straightness of the table edges, which is natural to the wood character.
-                  </p>
-                </div>
                 <Controller
                   name="tableShape"
                   control={control}
@@ -484,6 +513,14 @@ export function EstimateForm() {
                     />
                   )}
                 />
+                {(tableShape === 'circle' || tableShape === 'oval') && (
+                  <p className="font-body text-sm text-gmt-stone italic text-center max-w-xl mx-auto">
+                    Tables with a round or oval top over 60&rdquo; may incur an additional size upcharge.
+                  </p>
+                )}
+                <p className="font-body text-sm text-gmt-stone text-center max-w-2xl mx-auto">
+                  With our CNC capabilities, any shape is possible — simply inquire within. Pricing is on a case-by-case basis, and we offer up to 3 free renderings for approval.
+                </p>
               </div>
             )}
 
@@ -491,7 +528,7 @@ export function EstimateForm() {
             {currentStep === 3 && (
               <div>
                 <p className="font-body text-gmt-stone text-base mb-10 text-center max-w-2xl mx-auto">
-                  The edge profile defines the character of your piece. Live edge preserves the natural tree form; other options offer a cleaner, more refined silhouette.
+                  Our tables feature soft edge profile features carefully eased and hand-finished corners that eliminate sharp angles, creating a smoother, safer surface that&rsquo;s both family-friendly and visually inviting.
                 </p>
                 <Controller
                   name="edgeStyle"
@@ -515,9 +552,10 @@ export function EstimateForm() {
                   Epoxy inlays can be poured as rivers, oceans, or abstract fills. Choose your colors and surface finish below.
                 </p>
 
+                {/* Resin & Color */}
                 <div>
                   <p className="font-body text-xs tracking-[0.12em] uppercase text-gmt-stone mb-4 text-center">
-                    Epoxy Color
+                    Resin &amp; Color
                   </p>
                   <Controller
                     name="epoxyColor"
@@ -533,45 +571,69 @@ export function EstimateForm() {
                   />
                 </div>
 
+                {/* Specialty Resin Themes */}
                 <div>
                   <p className="font-body text-xs tracking-[0.12em] uppercase text-gmt-stone mb-4 text-center">
-                    Background
+                    Specialty Resin Themes
                   </p>
                   <Controller
                     name="backgroundColor"
                     control={control}
                     render={({ field }) => (
                       <ThumbnailGrid
-                        options={BACKGROUND_COLORS}
+                        options={SPECIALTY_THEMES}
                         selected={field.value}
                         onSelect={field.onChange}
-                        cols="3-6"
+                        cols="3"
                       />
                     )}
                   />
+                  <p className="font-body text-sm text-gmt-stone mt-4 text-center max-w-xl mx-auto">
+                    Smoke Tints &amp; Crystal Clear finishes are also available — inquire within.
+                  </p>
                 </div>
 
+                {/* Surface Finish */}
                 <div>
-                  <p className="font-body text-xs tracking-[0.12em] uppercase text-gmt-stone mb-4 text-center">
+                  <p className="font-body text-xs tracking-[0.12em] uppercase text-gmt-stone mb-6 text-center">
                     Surface Finish
                   </p>
                   <Controller
                     name="surfaceFinish"
                     control={control}
                     render={({ field }) => (
-                      <ThumbnailGrid
-                        options={SURFACE_FINISHES}
-                        selected={field.value ?? ''}
-                        onSelect={field.onChange}
-                        cols="3"
-                      />
+                      <div className="space-y-8">
+                        <div>
+                          <p className="font-body text-xs text-gmt-stone mb-3 text-center">
+                            Catalyzed Urethane Finishes <span className="text-gmt-green">(no additional charge)</span>
+                          </p>
+                          <ThumbnailGrid
+                            options={SURFACE_FINISHES_URETHANE}
+                            selected={field.value ?? ''}
+                            onSelect={field.onChange}
+                            cols="3-5"
+                          />
+                        </div>
+                        <div>
+                          <p className="font-body text-xs text-gmt-stone mb-3 text-center">
+                            Epoxy Finishes <span className="text-gmt-green">(+20% of table price)</span>
+                          </p>
+                          <ThumbnailGrid
+                            options={SURFACE_FINISHES_EPOXY}
+                            selected={field.value ?? ''}
+                            onSelect={field.onChange}
+                            cols="2"
+                          />
+                        </div>
+                      </div>
                     )}
                   />
                 </div>
 
+                {/* Custom Inscriptions or Engraving */}
                 <div>
                   <p className="font-body text-xs tracking-[0.12em] uppercase text-gmt-stone mb-4 text-center">
-                    Engraving
+                    Custom Inscriptions or Engraving
                   </p>
                   <Controller
                     name="engraving"
@@ -585,6 +647,9 @@ export function EstimateForm() {
                       />
                     )}
                   />
+                  <p className="font-body text-sm text-gmt-stone mt-4 text-center max-w-xl mx-auto">
+                    Engraving and inscription pricing is determined by your specifications. Our team will reach out with a quote.
+                  </p>
                 </div>
               </div>
             )}
@@ -592,25 +657,60 @@ export function EstimateForm() {
             {/* ── Step 5: Table Base ── */}
             {currentStep === 5 && (
               <div>
-                <p className="font-body text-gmt-stone text-base mb-10 text-center max-w-2xl mx-auto">
-                  Choose a base style. More options are available in our showrooms — these are our most popular.
-                </p>
                 <Controller
                   name="tableBase"
                   control={control}
                   render={({ field }) => (
-                    <>
-                      <ThumbnailGrid
-                        options={TABLE_BASES}
-                        selected={field.value}
-                        onSelect={field.onChange}
-                        cols="3-6"
-                        showTooltip
-                      />
-                      <p className="font-body text-gmt-stone text-sm mt-10 text-center max-w-2xl mx-auto">
-                        More options are available, and we will send them to you shortly.
-                      </p>
-                    </>
+                    <div className="space-y-14">
+                      {/* Standard Black Iron */}
+                      <div>
+                        <p className="font-body text-xs tracking-[0.12em] uppercase text-gmt-stone mb-1 text-center">
+                          Standard Black Iron Bases
+                        </p>
+                        <p className="font-body text-sm text-gmt-green mb-6 text-center">Included in table price</p>
+                        <ThumbnailGrid
+                          options={TABLE_BASES_STANDARD_IRON}
+                          selected={field.value}
+                          onSelect={field.onChange}
+                          cols="3-5"
+                          showTooltip
+                        />
+                      </div>
+
+                      {/* Elegant Iron */}
+                      <div>
+                        <p className="font-body text-xs tracking-[0.12em] uppercase text-gmt-stone mb-6 text-center">
+                          Elegant Iron Bases
+                        </p>
+                        <ThumbnailGrid
+                          options={TABLE_BASES_ELEGANT_IRON}
+                          selected={field.value}
+                          onSelect={field.onChange}
+                          cols="3-6"
+                          showTooltip
+                        />
+                        <p className="font-body text-sm text-gmt-stone mt-5 text-center max-w-2xl mx-auto">
+                          Many more styles available upon request. For square and round tops, we recommend a pedestal base.
+                        </p>
+                      </div>
+
+                      {/* Handcrafted Wood */}
+                      <div>
+                        <p className="font-body text-xs tracking-[0.12em] uppercase text-gmt-stone mb-6 text-center">
+                          Handcrafted Wood Bases
+                        </p>
+                        <ThumbnailGrid
+                          options={TABLE_BASES_WOOD}
+                          selected={field.value}
+                          onSelect={field.onChange}
+                          cols="3-5"
+                          showTooltip
+                        />
+                        <p className="font-body text-sm text-gmt-stone mt-5 text-center max-w-2xl mx-auto">
+                          All wood bases are custom made and priced accordingly. Our team will reach out to confirm pricing for your specific project.
+                        </p>
+                      </div>
+                    </div>
                   )}
                 />
               </div>
@@ -619,9 +719,20 @@ export function EstimateForm() {
             {/* ── Step 6: Your Information ── */}
             {currentStep === 6 && (
               <div className="space-y-6 max-w-xl mx-auto">
-                <p className="font-body text-gmt-stone text-base mb-8 text-center">
-                  We&rsquo;ll reach out within 24 hours with your custom estimate.
+                <p className="font-body text-gmt-stone text-base mb-2 text-center">
+                  A general price range will be sent to you via email based on your specs. A member of our sales team will be in touch with you shortly to confirm the estimate.
                 </p>
+
+                {/* Live price estimate — testing only */}
+                {liveEstimate && (
+                  <div className="bg-gmt-mist/60 border border-gmt-sage rounded-sm px-6 py-4 text-center mb-4">
+                    <p className="font-body text-xs tracking-[0.12em] uppercase text-gmt-stone mb-1">Estimated Price Range</p>
+                    <p className="font-display text-2xl text-gmt-forest">
+                      ${liveEstimate.min.toLocaleString()} — ${liveEstimate.max.toLocaleString()}
+                    </p>
+                    <p className="font-body text-xs text-gmt-stone mt-1">For testing only — final pricing confirmed by our team</p>
+                  </div>
+                )}
 
                 {/* Name */}
                 <div>
@@ -686,34 +797,64 @@ export function EstimateForm() {
                   {errors.phone && <p className="mt-1 font-body text-xs text-red-500" role="alert">{errors.phone.message}</p>}
                 </div>
 
-                {/* Preferred Location */}
+                {/* Delivery Options */}
                 <div>
                   <p className="block font-body text-xs tracking-[0.12em] uppercase text-gmt-stone mb-3">
-                    Preferred Showroom
+                    Delivery Options
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3">
                     {[
-                      { value: 'concord-nh',   label: 'Concord, NH' },
-                      { value: 'smithfield-ri',label: 'Smithfield, RI' },
-                      { value: 'remote',       label: 'Remote / Delivery' },
-                    ].map((loc) => (
-                      <label
-                        key={loc.value}
-                        className="flex items-center gap-3 cursor-pointer group"
-                      >
+                      { value: 'pickup-concord',   label: 'Pickup — Concord, NH' },
+                      { value: 'pickup-smithfield', label: 'Pickup — Smithfield, RI' },
+                      { value: 'delivery',          label: 'In-Home Delivery & Setup' },
+                    ].map((opt) => (
+                      <label key={opt.value} className="flex items-center gap-3 cursor-pointer group">
                         <input
                           type="radio"
-                          value={loc.value}
-                          {...register('preferredLocation')}
+                          value={opt.value}
+                          {...register('deliveryOption')}
                           className="sr-only"
                         />
-                        <span className="w-5 h-5 rounded-full border-2 border-gmt-stone/40 flex items-center justify-center transition-colors group-has-[:checked]:border-gmt-green">
+                        <span className="w-5 h-5 rounded-full border-2 border-gmt-stone/40 flex items-center justify-center transition-colors group-has-[:checked]:border-gmt-green flex-shrink-0">
                           <span className="w-2.5 h-2.5 rounded-full bg-gmt-green scale-0 transition-transform group-has-[:checked]:scale-100" />
                         </span>
-                        <span className="font-body text-sm text-gmt-forest">{loc.label}</span>
+                        <span className="font-body text-sm text-gmt-forest">{opt.label}</span>
                       </label>
                     ))}
                   </div>
+
+                  {/* Address fields — only when delivery selected */}
+                  {deliveryOption === 'delivery' && (
+                    <div className="mt-4 space-y-3 p-4 bg-gmt-mist/40 rounded-sm border border-gmt-stone/20">
+                      <p className="font-body text-xs tracking-[0.12em] uppercase text-gmt-stone mb-2">Delivery Address</p>
+                      <input
+                        type="text"
+                        placeholder="Street Address"
+                        {...register('deliveryStreet')}
+                        className="w-full font-body text-base bg-white border border-gmt-stone/30 px-4 py-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-gmt-green"
+                      />
+                      <div className="grid grid-cols-2 gap-3">
+                        <input
+                          type="text"
+                          placeholder="City"
+                          {...register('deliveryCity')}
+                          className="w-full font-body text-base bg-white border border-gmt-stone/30 px-4 py-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-gmt-green"
+                        />
+                        <input
+                          type="text"
+                          placeholder="State"
+                          {...register('deliveryState')}
+                          className="w-full font-body text-base bg-white border border-gmt-stone/30 px-4 py-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-gmt-green"
+                        />
+                      </div>
+                      <input
+                        type="text"
+                        placeholder="ZIP Code"
+                        {...register('deliveryZip')}
+                        className="w-full font-body text-base bg-white border border-gmt-stone/30 px-4 py-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-gmt-green"
+                      />
+                    </div>
+                  )}
                 </div>
 
                 {/* Notes */}

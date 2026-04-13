@@ -4,35 +4,37 @@ import { EstimateEmailTeam } from '@/lib/emails/EstimateEmailTeam'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-// Basic pricing calculation
-// TODO: Replace with actual pricing formula from client
 function calculatePrice(data: any) {
-  const basePrice = 1500 // Starting price for dining tables
+  const linearFeet = (data.length || 0) / 12
 
-  // Adjust based on furniture type
-  const typeMultiplier: Record<string, number> = {
-    'dining-tables': 1,
-    'conference-tables': 1.5,
-    'coffee-tables': 0.4,
-    'benches': 0.5,
-    'console-tables': 0.6,
+  // Base: wood slab cost per linear foot
+  let subtotal = linearFeet * 250
+
+  // Resin & Color: $75/lin ft if any epoxy selected
+  if (data.epoxyColor && data.epoxyColor !== 'none') {
+    subtotal += 75 * linearFeet
   }
-  const typeAdjustment = typeMultiplier[data.furnitureType] || 1
 
-  // Adjust based on dimensions
-  const dimensionCost = (data.length + data.width) * 3
-  const subtotal = basePrice * typeAdjustment + dimensionCost
+  // Specialty Resin Themes
+  if (data.backgroundColor === 'ocean-style') {
+    subtotal *= 1.10                                                              // +10%
+  } else if (data.backgroundColor === 'media-style' || data.backgroundColor === 'artisan-series') {
+    subtotal += 15 * linearFeet                                                   // +$15/lin ft
+  }
 
-  // Adjust for materials and options
-  let optionsCost = 0
-  if (data.epoxyColor && data.epoxyColor !== 'none') optionsCost += 200
-  if (data.engraving) optionsCost += 150
+  // Surface Finish: High-Gloss Resin +20%
+  if (data.surfaceFinish === 'high-gloss-resin') {
+    subtotal *= 1.20
+  }
 
-  const total = subtotal + optionsCost
+  // Round/oval upcharge if diameter > 60"
+  if ((data.tableShape === 'circle' || data.tableShape === 'oval') && (data.length || 0) > 60) {
+    subtotal += 200
+  }
 
   return {
-    min: Math.round(total * 0.95), // 5% discount
-    max: Math.round(total * 1.15), // 15% buffer
+    min: Math.round(subtotal * 0.80),
+    max: Math.round(subtotal * 1.20),
   }
 }
 

@@ -41,11 +41,23 @@ export function EstimateEmailTeam({ data, quotePrice }: EstimateEmailTeamProps) 
                   <td style={{ padding: '8px 0', color: '#6B7066' }}>{data.phone}</td>
                 </tr>
                 <tr>
-                  <td style={{ padding: '8px 0', fontWeight: 'bold', color: '#1A3D21' }}>Preferred Location</td>
+                  <td style={{ padding: '8px 0', fontWeight: 'bold', color: '#1A3D21' }}>Delivery</td>
                   <td style={{ padding: '8px 0', color: '#6B7066' }}>
-                    {data.preferredLocation === 'concord-nh' ? 'Concord, NH' : data.preferredLocation === 'smithfield-ri' ? 'Smithfield, RI' : 'Remote / Delivery'}
+                    {data.deliveryOption === 'pickup-concord'
+                      ? 'Pickup — Concord, NH'
+                      : data.deliveryOption === 'pickup-smithfield'
+                      ? 'Pickup — Smithfield, RI'
+                      : 'In-Home Delivery & Setup'}
                   </td>
                 </tr>
+                {data.deliveryOption === 'delivery' && (data.deliveryStreet || data.deliveryCity) && (
+                  <tr>
+                    <td style={{ padding: '8px 0', fontWeight: 'bold', color: '#1A3D21' }}>Delivery Address</td>
+                    <td style={{ padding: '8px 0', color: '#6B7066' }}>
+                      {[data.deliveryStreet, data.deliveryCity, data.deliveryState, data.deliveryZip].filter(Boolean).join(', ')}
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </Section>
