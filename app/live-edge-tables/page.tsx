@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { buildMetadata } from '@/lib/seo'
 import { LiveEdgeHero } from '@/components/sections/live-edge/LiveEdgeHero'
+import { LiveEdgeAbout } from '@/components/sections/live-edge/LiveEdgeAbout'
 import { LiveEdgeGallery } from '@/components/sections/live-edge/LiveEdgeGallery'
 import { CTABanner } from '@/components/ui/CTABanner'
 
@@ -15,6 +16,7 @@ export default function LiveEdgeTablesPage() {
   return (
     <>
       <LiveEdgeHero />
+      <LiveEdgeAbout />
       <section id="gallery" className="scroll-mt-20">
         <LiveEdgeGallery />
       </section>

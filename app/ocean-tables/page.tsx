@@ -1,0 +1,31 @@
+import type { Metadata } from 'next'
+import { buildMetadata } from '@/lib/seo'
+import { OceanHero } from '@/components/sections/ocean/OceanHero'
+import { OceanAbout } from '@/components/sections/ocean/OceanAbout'
+import { OceanGallery } from '@/components/sections/ocean/OceanGallery'
+import { CTABanner } from '@/components/ui/CTABanner'
+
+export const metadata: Metadata = buildMetadata({
+  title: 'Custom Ocean Tables | Green Mountain Tableworx — NH & RI',
+  description:
+    'Handcrafted ocean tables with hand-poured epoxy resin inspired by coastlines and open water. Custom orders built to your dimensions. Showrooms in Concord NH & Smithfield RI. In-room delivery across New England.',
+  path: '/ocean-tables',
+})
+
+export default function OceanTablesPage() {
+  return (
+    <>
+      <OceanHero />
+      <OceanAbout />
+      <section id="gallery" className="scroll-mt-20">
+        <OceanGallery />
+      </section>
+      <CTABanner
+        headline="Start Your Custom Ocean Table"
+        body="Tell us your dimensions, wood species, epoxy colors, and base — get an accurate quote in minutes without leaving home."
+        cta="Get an Instant Estimate"
+        href="/estimate"
+      />
+    </>
+  )
+}

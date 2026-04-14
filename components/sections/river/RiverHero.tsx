@@ -6,12 +6,12 @@ import Link from 'next/link'
 
 const ease = [0.25, 0.46, 0.45, 0.94] as const
 
-export function LiveEdgeHero() {
+export function RiverHero() {
   const shouldReduce = useReducedMotion()
 
   return (
     <section className="relative min-h-[calc(68vh+105px)] flex items-end overflow-hidden bg-gmt-charcoal pt-[105px]">
-      {/* Hero image — scales down on load */}
+      {/* Hero image */}
       <motion.div
         className="absolute inset-0"
         initial={{ scale: shouldReduce ? 1 : 1.08 }}
@@ -19,17 +19,14 @@ export function LiveEdgeHero() {
         transition={{ duration: 1.4, ease }}
       >
         <Image
-          src="/images/live-edge/Live-Edge.jpg"
+          src="/images/river/River-Table.jpg"
           fill
-          alt="Custom live edge dining table handcrafted in New Hampshire — Green Mountain Tableworx"
+          alt="Custom river table with epoxy inlay handcrafted in New Hampshire — Green Mountain Tableworx"
           sizes="100vw"
-          className="object-cover object-[center_92%]"
+          className="object-cover object-[center_60%]"
           priority
-          aria-hidden="false"
         />
-        {/* Dark gradient overlay — vertical */}
         <div className="absolute inset-0 bg-gradient-to-t from-gmt-charcoal/90 via-gmt-charcoal/40 to-transparent" />
-        {/* Dark gradient overlay — bottom-left for text legibility on desktop */}
         <div className="absolute inset-0 hidden md:block bg-gradient-to-tr from-gmt-charcoal/75 via-gmt-charcoal/30 to-transparent" />
       </motion.div>
 
@@ -50,7 +47,7 @@ export function LiveEdgeHero() {
           transition={{ duration: shouldReduce ? 0 : 0.7, delay: shouldReduce ? 0 : 0.4, ease }}
           className="font-display text-5xl md:text-6xl lg:text-7xl text-white leading-tight max-w-3xl mb-6"
         >
-          Custom Live Edge Tables — Handcrafted in New England
+          Custom River Tables — Handcrafted in New England
         </motion.h1>
 
         <motion.p
@@ -59,7 +56,7 @@ export function LiveEdgeHero() {
           transition={{ duration: shouldReduce ? 0 : 0.7, delay: shouldReduce ? 0 : 0.6, ease }}
           className="font-body text-base md:text-lg text-white/80 max-w-xl leading-relaxed mb-10"
         >
-          Every live edge table starts as a single slab — raw, organic, and one of a kind. We build to your exact dimensions across New England with two showrooms in NH and RI.
+          Two live edge slabs united by a river of color. Every river table is built to your exact dimensions, epoxy color, and base — no two are ever the same.
         </motion.p>
 
         <motion.div

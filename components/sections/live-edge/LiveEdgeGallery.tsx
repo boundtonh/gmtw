@@ -1,7 +1,8 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
+import { Lightbox } from '@/components/ui/Lightbox'
 
 // ─── Gallery images ────────────────────────────────────────────────────────────
 // Add client photos here as they arrive.
@@ -15,39 +16,76 @@ const GALLERY_IMAGES = [
 ]
 
 export function LiveEdgeGallery() {
-  const splideRef = useRef<HTMLDivElement>(null)
+  const mainRef        = useRef<HTMLDivElement>(null)
+  const thumbsRef      = useRef<HTMLDivElement>(null)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const splideMain     = useRef<any>(null)
+  const pendingLightbox = useRef<{ src: string; alt: string } | null>(null)
+  const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null)
 
   useEffect(() => {
-    let splide: { mount: () => void; destroy: () => void } | null = null
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let thumbs: any = null
 
     import('@splidejs/splide').then(({ Splide }) => {
-      if (!splideRef.current) return
+      if (!mainRef.current || !thumbsRef.current) return
 
-      splide = new Splide(splideRef.current, {
-        type:        'loop',
-        perPage:     3,
-        focus:       'center',
-        gap:         '1.5rem',
-        padding:     '8%',
-        arrows:      true,
-        pagination:  true,
-        autoplay:    false,
-        speed:       700,
-        easing:      'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+      thumbs = new Splide(thumbsRef.current, {
+        type:         'slide',
+        rewind:       true,
+        gap:          '0.5rem',
+        pagination:   false,
+        arrows:       false,
+        fixedWidth:   72,
+        fixedHeight:  72,
+        cover:        true,
+        isNavigation: true,
         breakpoints: {
           768: {
-            perPage: 1,
-            padding: '14%',
-            gap:     '1rem',
+            fixedWidth:  56,
+            fixedHeight: 56,
           },
         },
       })
 
-      splide.mount()
+      splideMain.current = new Splide(mainRef.current, {
+        type:         'loop',
+        perPage:      3,
+        perMove:      1,
+        focus:        'center',
+        gap:          '1rem',
+        padding:      '6%',
+        arrows:       true,
+        pagination:   false,
+        autoplay:     true,
+        interval:     4500,
+        pauseOnHover: true,
+        speed:        700,
+        easing:       'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+        breakpoints: {
+          768: {
+            perPage: 1,
+            padding: '12%',
+            gap:     '0.75rem',
+          },
+        },
+      })
+
+      splideMain.current.on('moved', () => {
+        if (pendingLightbox.current) {
+          setLightbox(pendingLightbox.current)
+          pendingLightbox.current = null
+        }
+      })
+
+      splideMain.current.sync(thumbs)
+      splideMain.current.mount()
+      thumbs.mount()
     })
 
     return () => {
-      splide?.destroy()
+      splideMain.current?.destroy()
+      thumbs?.destroy()
     }
   }, [])
 
@@ -62,18 +100,54 @@ export function LiveEdgeGallery() {
         </p>
       </div>
 
-      {/* Splide slider */}
-      <div ref={splideRef} className="splide splide-gmt" aria-label="Live edge table gallery">
+      {/* Main slider */}
+      <div ref={mainRef} className="splide splide-gmt-main" aria-label="Live edge table gallery">
         <div className="splide__track">
           <ul className="splide__list">
             {GALLERY_IMAGES.map((image, index) => (
               <li key={index} className="splide__slide">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-sm">
+                <button
+                  className="block w-full md:cursor-pointer cursor-zoom-in"
+                  onClick={(e) => {
+                    const slide = (e.currentTarget as HTMLElement).closest('.splide__slide')
+                    const isActive = slide?.classList.contains('is-active')
+                    if (isActive) {
+                      setLightbox({ src: image.src, alt: image.alt })
+                    } else {
+                      pendingLightbox.current = { src: image.src, alt: image.alt }
+                      splideMain.current?.go(index)
+                    }
+                  }}
+                  aria-label={`View full size: ${image.alt}`}
+                >
+                  <div className="relative aspect-[3/4] overflow-hidden rounded-sm">
+                    <Image
+                      src={image.src}
+                      fill
+                      alt={image.alt}
+                      sizes="(max-width: 768px) 80vw, 40vw"
+                      className="object-cover"
+                    />
+                  </div>
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      {/* Thumbnail nav */}
+      <div ref={thumbsRef} className="splide splide-gmt-thumbs mt-5 px-8 md:px-16" aria-label="Gallery thumbnails">
+        <div className="splide__track">
+          <ul className="splide__list">
+            {GALLERY_IMAGES.map((image, index) => (
+              <li key={index} className="splide__slide">
+                <div className="relative w-[72px] h-[72px] md:w-[72px] md:h-[72px] overflow-hidden rounded-sm cursor-pointer">
                   <Image
                     src={image.src}
                     fill
-                    alt={image.alt}
-                    sizes="(max-width: 768px) 72vw, 38vw"
+                    alt=""
+                    sizes="72px"
                     className="object-cover"
                   />
                 </div>
@@ -84,51 +158,64 @@ export function LiveEdgeGallery() {
       </div>
 
       <style>{`
-        .splide-gmt .splide__slide {
+        /* ── Main slider ── */
+        .splide-gmt-main .splide__slide {
           opacity: 0.3;
-          transform: scale(0.90);
+          transform: scale(0.88);
           transition: opacity 0.5s ease, transform 0.5s ease;
         }
-        .splide-gmt .splide__slide.is-active {
+        .splide-gmt-main .splide__slide.is-active {
           opacity: 1;
           transform: scale(1);
         }
-        .splide-gmt .splide__arrow {
+        .splide-gmt-main .splide__arrow {
           background: rgba(0,148,64,0.9);
           width: 44px;
           height: 44px;
           border-radius: 2px;
           opacity: 1;
         }
-        .splide-gmt .splide__arrow:hover {
+        .splide-gmt-main .splide__arrow:hover {
           background: #1A3D21;
-          opacity: 1;
         }
-        .splide-gmt .splide__arrow svg {
+        .splide-gmt-main .splide__arrow svg {
           fill: white;
           width: 14px;
           height: 14px;
         }
-        .splide-gmt .splide__pagination {
-          bottom: -2.5rem;
-          gap: 6px;
+        @media (max-width: 768px) {
+          .splide-gmt-main .splide__slide {
+            opacity: 1;
+            transform: scale(1);
+          }
         }
-        .splide-gmt .splide__pagination__page {
-          background: rgba(255,255,255,0.25);
-          width: 8px;
-          height: 8px;
-          border-radius: 50%;
-          border: none;
-          margin: 0;
+
+        /* ── Thumbnail nav ── */
+        .splide-gmt-thumbs .splide__list {
+          justify-content: center;
         }
-        .splide-gmt .splide__pagination__page.is-active {
-          background: #009440;
-          transform: scale(1.3);
+        .splide-gmt-thumbs .splide__slide {
+          opacity: 0.45;
+          transition: opacity 0.3s ease;
+        }
+        .splide-gmt-thumbs .splide__slide.is-active {
+          opacity: 1;
+          outline: 2px solid #009440;
+          outline-offset: 2px;
+          border-radius: 2px;
+        }
+        .splide-gmt-thumbs .splide__slide:hover {
+          opacity: 0.8;
+          cursor: pointer;
         }
       `}</style>
 
-      {/* Space for pagination dots */}
-      <div className="h-12" />
+      <Lightbox
+        src={lightbox?.src ?? ''}
+        alt={lightbox?.alt ?? ''}
+        isOpen={!!lightbox}
+        onClose={() => setLightbox(null)}
+      />
     </section>
   )
 }

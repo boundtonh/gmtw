@@ -2,24 +2,17 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
-import { SectionLabel } from '@/components/ui/SectionLabel'
-import { RevealOnScroll } from '@/components/ui/RevealOnScroll'
 import { Lightbox } from '@/components/ui/Lightbox'
 
 const GALLERY_IMAGES = [
-  { src: '/images/pieces-proud-of/pwpo1.jpg',  alt: 'Custom live edge dining table — Green Mountain Tableworx' },
-  { src: '/images/pieces-proud-of/pwpo2.jpg',  alt: 'Custom river table with epoxy — Green Mountain Tableworx' },
-  { src: '/images/pieces-proud-of/pwpo3.jpg',  alt: 'Custom ocean table detail — Green Mountain Tableworx' },
-  { src: '/images/pieces-proud-of/pwpo4.jpg',  alt: 'Custom wood furniture piece — Green Mountain Tableworx' },
-  { src: '/images/pieces-proud-of/pwpo5.jpg',  alt: 'Custom river table — Green Mountain Tableworx' },
-  { src: '/images/pieces-proud-of/pwpo6.jpg',  alt: 'Custom live edge bench — Green Mountain Tableworx' },
-  { src: '/images/pieces-proud-of/pwpo7.jpeg', alt: 'Custom furniture detail — Green Mountain Tableworx' },
-  { src: '/images/pieces-proud-of/pwpo8.jpg',  alt: 'Custom wood furniture piece — Green Mountain Tableworx' },
-  { src: '/images/pieces-proud-of/pwpo9.jpg',  alt: 'Custom furniture showcase — Green Mountain Tableworx' },
-  { src: '/images/pieces-proud-of/pwpo10.jpg', alt: 'Custom furniture piece — Green Mountain Tableworx' },
+  { src: '/images/ocean/ocean-table.jpeg',          alt: 'Custom ocean table with blue epoxy — Green Mountain Tableworx' },
+  { src: '/images/ocean/Ocean-Table-Showroom.jpg',  alt: 'Ocean table on display in showroom — Green Mountain Tableworx' },
+  { src: '/images/ocean/ocean-style.webp',          alt: 'Custom ocean style epoxy table — Green Mountain Tableworx' },
+  { src: '/images/ocean/ocean-table.jpeg',          alt: 'Ocean dining table with live edge walnut — Green Mountain Tableworx' },
+  { src: '/images/ocean/Ocean-Table-Showroom.jpg',  alt: 'Ocean table detail — resin and wood — Green Mountain Tableworx' },
 ]
 
-export function GallerySection() {
+export function OceanGallery() {
   const mainRef         = useRef<HTMLDivElement>(null)
   const thumbsRef       = useRef<HTMLDivElement>(null)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -89,16 +82,14 @@ export function GallerySection() {
   return (
     <section className="bg-gmt-charcoal py-24 md:py-32 overflow-hidden">
       <div className="mb-14 text-center px-6">
-        <RevealOnScroll>
-          <SectionLabel className="text-gmt-sage">Recent Work</SectionLabel>
-          <h2 className="font-display text-4xl md:text-5xl text-white mt-2">
-            Pieces We&rsquo;re Proud Of
-          </h2>
-        </RevealOnScroll>
+        <p className="font-body text-xs tracking-[0.12em] uppercase text-gmt-green mb-3">Our Work</p>
+        <h2 className="font-display text-4xl md:text-5xl text-white">Ocean Table Gallery</h2>
+        <p className="font-body text-gmt-stone text-base mt-4 max-w-xl mx-auto">
+          Every ocean table is poured and finished by hand. Browse pieces we&rsquo;ve built for clients across New England.
+        </p>
       </div>
 
-      {/* Main slider */}
-      <div ref={mainRef} className="splide splide-pwpo-main" aria-label="Pieces we're proud of gallery">
+      <div ref={mainRef} className="splide splide-ocean-main" aria-label="Ocean table gallery">
         <div className="splide__track">
           <ul className="splide__list">
             {GALLERY_IMAGES.map((image, index) => (
@@ -118,13 +109,7 @@ export function GallerySection() {
                   aria-label={`View full size: ${image.alt}`}
                 >
                   <div className="relative aspect-[3/4] overflow-hidden rounded-sm">
-                    <Image
-                      src={image.src}
-                      fill
-                      alt={image.alt}
-                      sizes="(max-width: 768px) 80vw, 40vw"
-                      className="object-cover"
-                    />
+                    <Image src={image.src} fill alt={image.alt} sizes="(max-width: 768px) 80vw, 40vw" className="object-cover" />
                   </div>
                 </button>
               </li>
@@ -133,20 +118,13 @@ export function GallerySection() {
         </div>
       </div>
 
-      {/* Thumbnail nav */}
-      <div ref={thumbsRef} className="splide splide-pwpo-thumbs mt-5 px-8 md:px-16" aria-label="Gallery thumbnails">
+      <div ref={thumbsRef} className="splide splide-ocean-thumbs mt-5 px-8 md:px-16" aria-label="Gallery thumbnails">
         <div className="splide__track">
           <ul className="splide__list">
             {GALLERY_IMAGES.map((image, index) => (
               <li key={index} className="splide__slide">
                 <div className="relative w-[72px] h-[72px] overflow-hidden rounded-sm cursor-pointer">
-                  <Image
-                    src={image.src}
-                    fill
-                    alt=""
-                    sizes="72px"
-                    className="object-cover"
-                  />
+                  <Image src={image.src} fill alt="" sizes="72px" className="object-cover" />
                 </div>
               </li>
             ))}
@@ -155,56 +133,36 @@ export function GallerySection() {
       </div>
 
       <style>{`
-        /* ── Main slider ── */
-        .splide-pwpo-main .splide__slide {
+        .splide-ocean-main .splide__slide {
           opacity: 0.3;
           transform: scale(0.88);
           transition: opacity 0.5s ease, transform 0.5s ease;
         }
-        .splide-pwpo-main .splide__slide.is-active {
+        .splide-ocean-main .splide__slide.is-active {
           opacity: 1;
           transform: scale(1);
         }
-        .splide-pwpo-main .splide__arrow {
+        .splide-ocean-main .splide__arrow {
           background: rgba(0,148,64,0.9);
           width: 44px;
           height: 44px;
           border-radius: 2px;
           opacity: 1;
         }
-        .splide-pwpo-main .splide__arrow:hover {
-          background: #1A3D21;
-        }
-        .splide-pwpo-main .splide__arrow svg {
-          fill: white;
-          width: 14px;
-          height: 14px;
-        }
+        .splide-ocean-main .splide__arrow:hover { background: #1A3D21; }
+        .splide-ocean-main .splide__arrow svg { fill: white; width: 14px; height: 14px; }
         @media (max-width: 768px) {
-          .splide-pwpo-main .splide__slide {
-            opacity: 1;
-            transform: scale(1);
-          }
+          .splide-ocean-main .splide__slide { opacity: 1; transform: scale(1); }
         }
-
-        /* ── Thumbnail nav ── */
-        .splide-pwpo-thumbs .splide__list {
-          justify-content: center;
-        }
-        .splide-pwpo-thumbs .splide__slide {
-          opacity: 0.45;
-          transition: opacity 0.3s ease;
-        }
-        .splide-pwpo-thumbs .splide__slide.is-active {
+        .splide-ocean-thumbs .splide__list { justify-content: center; }
+        .splide-ocean-thumbs .splide__slide { opacity: 0.45; transition: opacity 0.3s ease; }
+        .splide-ocean-thumbs .splide__slide.is-active {
           opacity: 1;
           outline: 2px solid #009440;
           outline-offset: 2px;
           border-radius: 2px;
         }
-        .splide-pwpo-thumbs .splide__slide:hover {
-          opacity: 0.8;
-          cursor: pointer;
-        }
+        .splide-ocean-thumbs .splide__slide:hover { opacity: 0.8; cursor: pointer; }
       `}</style>
 
       <Lightbox
