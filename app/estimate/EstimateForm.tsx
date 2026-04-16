@@ -582,7 +582,9 @@ export function EstimateForm() {
                       options={TABLE_SHAPES}
                       selected={field.value ?? ''}
                       onSelect={field.onChange}
-                      cols="2-4"
+                      cols="3-5"
+                      aspectRatio="square"
+                      objectFit="contain"
                     />
                   )}
                 />

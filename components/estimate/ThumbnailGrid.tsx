@@ -17,6 +17,8 @@ interface ThumbnailGridProps {
   onSelect: (value: string) => void
   cols?: '2' | '3' | '4' | '6' | '2-4' | '3-5' | '3-6' | '3-7'
   showTooltip?: boolean
+  aspectRatio?: 'square' | '4/3'
+  objectFit?: 'cover' | 'contain'
 }
 
 const colsMap = {
@@ -36,7 +38,11 @@ export function ThumbnailGrid({
   onSelect,
   cols = '3',
   showTooltip = false,
+  aspectRatio = '4/3',
+  objectFit = 'cover',
 }: ThumbnailGridProps) {
+  const aspectClass = aspectRatio === 'square' ? 'aspect-square' : 'aspect-[4/3]'
+  const objectClass = objectFit === 'contain' ? 'object-contain' : 'object-cover'
   return (
     <div
       role="radiogroup"
@@ -79,14 +85,14 @@ export function ThumbnailGrid({
               </div>
             )}
             {/* Thumbnail area */}
-            <div className="relative w-full aspect-[4/3] overflow-hidden">
+            <div className={cn('relative w-full overflow-hidden', aspectClass)}>
               {option.img ? (
                 <Image
                   src={option.img}
                   fill
                   alt={option.label}
                   sizes="(max-width: 768px) 50vw, 25vw"
-                  className="object-cover"
+                  className={objectClass}
                   style={option.objectPosition ? { objectPosition: option.objectPosition } : undefined}
                 />
               ) : (
