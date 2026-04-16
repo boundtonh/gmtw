@@ -171,6 +171,8 @@ const TABLE_BASES_WOOD = [
   { value: 'namu-pedestal',        label: 'Namu Pedestal',       img: '/images/bases/namu-pedestal.webp' },
 ]
 
+const WOOD_BASE_VALUES = new Set(TABLE_BASES_WOOD.map(b => b.value))
+
 const STEPS = [
   { title: 'Build Your Table Online<br>Get An Instant Quote<br>Sent To Your Email' },
   { title: 'Wood Species' },
@@ -365,21 +367,30 @@ export function EstimateForm() {
                   ]
 
                   return (
-                    <div className="bg-white border border-gmt-stone/20 rounded-sm px-6 py-5 text-left">
-                      <p className="font-body text-xs tracking-[0.12em] uppercase text-gmt-stone mb-4">How we got there</p>
-                      <div className="space-y-2">
-                        {rows.map((row, i) => (
-                          <div key={i} className="flex justify-between gap-4 font-body text-sm text-gmt-stone">
-                            <span>{row.label}</span>
-                            <span className="flex-shrink-0 font-medium text-gmt-forest">${row.value.toLocaleString()}</span>
-                          </div>
-                        ))}
+                    <>
+                      <div className="bg-white border border-gmt-stone/20 rounded-sm px-6 py-5 text-left">
+                        <p className="font-body text-xs tracking-[0.12em] uppercase text-gmt-stone mb-4">How we got there</p>
+                        <div className="space-y-2">
+                          {rows.map((row, i) => (
+                            <div key={i} className="flex justify-between gap-4 font-body text-sm text-gmt-stone">
+                              <span>{row.label}</span>
+                              <span className="flex-shrink-0 font-medium text-gmt-forest">${row.value.toLocaleString()}</span>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="flex justify-between gap-4 font-body text-sm text-gmt-forest font-semibold border-t border-gmt-stone/20 pt-3 mt-3">
+                          <span>Subtotal</span>
+                          <span>${Math.round(finalSubtotal).toLocaleString()}</span>
+                        </div>
                       </div>
-                      <div className="flex justify-between gap-4 font-body text-sm text-gmt-forest font-semibold border-t border-gmt-stone/20 pt-3 mt-3">
-                        <span>Subtotal</span>
-                        <span>${Math.round(finalSubtotal).toLocaleString()}</span>
-                      </div>
-                    </div>
+                      {WOOD_BASE_VALUES.has(submittedValues?.tableBase) && (
+                        <div className="bg-amber-50 border border-amber-200 rounded-sm px-5 py-3 text-center">
+                          <p className="font-body text-xs text-amber-800">
+                            Your table base is not included in the price range above, as our handcrafted wood bases are fully custom. Our team will reach out to discuss base pricing.
+                          </p>
+                        </div>
+                      )}
+                    </>
                   )
                 })()}
               </div>
@@ -815,6 +826,13 @@ export function EstimateForm() {
                         </div>
                         <p className="font-body text-xs text-gmt-stone/60 pt-2">±20% range accounts for wood variation, hardware, and finishing details.</p>
                       </div>
+                      {WOOD_BASE_VALUES.has(formValues.tableBase) && (
+                        <div className="bg-amber-50 border border-amber-200 rounded-sm px-5 py-3 text-center">
+                          <p className="font-body text-xs text-amber-800">
+                            Your table base is not included in the price range above, as our handcrafted wood bases are fully custom. Our team will reach out to discuss base pricing.
+                          </p>
+                        </div>
+                      )}
                     </div>
                   )
                 })()}
