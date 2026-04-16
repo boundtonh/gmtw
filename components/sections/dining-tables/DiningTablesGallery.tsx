@@ -59,20 +59,18 @@ export function DiningTablesGallery() {
       focus: 'center',
       gap: '1.5rem',
       padding: '22%',
-      autoplay: {
-        interval: 4500,
-        pauseOnHover: true,
-      },
+      autoplay: true,
+      interval: 4500,
+      pauseOnHover: true,
       breakpoints: {
         768: {
           perPage: 1,
           perMove: 1,
           padding: '14%',
           gap: '1rem',
-          autoplay: {
-            interval: 4500,
-            pauseOnHover: true,
-          },
+          autoplay: true,
+          interval: 4500,
+          pauseOnHover: true,
         },
       },
     })
