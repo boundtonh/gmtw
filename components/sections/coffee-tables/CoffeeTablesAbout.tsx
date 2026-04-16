@@ -36,7 +36,7 @@ export function CoffeeTablesAbout() {
               The Perfect Living Room<br className="hidden md:block" /> Centerpiece
             </h2>
             <p className="font-body text-base md:text-lg text-gmt-stone leading-relaxed">
-              A coffee table sets the tone for your living room—a functional piece that's always on display. Our custom coffee tables start at $500, offering exceptional value and distinctive beauty. Choose from live edge designs that showcase wood grain, river tables with epoxy accents, or ocean tables with flowing color and movement.
+              A coffee table sets the tone for your living room&mdash;a functional piece that&apos;s always on display. Our custom coffee tables start at $500, offering exceptional value and distinctive beauty. Choose from live edge designs that showcase wood grain, river tables with epoxy accents, or ocean tables with flowing color and movement.
             </p>
           </div>
         </RevealOnScroll>

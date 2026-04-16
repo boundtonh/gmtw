@@ -36,7 +36,7 @@ export function DiningTablesAbout() {
               Tables That Bring<br className="hidden md:block" /> People Together
             </h2>
             <p className="font-body text-base md:text-lg text-gmt-stone leading-relaxed">
-              A dining table isn't just furniture—it's where your family gathers, celebrates, and makes memories. Our custom dining tables are built to last generations, designed in three signature styles: live edge for natural character, river tables for artistic flair, and ocean tables for dynamic color and movement.
+              A dining table isn&apos;t just furniture&mdash;it&apos;s where your family gathers, celebrates, and makes memories. Our custom dining tables are built to last generations, designed in three signature styles: live edge for natural character, river tables for artistic flair, and ocean tables for dynamic color and movement.
             </p>
           </div>
         </RevealOnScroll>

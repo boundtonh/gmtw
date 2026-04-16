@@ -81,7 +81,7 @@ export function ContactFormBanner({ headline, subtitle }: ContactFormBannerProps
             <div className="bg-gmt-green text-white rounded-sm px-6 py-8 text-center">
               <p className="font-body text-lg mb-2">Thank you for reaching out!</p>
               <p className="font-body text-sm text-white/90">
-                We'll review your project details and contact you within 24 hours.
+                We&apos;ll review your project details and contact you within 24 hours.
               </p>
             </div>
           ) : (
