@@ -102,10 +102,10 @@ const WOOD_TIER2 = [
 ]
 
 const TABLE_SHAPES = [
-  { value: 'rectangle', label: 'Rectangle', img: '/public/estimate/shapes/Rectangle.png' },
-  { value: 'square',    label: 'Square',    img: '/public/estimate/shapes/Square.png' },
-  { value: 'circle',    label: 'Circle',    img: '/public/estimate/shapes/Circular.png' },
-  { value: 'oval',      label: 'Oval',      img: '/public/estimate/shapes/Oval.png' },
+  { value: 'rectangle', label: 'Rectangle', img: '/estimate/shapes/Rectangle.png' },
+  { value: 'square',    label: 'Square',    img: '/estimate/shapes/Square.png' },
+  { value: 'circle',    label: 'Circle',    img: '/estimate/shapes/Circular.png' },
+  { value: 'oval',      label: 'Oval',      img: '/estimate/shapes/Oval.png' },
 ]
 
 const EDGE_STYLES = [
@@ -135,8 +135,8 @@ const EPOXY_COLORS = [
 const SPECIALTY_THEMES = [
   { value: 'none',         label: 'None',                        placeholder: 'bg-stone-100' },
   { value: 'ocean-style',  label: 'Ocean Style — Our Specialty', img: '/images/ocean/ocean-style.webp' },
-  { value: 'media-style',  label: 'Media Style',                 img: '/public/estimate/resin-themes/Black Walnut RR Media Style.png' },
-  { value: 'artisan-series', label: 'Artisan Series',            img: '/public/estimate/resin-themes/Artisan Series.jpg' },
+  { value: 'media-style',  label: 'Media Style',                 img: '/estimate/resin-themes/Black Walnut RR Media Style.png' },
+  { value: 'artisan-series', label: 'Artisan Series',            img: '/estimate/resin-themes/Artisan Series.jpg' },
 ]
 
 const ENGRAVING_OPTIONS = [
