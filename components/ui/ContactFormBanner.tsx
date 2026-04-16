@@ -7,9 +7,10 @@ import { cn } from '@/lib/utils'
 
 interface ContactFormBannerProps {
   headline: string
+  subtitle?: string
 }
 
-export function ContactFormBanner({ headline }: ContactFormBannerProps) {
+export function ContactFormBanner({ headline, subtitle }: ContactFormBannerProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
@@ -67,9 +68,14 @@ export function ContactFormBanner({ headline }: ContactFormBannerProps) {
       {/* Content */}
       <Container className="relative z-10">
         <div className="max-w-2xl mx-auto">
-          <h2 className="font-display text-4xl md:text-5xl text-white leading-tight text-center mb-12">
+          <h2 className="font-display text-4xl md:text-5xl text-white leading-tight text-center mb-4">
             {headline}
           </h2>
+          {subtitle && (
+            <p className="font-body text-base md:text-lg text-white/90 text-center mb-12">
+              {subtitle}
+            </p>
+          )}
 
           {submitSuccess ? (
             <div className="bg-gmt-green text-white rounded-sm px-6 py-8 text-center">

@@ -29,7 +29,10 @@ export default function HomePage() {
       <TableBasesCallout />
       <Testimonials />
       <ShowroomsStrip />
-      <ContactFormBanner headline="Start Your Custom Piece Today" />
+      <ContactFormBanner
+        headline="Start Your Custom Piece Today"
+        subtitle="Leave your information, or build your table online and receive an instant quote to your email."
+      />
     </>
   )
 }
