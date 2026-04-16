@@ -10,7 +10,7 @@ export function OceanHero() {
   const shouldReduce = useReducedMotion()
 
   return (
-    <section className="relative min-h-[calc(68vh+105px)] flex items-end overflow-hidden bg-gmt-charcoal pt-[105px]">
+    <section className="relative min-h-screen md:min-h-[calc(68vh+105px)] flex items-end overflow-hidden bg-gmt-charcoal pt-[105px]">
       {/* Hero image */}
       <motion.div
         className="absolute inset-0"
@@ -45,7 +45,7 @@ export function OceanHero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: shouldReduce ? 0 : 0.7, delay: shouldReduce ? 0 : 0.4, ease }}
-          className="font-display text-5xl md:text-6xl lg:text-7xl text-white leading-tight max-w-3xl mb-6"
+          className="font-display text-[2.5rem] md:text-[4rem] text-white leading-tight max-w-3xl mb-6"
         >
           Custom Ocean Tables — Handcrafted in New England
         </motion.h1>

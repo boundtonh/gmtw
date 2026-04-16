@@ -2,8 +2,11 @@ import type { Metadata } from 'next'
 import { buildMetadata } from '@/lib/seo'
 import { OceanHero } from '@/components/sections/ocean/OceanHero'
 import { OceanAbout } from '@/components/sections/ocean/OceanAbout'
+import { OceanEstimatePromo } from '@/components/sections/ocean/OceanEstimatePromo'
 import { OceanGallery } from '@/components/sections/ocean/OceanGallery'
 import { CTABanner } from '@/components/ui/CTABanner'
+import { FurnitureByType } from '@/components/ui/FurnitureByType'
+import { ReviewsSection } from '@/components/ui/ReviewsSection'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Custom Ocean Tables | Green Mountain Tableworx — NH & RI',
@@ -17,9 +20,12 @@ export default function OceanTablesPage() {
     <>
       <OceanHero />
       <OceanAbout />
+      <OceanEstimatePromo />
       <section id="gallery" className="scroll-mt-20">
         <OceanGallery />
       </section>
+      <FurnitureByType />
+      <ReviewsSection />
       <CTABanner
         headline="Start Your Custom Ocean Table"
         body="Tell us your dimensions, wood species, epoxy colors, and base — get an accurate quote in minutes without leaving home."

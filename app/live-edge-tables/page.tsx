@@ -2,8 +2,11 @@ import type { Metadata } from 'next'
 import { buildMetadata } from '@/lib/seo'
 import { LiveEdgeHero } from '@/components/sections/live-edge/LiveEdgeHero'
 import { LiveEdgeAbout } from '@/components/sections/live-edge/LiveEdgeAbout'
+import { LiveEdgeEstimatePromo } from '@/components/sections/live-edge/LiveEdgeEstimatePromo'
 import { LiveEdgeGallery } from '@/components/sections/live-edge/LiveEdgeGallery'
 import { CTABanner } from '@/components/ui/CTABanner'
+import { FurnitureByType } from '@/components/ui/FurnitureByType'
+import { ReviewsSection } from '@/components/ui/ReviewsSection'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Custom Live Edge Tables | Green Mountain Tableworx — NH & RI',
@@ -17,9 +20,12 @@ export default function LiveEdgeTablesPage() {
     <>
       <LiveEdgeHero />
       <LiveEdgeAbout />
+      <LiveEdgeEstimatePromo />
       <section id="gallery" className="scroll-mt-20">
         <LiveEdgeGallery />
       </section>
+      <FurnitureByType />
+      <ReviewsSection />
       <CTABanner
         headline="Start Your Custom Live Edge Table"
         body="Tell us your dimensions, wood species, edge style, and base — get an accurate quote in minutes without leaving home."
