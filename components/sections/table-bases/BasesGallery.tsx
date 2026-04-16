@@ -67,7 +67,6 @@ const WOOD_BASES = [
   { src: '/images/bases/arch-trestle.webp',        alt: 'Arch Trestle wood base',        label: 'Arch Trestle' },
   { src: '/images/bases/stump-base.webp',          alt: 'Stump Base wood base',          label: 'Stump Base' },
   { src: '/images/bases/classic-turned-legs.webp', alt: 'Classic Turned Legs wood base', label: 'Classic Turned Legs' },
-  { src: '/images/bases/namu-pedestal.webp',       alt: 'Namu Pedestal wood base',       label: 'Namu Pedestal' },
 ]
 
 const GALLERIES = { standard: STANDARD_BASES, elegant: ELEGANT_BASES, wood: WOOD_BASES }
