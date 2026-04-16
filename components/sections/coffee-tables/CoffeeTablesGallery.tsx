@@ -181,7 +181,9 @@ export function CoffeeTablesGallery() {
       {/* Lightbox */}
       {lightboxIndex !== null && (
         <Lightbox
-          image={GALLERY_IMAGES[lightboxIndex]}
+          src={GALLERY_IMAGES[lightboxIndex].src}
+          alt={GALLERY_IMAGES[lightboxIndex].alt}
+          isOpen={true}
           onClose={() => setLightboxIndex(null)}
         />
       )}
