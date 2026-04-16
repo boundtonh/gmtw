@@ -21,12 +21,14 @@ export function DimensionInput({ register, errors }: DimensionInputProps) {
           <input
             id="length"
             type="number"
+            inputMode="numeric"
             min={12}
             max={240}
             placeholder="96"
             aria-required="true"
             {...register('length', {
               required: 'Length is required',
+              valueAsNumber: true,
               min: { value: 12, message: 'Minimum 12 inches' },
               max: { value: 240, message: 'Maximum 240 inches' },
             })}
@@ -57,12 +59,14 @@ export function DimensionInput({ register, errors }: DimensionInputProps) {
           <input
             id="width"
             type="number"
+            inputMode="numeric"
             min={12}
             max={96}
             placeholder="42"
             aria-required="true"
             {...register('width', {
               required: 'Width is required',
+              valueAsNumber: true,
               min: { value: 12, message: 'Minimum 12 inches' },
               max: { value: 96, message: 'Maximum 96 inches' },
             })}

@@ -197,6 +197,7 @@ export function EstimateForm() {
     register,
     control,
     watch,
+    trigger,
     formState: { errors },
     handleSubmit,
   } = useForm<EstimateFormData>({
@@ -267,7 +268,11 @@ export function EstimateForm() {
     }
   }
 
-  const handleNext = () => {
+  const handleNext = async () => {
+    if (currentStep === 0) {
+      const valid = await trigger(['length', 'width', 'furnitureType'])
+      if (!valid) return
+    }
     if (currentStep < STEPS.length - 1) {
       setCurrentStep(currentStep + 1)
       window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -434,13 +439,21 @@ export function EstimateForm() {
                   <Controller
                     name="furnitureType"
                     control={control}
+                    rules={{ required: 'Please select what you are building' }}
                     render={({ field }) => (
-                      <ThumbnailGrid
-                        options={FURNITURE_TYPES}
-                        selected={field.value}
-                        onSelect={field.onChange}
-                        cols="3-5"
-                      />
+                      <>
+                        <ThumbnailGrid
+                          options={FURNITURE_TYPES}
+                          selected={field.value}
+                          onSelect={field.onChange}
+                          cols="3-5"
+                        />
+                        {errors.furnitureType && (
+                          <p className="mt-3 font-body text-xs text-red-500 text-center" role="alert">
+                            {errors.furnitureType.message}
+                          </p>
+                        )}
+                      </>
                     )}
                   />
                 </div>
