@@ -135,7 +135,7 @@ const EPOXY_COLORS = [
 const SPECIALTY_THEMES = [
   { value: 'none',         label: 'None',                        placeholder: 'bg-stone-100' },
   { value: 'ocean-style',  label: 'Ocean Style — Our Specialty', img: '/images/ocean/ocean-style.webp' },
-  { value: 'media-style',  label: 'Media Style',                 img: '/estimate/resin-themes/Black Walnut RR Media Style.png' },
+  { value: 'media-style',  label: 'Media Style',                 subtitle: 'Stones, Rocks, Shells, Sand, Memorabilia', img: '/estimate/resin-themes/Black Walnut RR Media Style.png' },
   { value: 'artisan-series', label: 'Artisan Series',            img: '/estimate/resin-themes/Artisan Series.jpg' },
 ]
 

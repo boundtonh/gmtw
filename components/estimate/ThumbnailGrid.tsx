@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils'
 export interface ThumbnailOption {
   value: string
   label: string
+  subtitle?: string
   img?: string
   placeholder?: string
   objectPosition?: string
@@ -140,6 +141,11 @@ export function ThumbnailGrid({
               )}
             >
               {option.label}
+              {option.subtitle && (
+                <span className={cn('block text-[10px] leading-tight mt-0.5', isSelected ? 'text-white/80' : 'text-gmt-stone')}>
+                  {option.subtitle}
+                </span>
+              )}
             </div>
           </button>
         )
