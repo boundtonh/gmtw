@@ -16,7 +16,6 @@ export interface EstimateFormData {
   edgeStyle: 'live-edge' | 'straight' | 'bevel' | 'pencil'
   epoxyColor: string
   backgroundColor: string
-  surfaceFinish: 'dull' | 'matte' | 'satin' | 'semi-gloss' | 'gloss' | 'high-gloss-resin'
   engraving: boolean
   tableBase: string
   name: string
@@ -140,18 +139,6 @@ const SPECIALTY_THEMES = [
   { value: 'artisan-series', label: 'Artisan Series',            placeholder: 'bg-amber-100' },
 ]
 
-const SURFACE_FINISHES_URETHANE = [
-  { value: 'dull',       label: 'Dull',       placeholder: 'bg-stone-300' },
-  { value: 'matte',      label: 'Matte',      placeholder: 'bg-stone-200' },
-  { value: 'satin',      label: 'Satin',      placeholder: 'bg-stone-100' },
-  { value: 'semi-gloss', label: 'Semi-Gloss', placeholder: 'bg-sky-100'   },
-  { value: 'gloss',      label: 'Gloss',      placeholder: 'bg-sky-200'   },
-]
-
-const SURFACE_FINISHES_EPOXY = [
-  { value: 'high-gloss-resin', label: 'High-Gloss Resin', placeholder: 'bg-sky-300' },
-]
-
 const ENGRAVING_OPTIONS = [
   { value: 'yes', label: 'Yes — Add Custom Inscription or Engraving', placeholder: 'bg-gmt-forest' },
   { value: 'no',  label: 'No',                                         placeholder: 'bg-stone-100' },
@@ -218,7 +205,6 @@ export function EstimateForm() {
       edgeStyle: undefined,
       epoxyColor: '',
       backgroundColor: '',
-      surfaceFinish: undefined,
       engraving: false,
       tableBase: '',
       deliveryOption: undefined,
@@ -246,7 +232,6 @@ export function EstimateForm() {
     if (formValues.epoxyColor && formValues.epoxyColor !== 'none') subtotal += 75 * linearFeet
     if (formValues.backgroundColor === 'ocean-style') subtotal *= 1.10
     else if (formValues.backgroundColor === 'media-style' || formValues.backgroundColor === 'artisan-series') subtotal += 15 * linearFeet
-    if (formValues.surfaceFinish === 'high-gloss-resin') subtotal *= 1.20
     if ((formValues.tableShape === 'circle' || formValues.tableShape === 'oval') && (formValues.length || 0) > 60) subtotal += 200
     return { min: Math.round(subtotal * 0.80), max: Math.round(subtotal * 1.20) }
   })()
@@ -366,11 +351,9 @@ export function EstimateForm() {
                   const isArtisan = submittedValues.backgroundColor === 'artisan-series'
                   const preTheme = base + epoxyAdd
                   const themeAdd = isOcean ? preTheme * 0.10 : (isMedia || isArtisan) ? 15 * linFt : 0
-                  const preFinish = preTheme + themeAdd
-                  const isHighGloss = submittedValues.surfaceFinish === 'high-gloss-resin'
-                  const finishAdd = isHighGloss ? preFinish * 0.20 : 0
+                  const subtotal = preTheme + themeAdd
                   const isRoundUpcharge = (submittedValues.tableShape === 'circle' || submittedValues.tableShape === 'oval') && (submittedValues.length || 0) > 60
-                  const subtotal = preFinish + finishAdd + (isRoundUpcharge ? 200 : 0)
+                  const finalSubtotal = subtotal + (isRoundUpcharge ? 200 : 0)
 
                   const rows: { label: string; value: number }[] = [
                     { label: `Wood slab — ${sqFt.toFixed(1)} sq ft @ $${woodRate}/sq ft${isTier2 ? ' (Tier 2)' : ''}`, value: Math.round(base) },
@@ -378,7 +361,6 @@ export function EstimateForm() {
                     ...(isOcean ? [{ label: 'Ocean Style theme (+10% of subtotal)', value: Math.round(themeAdd) }] : []),
                     ...(isMedia ? [{ label: `Media Style — ${linFt.toFixed(1)} lin ft @ $15/ft`, value: Math.round(themeAdd) }] : []),
                     ...(isArtisan ? [{ label: `Artisan Series — ${linFt.toFixed(1)} lin ft @ $15/ft`, value: Math.round(themeAdd) }] : []),
-                    ...(isHighGloss ? [{ label: 'High-Gloss Resin finish (+20% of subtotal)', value: Math.round(finishAdd) }] : []),
                     ...(isRoundUpcharge ? [{ label: 'Round/oval top over 60" — size upcharge', value: 200 }] : []),
                   ]
 
@@ -395,7 +377,7 @@ export function EstimateForm() {
                       </div>
                       <div className="flex justify-between gap-4 font-body text-sm text-gmt-forest font-semibold border-t border-gmt-stone/20 pt-3 mt-3">
                         <span>Subtotal</span>
-                        <span>${Math.round(subtotal).toLocaleString()}</span>
+                        <span>${Math.round(finalSubtotal).toLocaleString()}</span>
                       </div>
                     </div>
                   )
@@ -687,43 +669,6 @@ export function EstimateForm() {
                   </p>
                 </div>
 
-                {/* Surface Finish */}
-                <div>
-                  <p className="font-body text-xs tracking-[0.12em] uppercase text-gmt-stone mb-6 text-center">
-                    Surface Finish
-                  </p>
-                  <Controller
-                    name="surfaceFinish"
-                    control={control}
-                    render={({ field }) => (
-                      <div className="space-y-8">
-                        <div>
-                          <p className="font-body text-xs text-gmt-stone mb-3 text-center">
-                            Catalyzed Urethane Finishes <span className="text-gmt-green">(no additional charge)</span>
-                          </p>
-                          <ThumbnailGrid
-                            options={SURFACE_FINISHES_URETHANE}
-                            selected={field.value ?? ''}
-                            onSelect={field.onChange}
-                            cols="3-5"
-                          />
-                        </div>
-                        <div>
-                          <p className="font-body text-xs text-gmt-stone mb-3 text-center">
-                            Epoxy Finishes <span className="text-gmt-green">(+20% of table price)</span>
-                          </p>
-                          <ThumbnailGrid
-                            options={SURFACE_FINISHES_EPOXY}
-                            selected={field.value ?? ''}
-                            onSelect={field.onChange}
-                            cols="2"
-                          />
-                        </div>
-                      </div>
-                    )}
-                  />
-                </div>
-
                 {/* Custom Inscriptions or Engraving */}
                 <div>
                   <p className="font-body text-xs tracking-[0.12em] uppercase text-gmt-stone mb-4 text-center">
@@ -831,11 +776,9 @@ export function EstimateForm() {
                   const isArtisan = formValues.backgroundColor === 'artisan-series'
                   const preTheme = base + epoxyAdd
                   const themeAdd = isOcean ? preTheme * 0.10 : (isMedia || isArtisan) ? 15 * linFt : 0
-                  const preFinish = preTheme + themeAdd
-                  const isHighGloss = formValues.surfaceFinish === 'high-gloss-resin'
-                  const finishAdd = isHighGloss ? preFinish * 0.20 : 0
+                  const subtotal = preTheme + themeAdd
                   const isRoundUpcharge = (formValues.tableShape === 'circle' || formValues.tableShape === 'oval') && (formValues.length || 0) > 60
-                  const subtotal = preFinish + finishAdd + (isRoundUpcharge ? 200 : 0)
+                  const finalSubtotal = subtotal + (isRoundUpcharge ? 200 : 0)
 
                   const rows: { label: string; value: number }[] = [
                     { label: `Wood slab — ${sqFt.toFixed(1)} sq ft @ $${woodRate}/sq ft${isTier2 ? ' (Tier 2)' : ''}`, value: Math.round(base) },
@@ -843,7 +786,6 @@ export function EstimateForm() {
                     ...(isOcean ? [{ label: 'Ocean Style theme (+10% of subtotal)', value: Math.round(themeAdd) }] : []),
                     ...(isMedia ? [{ label: `Media Style — ${linFt.toFixed(1)} lin ft @ $15/ft`, value: Math.round(themeAdd) }] : []),
                     ...(isArtisan ? [{ label: `Artisan Series — ${linFt.toFixed(1)} lin ft @ $15/ft`, value: Math.round(themeAdd) }] : []),
-                    ...(isHighGloss ? [{ label: 'High-Gloss Resin finish (+20% of subtotal)', value: Math.round(finishAdd) }] : []),
                     ...(isRoundUpcharge ? [{ label: 'Round/oval top over 60" — size upcharge', value: 200 }] : []),
                   ]
 
@@ -867,7 +809,7 @@ export function EstimateForm() {
                         </div>
                         <div className="flex justify-between gap-4 font-body text-xs text-gmt-forest font-semibold border-t border-gmt-stone/20 pt-2 mt-2">
                           <span>Subtotal</span>
-                          <span>${Math.round(subtotal).toLocaleString()}</span>
+                          <span>${Math.round(finalSubtotal).toLocaleString()}</span>
                         </div>
                         <p className="font-body text-xs text-gmt-stone/60 pt-2">±20% range accounts for wood variation, hardware, and finishing details.</p>
                       </div>
