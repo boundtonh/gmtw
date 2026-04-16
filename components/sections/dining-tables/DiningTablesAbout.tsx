@@ -4,94 +4,108 @@ import { Container } from '@/components/layout/Container'
 import { SectionLabel } from '@/components/ui/SectionLabel'
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll'
 
+const DIFFERENTIATORS = [
+  {
+    title: 'Solid Wood Construction',
+    body: 'Hand-selected wood slabs from walnut, maple, cherry, and reclaimed species. Every grain pattern is unique.',
+  },
+  {
+    title: 'Custom Sizing',
+    body: 'Design to your exact dimensions. From intimate 4-tops to grand 12+ seat tables for entertaining.',
+  },
+  {
+    title: 'Choice of Design',
+    body: 'Live edge keeps natural bark and contours. River tables split two slabs with epoxy. Ocean tables feature poured color and wave patterns.',
+  },
+  {
+    title: 'Professional Finishing',
+    body: 'Matte or gloss finish. Durable, food-safe, and protected for years of daily use.',
+  },
+]
+
 export function DiningTablesAbout() {
   return (
     <section className="bg-gmt-offwhite py-24 md:py-32">
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Image */}
-          <RevealOnScroll direction="left">
-            <div className="relative w-full aspect-[4/3] rounded-sm overflow-hidden">
-              <Image
-                src="/images/furniture-types/dining-table.jpg"
-                alt="Custom wood dining table with detailed woodworking"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
-          </RevealOnScroll>
 
-          {/* Text */}
-          <RevealOnScroll direction="right">
-            <div>
-              <SectionLabel>About Dining Tables</SectionLabel>
+        {/* Header */}
+        <RevealOnScroll>
+          <div className="max-w-3xl">
+            <SectionLabel>About Dining Tables</SectionLabel>
+            <h2 className="font-display text-4xl md:text-5xl text-gmt-forest leading-tight mt-2 mb-6">
+              Tables That Bring<br className="hidden md:block" /> People Together
+            </h2>
+            <p className="font-body text-base md:text-lg text-gmt-stone leading-relaxed">
+              A dining table isn't just furniture—it's where your family gathers, celebrates, and makes memories. Our custom dining tables are built to last generations, designed in three signature styles: live edge for natural character, river tables for artistic flair, and ocean tables for dynamic color and movement.
+            </p>
+          </div>
+        </RevealOnScroll>
 
-              <h2 className="font-display text-4xl md:text-5xl text-gmt-forest leading-tight mt-2 mb-6">
-                Tables That Bring People Together
-              </h2>
+        {/* Full-width image */}
+        <RevealOnScroll>
+          <div className="mt-14 overflow-hidden rounded-sm">
+            <Image
+              src="/images/furniture-types/dining-table.jpg"
+              alt="Handcrafted custom dining table — Green Mountain Tableworx"
+              width={0}
+              height={0}
+              sizes="100vw"
+              className="w-full h-auto"
+            />
+          </div>
+        </RevealOnScroll>
 
-              <p className="font-body text-base text-gmt-stone leading-relaxed mb-8">
-                A dining table isn't just furniture—it's where your family gathers, celebrates, and makes memories. Our custom dining tables are built to last generations, designed in three signature styles: live edge for natural character, river tables for artistic flair, and ocean tables for dynamic color and movement.
-              </p>
+        {/* Divider */}
+        <div className="w-12 h-[2px] bg-gmt-green mt-12 mb-16" />
 
-              <div className="space-y-4 mb-10">
+        {/* Differentiators grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
+          {DIFFERENTIATORS.map((item, index) => (
+            <RevealOnScroll key={item.title} delay={index * 0.1}>
+              <div className="flex gap-5">
+                <div className="mt-1.5 w-2 h-2 rounded-full bg-gmt-green shrink-0" />
                 <div>
-                  <h3 className="font-display text-lg text-gmt-forest mb-2">Solid Wood Construction</h3>
-                  <p className="font-body text-sm text-gmt-stone leading-relaxed">
-                    Hand-selected wood slabs from walnut, maple, cherry, and reclaimed species. Every grain pattern is unique.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="font-display text-lg text-gmt-forest mb-2">Custom Sizing</h3>
-                  <p className="font-body text-sm text-gmt-stone leading-relaxed">
-                    Design to your exact dimensions. From intimate 4-tops to grand 12+ seat tables for entertaining.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="font-display text-lg text-gmt-forest mb-2">Choice of Design</h3>
-                  <p className="font-body text-sm text-gmt-stone leading-relaxed">
-                    Live edge keeps natural bark and contours. River tables split two slabs with epoxy. Ocean tables feature poured color and wave patterns.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="font-display text-lg text-gmt-forest mb-2">Professional Finishing</h3>
-                  <p className="font-body text-sm text-gmt-stone leading-relaxed">
-                    Matte or gloss finish. Durable, food-safe, and protected for years of daily use.
-                  </p>
+                  <h3 className="font-display text-xl text-gmt-forest mb-2">{item.title}</h3>
+                  <p className="font-body text-sm text-gmt-stone leading-relaxed">{item.body}</p>
                 </div>
               </div>
-
-              <p className="font-display text-sm text-gmt-green mb-8 italic">
-                "A GMT table becomes part of your home's story."
-              </p>
-
-              <div className="flex flex-col md:flex-row gap-4">
-                <Link
-                  href="/estimate"
-                  className="inline-flex justify-center md:justify-start font-body text-sm text-white bg-gmt-green px-8 py-4 hover:bg-gmt-forest transition-colors duration-300"
-                >
-                  Get an Instant Estimate
-                </Link>
-                <Link
-                  href="/locations/concord-nh"
-                  className="inline-flex justify-center md:justify-start font-body text-sm text-gmt-green border border-gmt-green px-8 py-4 hover:bg-gmt-green/5 transition-colors duration-300"
-                >
-                  Visit Concord, NH
-                </Link>
-                <Link
-                  href="/locations/smithfield-ri"
-                  className="inline-flex justify-center md:justify-start font-body text-sm text-gmt-green border border-gmt-green px-8 py-4 hover:bg-gmt-green/5 transition-colors duration-300"
-                >
-                  Visit Smithfield, RI
-                </Link>
-              </div>
-            </div>
-          </RevealOnScroll>
+            </RevealOnScroll>
+          ))}
         </div>
+
+        {/* CTAs */}
+        <RevealOnScroll delay={0.1}>
+          <div className="mt-16 flex flex-wrap gap-4">
+            <Link
+              href="/estimate"
+              className="font-body text-sm text-white bg-gmt-green px-8 py-4 hover:bg-gmt-forest transition-colors duration-300"
+            >
+              Instant Online Quotes
+            </Link>
+            <Link
+              href="/locations/concord-nh"
+              className="font-body text-sm text-gmt-forest border border-gmt-forest/40 px-8 py-4 hover:border-gmt-forest hover:bg-gmt-forest/5 transition-colors duration-300"
+            >
+              Visit Concord, NH Showroom
+            </Link>
+            <Link
+              href="/locations/smithfield-ri"
+              className="font-body text-sm text-gmt-forest border border-gmt-forest/40 px-8 py-4 hover:border-gmt-forest hover:bg-gmt-forest/5 transition-colors duration-300"
+            >
+              Visit Smithfield, RI Showroom
+            </Link>
+          </div>
+        </RevealOnScroll>
+
+        {/* Bottom pull quote */}
+        <RevealOnScroll delay={0.2}>
+          <div className="mt-20 border-l-2 border-gmt-green pl-8 max-w-2xl">
+            <p className="font-display text-2xl md:text-3xl text-gmt-forest leading-snug">
+              &ldquo;A GMT table becomes part of your home&rsquo;s story.&rdquo;
+            </p>
+          </div>
+        </RevealOnScroll>
+
       </Container>
     </section>
   )

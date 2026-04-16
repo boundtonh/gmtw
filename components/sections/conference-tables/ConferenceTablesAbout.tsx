@@ -4,94 +4,108 @@ import { Container } from '@/components/layout/Container'
 import { SectionLabel } from '@/components/ui/SectionLabel'
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll'
 
+const DIFFERENTIATORS = [
+  {
+    title: 'Distinctive Shapes',
+    body: 'Boat-shaped for boardrooms, rectangular for clean lines, or custom contours. Seating 8 to 20+ around.',
+  },
+  {
+    title: 'Premium Wood Selection',
+    body: 'Walnut, oak, maple, cherry, or reclaimed species. Grain and color consistent for professional appearance.',
+  },
+  {
+    title: 'Integrated Design Options',
+    body: 'Live edge for character, river inlay for sophistication, or ocean tables for contemporary flair. Cable management options available.',
+  },
+  {
+    title: 'Commercial-Grade Durability',
+    body: 'Heavy-duty bases, reinforced aprons, and durable finishes rated for daily commercial use.',
+  },
+]
+
 export function ConferenceTablesAbout() {
   return (
     <section className="bg-gmt-offwhite py-24 md:py-32">
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Image */}
-          <RevealOnScroll direction="left">
-            <div className="relative w-full aspect-[4/3] rounded-sm overflow-hidden">
-              <Image
-                src="/images/furniture-types/conference-table.jpg"
-                alt="Sleek conference table for professional boardroom settings"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
-          </RevealOnScroll>
 
-          {/* Text */}
-          <RevealOnScroll direction="right">
-            <div>
-              <SectionLabel>About Conference Tables</SectionLabel>
+        {/* Header */}
+        <RevealOnScroll>
+          <div className="max-w-3xl">
+            <SectionLabel>About Conference Tables</SectionLabel>
+            <h2 className="font-display text-4xl md:text-5xl text-gmt-forest leading-tight mt-2 mb-6">
+              Make a Statement<br className="hidden md:block" /> in the Boardroom
+            </h2>
+            <p className="font-body text-base md:text-lg text-gmt-stone leading-relaxed">
+              A conference table is the centerpiece of your boardroom—where decisions are made and teams collaborate. Our custom conference tables command respect, whether boat-shaped for executive presence, rectangular for efficiency, or artistically contoured. Each piece is handcrafted from premium solid wood and finished to exacting standards.
+            </p>
+          </div>
+        </RevealOnScroll>
 
-              <h2 className="font-display text-4xl md:text-5xl text-gmt-forest leading-tight mt-2 mb-6">
-                Make a Statement in the Boardroom
-              </h2>
+        {/* Full-width image */}
+        <RevealOnScroll>
+          <div className="mt-14 overflow-hidden rounded-sm">
+            <Image
+              src="/images/furniture-types/conference-table.jpg"
+              alt="Custom conference table for professional spaces — Green Mountain Tableworx"
+              width={0}
+              height={0}
+              sizes="100vw"
+              className="w-full h-auto"
+            />
+          </div>
+        </RevealOnScroll>
 
-              <p className="font-body text-base text-gmt-stone leading-relaxed mb-8">
-                A conference table is the centerpiece of your boardroom—where decisions are made and teams collaborate. Our custom conference tables command respect, whether boat-shaped for executive presence, rectangular for efficiency, or artistically contoured. Each piece is handcrafted from premium solid wood and finished to exacting standards.
-              </p>
+        {/* Divider */}
+        <div className="w-12 h-[2px] bg-gmt-green mt-12 mb-16" />
 
-              <div className="space-y-4 mb-10">
+        {/* Differentiators grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
+          {DIFFERENTIATORS.map((item, index) => (
+            <RevealOnScroll key={item.title} delay={index * 0.1}>
+              <div className="flex gap-5">
+                <div className="mt-1.5 w-2 h-2 rounded-full bg-gmt-green shrink-0" />
                 <div>
-                  <h3 className="font-display text-lg text-gmt-forest mb-2">Distinctive Shapes</h3>
-                  <p className="font-body text-sm text-gmt-stone leading-relaxed">
-                    Boat-shaped for boardrooms, rectangular for clean lines, or custom contours. Seating 8 to 20+ around.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="font-display text-lg text-gmt-forest mb-2">Premium Wood Selection</h3>
-                  <p className="font-body text-sm text-gmt-stone leading-relaxed">
-                    Walnut, oak, maple, cherry, or reclaimed species. Grain and color consistent for professional appearance.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="font-display text-lg text-gmt-forest mb-2">Integrated Design Options</h3>
-                  <p className="font-body text-sm text-gmt-stone leading-relaxed">
-                    Live edge for character, river inlay for sophistication, or ocean tables for contemporary flair. Cable management options available.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="font-display text-lg text-gmt-forest mb-2">Commercial-Grade Durability</h3>
-                  <p className="font-body text-sm text-gmt-stone leading-relaxed">
-                    Heavy-duty bases, reinforced aprons, and durable finishes rated for daily commercial use.
-                  </p>
+                  <h3 className="font-display text-xl text-gmt-forest mb-2">{item.title}</h3>
+                  <p className="font-body text-sm text-gmt-stone leading-relaxed">{item.body}</p>
                 </div>
               </div>
-
-              <p className="font-display text-sm text-gmt-green mb-8 italic">
-                "Conference tables that your clients will remember."
-              </p>
-
-              <div className="flex flex-col md:flex-row gap-4">
-                <Link
-                  href="/estimate"
-                  className="inline-flex justify-center md:justify-start font-body text-sm text-white bg-gmt-green px-8 py-4 hover:bg-gmt-forest transition-colors duration-300"
-                >
-                  Get an Instant Estimate
-                </Link>
-                <Link
-                  href="/locations/concord-nh"
-                  className="inline-flex justify-center md:justify-start font-body text-sm text-gmt-green border border-gmt-green px-8 py-4 hover:bg-gmt-green/5 transition-colors duration-300"
-                >
-                  Visit Concord, NH
-                </Link>
-                <Link
-                  href="/locations/smithfield-ri"
-                  className="inline-flex justify-center md:justify-start font-body text-sm text-gmt-green border border-gmt-green px-8 py-4 hover:bg-gmt-green/5 transition-colors duration-300"
-                >
-                  Visit Smithfield, RI
-                </Link>
-              </div>
-            </div>
-          </RevealOnScroll>
+            </RevealOnScroll>
+          ))}
         </div>
+
+        {/* CTAs */}
+        <RevealOnScroll delay={0.1}>
+          <div className="mt-16 flex flex-wrap gap-4">
+            <Link
+              href="/estimate"
+              className="font-body text-sm text-white bg-gmt-green px-8 py-4 hover:bg-gmt-forest transition-colors duration-300"
+            >
+              Instant Online Quotes
+            </Link>
+            <Link
+              href="/locations/concord-nh"
+              className="font-body text-sm text-gmt-forest border border-gmt-forest/40 px-8 py-4 hover:border-gmt-forest hover:bg-gmt-forest/5 transition-colors duration-300"
+            >
+              Visit Concord, NH Showroom
+            </Link>
+            <Link
+              href="/locations/smithfield-ri"
+              className="font-body text-sm text-gmt-forest border border-gmt-forest/40 px-8 py-4 hover:border-gmt-forest hover:bg-gmt-forest/5 transition-colors duration-300"
+            >
+              Visit Smithfield, RI Showroom
+            </Link>
+          </div>
+        </RevealOnScroll>
+
+        {/* Bottom pull quote */}
+        <RevealOnScroll delay={0.2}>
+          <div className="mt-20 border-l-2 border-gmt-green pl-8 max-w-2xl">
+            <p className="font-display text-2xl md:text-3xl text-gmt-forest leading-snug">
+              &ldquo;Conference tables that your clients will remember.&rdquo;
+            </p>
+          </div>
+        </RevealOnScroll>
+
       </Container>
     </section>
   )

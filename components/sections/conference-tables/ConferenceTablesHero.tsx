@@ -1,5 +1,6 @@
 'use client'
 import Image from 'next/image'
+import Link from 'next/link'
 import { FadeUp } from '@/components/ui/FadeUp'
 
 export function ConferenceTablesHero() {
@@ -33,9 +34,26 @@ export function ConferenceTablesHero() {
           </FadeUp>
 
           <FadeUp delay={0.4}>
-            <p className="font-body text-base md:text-lg text-white/90 max-w-md">
+            <p className="font-body text-base md:text-lg text-white/90 max-w-md mb-10">
               Distinctive wooden conference tables that make an impression. Boat-shaped, rectangular, or custom contours. Live edge or refined finishes. Built to impress clients and inspire teams.
             </p>
+          </FadeUp>
+
+          <FadeUp delay={0.55}>
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href="/estimate"
+                className="font-body text-sm text-white bg-gmt-green px-8 py-4 hover:bg-gmt-forest transition-colors duration-300"
+              >
+                Get an Instant Estimate
+              </Link>
+              <a
+                href="#gallery"
+                className="font-body text-sm text-white border border-white/40 px-8 py-4 hover:border-white hover:bg-white/10 transition-colors duration-300"
+              >
+                View Gallery
+              </a>
+            </div>
           </FadeUp>
         </div>
       </div>
