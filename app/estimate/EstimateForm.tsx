@@ -582,7 +582,7 @@ export function EstimateForm() {
                       options={TABLE_SHAPES}
                       selected={field.value ?? ''}
                       onSelect={field.onChange}
-                      cols="3-5"
+                      cols="4"
                       aspectRatio="square"
                       objectFit="contain"
                     />
@@ -613,7 +613,7 @@ export function EstimateForm() {
                       options={EDGE_STYLES}
                       selected={field.value ?? ''}
                       onSelect={field.onChange}
-                      cols="3-6"
+                      cols="4"
                     />
                   )}
                 />
