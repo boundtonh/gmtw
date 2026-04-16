@@ -8,7 +8,7 @@ import { GallerySection } from '@/components/sections/home/GallerySection'
 import { TableBasesCallout } from '@/components/sections/home/TableBasesCallout'
 import { Testimonials } from '@/components/sections/home/Testimonials'
 import { ShowroomsStrip } from '@/components/sections/home/ShowroomsStrip'
-import { CTABanner } from '@/components/ui/CTABanner'
+import { ContactFormBanner } from '@/components/ui/ContactFormBanner'
 
 export const metadata = buildMetadata({
   title: 'Green Mountain Tableworx | Custom Live Edge Furniture — NH & RI',
@@ -29,12 +29,7 @@ export default function HomePage() {
       <TableBasesCallout />
       <Testimonials />
       <ShowroomsStrip />
-      <CTABanner
-        headline="Start Your Custom Piece Today"
-        body="Use our online estimator to spec your table — wood species, dimensions, epoxy color, edge style, and base. We'll be in touch within 24 hours."
-        cta="Get an Instant Estimate"
-        href="/estimate"
-      />
+      <ContactFormBanner headline="Start Your Custom Piece Today" />
     </>
   )
 }
