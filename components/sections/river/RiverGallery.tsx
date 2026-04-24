@@ -6,10 +6,6 @@ import { Lightbox } from '@/components/ui/Lightbox'
 
 const GALLERY_IMAGES = [
   { src: '/images/river/River-Table.jpg', alt: 'Custom river table with blue epoxy inlay — Green Mountain Tableworx' },
-  { src: '/images/river/River-Table.jpg', alt: 'Custom river table with deep teal epoxy — Green Mountain Tableworx' },
-  { src: '/images/river/River-Table.jpg', alt: 'Custom river table — live edge walnut with epoxy river — Green Mountain Tableworx' },
-  { src: '/images/river/River-Table.jpg', alt: 'Custom river dining table, New England' },
-  { src: '/images/river/River-Table.jpg', alt: 'River table with steel base — Green Mountain Tableworx' },
   { src: '/images/river/rs=w_1160,h_870.webp', alt: 'Custom river table with epoxy inlay — Green Mountain Tableworx' },
   { src: '/images/river/rs=w_1160,h_870-(1).webp', alt: 'Live edge river table with flowing epoxy — Green Mountain Tableworx' },
   { src: '/images/river/rs=w_1160,h_870-(2).webp', alt: 'River table with custom epoxy color — Green Mountain Tableworx' },
