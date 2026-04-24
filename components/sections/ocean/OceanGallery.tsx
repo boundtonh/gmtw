@@ -5,11 +5,50 @@ import Image from 'next/image'
 import { Lightbox } from '@/components/ui/Lightbox'
 
 const GALLERY_IMAGES = [
-  { src: '/images/ocean/ocean-table.jpeg',          alt: 'Custom ocean table with blue epoxy — Green Mountain Tableworx' },
-  { src: '/images/ocean/Ocean-Table-Showroom.jpg',  alt: 'Ocean table on display in showroom — Green Mountain Tableworx' },
-  { src: '/images/ocean/ocean-style.webp',          alt: 'Custom ocean style epoxy table — Green Mountain Tableworx' },
-  { src: '/images/ocean/ocean-table.jpeg',          alt: 'Ocean dining table with live edge walnut — Green Mountain Tableworx' },
-  { src: '/images/ocean/Ocean-Table-Showroom.jpg',  alt: 'Ocean table detail — resin and wood — Green Mountain Tableworx' },
+  { src: '/images/ocean/Ocean-Table-Showroom.jpg',                    alt: 'Ocean table on display in showroom — Green Mountain Tableworx' },
+  { src: '/images/ocean/ocean-table.jpeg',                            alt: 'Custom ocean table with blue epoxy — Green Mountain Tableworx' },
+  { src: '/images/ocean/ocean-table-horiz.jpg',                       alt: 'Ocean dining table with live edge — Green Mountain Tableworx' },
+  { src: '/images/ocean/BW-Ocean.jpg',                                alt: 'Black and white ocean epoxy table — Green Mountain Tableworx' },
+  { src: '/images/ocean/Cherry-Ocean.jpg',                            alt: 'Cherry wood ocean table with epoxy — Green Mountain Tableworx' },
+  { src: '/images/ocean/Olivewood-Dark-Blues.jpg',                    alt: 'Olivewood ocean table with dark blue epoxy — Green Mountain Tableworx' },
+  { src: '/images/ocean/Olivewood-Ocean-Bright-Blues.jpg',            alt: 'Olivewood ocean table with bright blue epoxy — Green Mountain Tableworx' },
+  { src: '/images/ocean/Round-Olivewood-Ocean.jpg',                   alt: 'Round olivewood ocean table — Green Mountain Tableworx' },
+  { src: '/images/ocean/Rainbow-Tulip-Ocean.jpg',                     alt: 'Rainbow tulip ocean epoxy table — Green Mountain Tableworx' },
+  { src: '/images/ocean/Maple-Burl-73x38-Ocean-river-2.jpg',          alt: 'Maple burl ocean river table — Green Mountain Tableworx' },
+  { src: '/images/ocean/Lagoon-Table.jpg',                            alt: 'Lagoon ocean table with epoxy — Green Mountain Tableworx' },
+  { src: '/images/ocean/Lagoon-Table-(1).jpg',                        alt: 'Lagoon ocean table alternate view — Green Mountain Tableworx' },
+  { src: '/images/ocean/IMG_0109.jpg',                                alt: 'Custom ocean epoxy dining table — Green Mountain Tableworx' },
+  { src: '/images/ocean/IMG_0116.jpg',                                alt: 'Handcrafted ocean table — Green Mountain Tableworx' },
+  { src: '/images/ocean/IMG_3249.jpg',                                alt: 'Live edge ocean table New England — Green Mountain Tableworx' },
+  { src: '/images/ocean/IMG_3501.jpg',                                alt: 'Custom ocean table with flowing epoxy — Green Mountain Tableworx' },
+  { src: '/images/ocean/IMG_4090.jpg',                                alt: 'Ocean table with epoxy inlay — Green Mountain Tableworx' },
+  { src: '/images/ocean/IMG_8270-scaled.jpg',                         alt: 'Custom ocean table — Green Mountain Tableworx' },
+  { src: '/images/ocean/IMG_8521-scaled.jpg',                         alt: 'Ocean epoxy table handcrafted in New England — Green Mountain Tableworx' },
+  { src: '/images/ocean/IMG_8528-scaled.jpg',                         alt: 'Live edge ocean dining table — Green Mountain Tableworx' },
+  { src: '/images/ocean/IMG_8826-scaled.jpg',                         alt: 'Ocean table with wood and resin — Green Mountain Tableworx' },
+  { src: '/images/ocean/IMG_8841-scaled.jpg',                         alt: 'Custom ocean table gallery piece — Green Mountain Tableworx' },
+  { src: '/images/ocean/IMG_8867-scaled.jpg',                         alt: 'Handcrafted ocean epoxy table — Green Mountain Tableworx' },
+  { src: '/images/ocean/IMG_9546-scaled.jpg',                         alt: 'Ocean table for New England home — Green Mountain Tableworx' },
+  { src: '/images/ocean/IMG_9552-scaled.jpg',                         alt: 'Ocean table with flowing color — Green Mountain Tableworx' },
+  { src: '/images/ocean/IMG_9978.jpg',                                alt: 'Custom ocean dining table — Green Mountain Tableworx' },
+  { src: '/images/ocean/Resized_20250806_161456.jpeg',                alt: 'Ocean epoxy table — Green Mountain Tableworx' },
+  { src: '/images/ocean/rs=w_1160,h_870.webp',                       alt: 'Ocean table with epoxy river — Green Mountain Tableworx' },
+  { src: '/images/ocean/rs=w_1160,h_1547.webp',                      alt: 'Tall ocean table with epoxy — Green Mountain Tableworx' },
+  { src: '/images/ocean/rs=w_1160,h_1547-(1).webp',                  alt: 'Ocean table vertical gallery — Green Mountain Tableworx' },
+  { src: '/images/ocean/rs=w_1160,h_1547-(2).webp',                  alt: 'Live edge ocean slab with epoxy — Green Mountain Tableworx' },
+  { src: '/images/ocean/rs=w_1160,h_1612.webp',                      alt: 'Custom ocean table showcase — Green Mountain Tableworx' },
+  { src: '/images/ocean/cr=t_0%,l_0%,w_100%,h_100%.webp',           alt: 'Ocean table full view — Green Mountain Tableworx' },
+  { src: '/images/ocean/cr=t_0%,l_0%,w_100%,h_100%-(1).webp',       alt: 'Ocean table with colorful epoxy — Green Mountain Tableworx' },
+  { src: '/images/ocean/download.webp',                               alt: 'Handcrafted ocean epoxy table — Green Mountain Tableworx' },
+  { src: '/images/ocean/thumbnail_8229257204774820777.jpg',           alt: 'Ocean table detail — Green Mountain Tableworx' },
+  { src: '/images/ocean/thumbnail_Black-Walnut-Ocean.jpg',            alt: 'Black walnut ocean table — Green Mountain Tableworx' },
+  { src: '/images/ocean/thumbnail_IMG_1907.jpg',                      alt: 'Custom ocean table New England — Green Mountain Tableworx' },
+  { src: '/images/ocean/thumbnail_IMG_3179.jpg',                      alt: 'Ocean table with live edge slab — Green Mountain Tableworx' },
+  { src: '/images/ocean/thumbnail_Maple-Burl-72x46-Nokia-Blue-Radius-Corners-2.jpg', alt: 'Maple burl ocean table with Nokia blue epoxy — Green Mountain Tableworx' },
+  { src: '/images/ocean/thumbnail_Ocean-sand-rocks-waves.jpg',        alt: 'Ocean table with sand and rocks media — Green Mountain Tableworx' },
+  { src: '/images/ocean/thumbnail_Ocean-sand-rocks-waves-1.jpg',      alt: 'Ocean table sand rocks waves detail — Green Mountain Tableworx' },
+  { src: '/images/ocean/thumbnail_Ocean-sand-rocks-waves-2.jpg',      alt: 'Ocean media table with waves design — Green Mountain Tableworx' },
+  { src: '/images/ocean/thumbnail_processed-8E859C85-689A-4238-94EC-686FBFC08C9B.jpg', alt: 'Custom ocean epoxy table — Green Mountain Tableworx' },
 ]
 
 export function OceanGallery() {
@@ -108,8 +147,8 @@ export function OceanGallery() {
                   }}
                   aria-label={`View full size: ${image.alt}`}
                 >
-                  <div className="relative aspect-[3/4] overflow-hidden rounded-sm">
-                    <Image src={image.src} fill alt={image.alt} sizes="(max-width: 768px) 80vw, 40vw" className="object-cover" />
+                  <div className="overflow-hidden rounded-sm">
+                    <Image src={image.src} width={0} height={0} sizes="(max-width: 768px) 80vw, 40vw" alt={image.alt} className="w-full h-auto" />
                   </div>
                 </button>
               </li>
