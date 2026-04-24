@@ -226,7 +226,7 @@ function SelectionChip({
         )}
       </div>
       {/* Text */}
-      <div className="flex flex-col justify-center min-w-0">
+      <div className="flex flex-col justify-center min-w-0 text-left">
         <span className="font-body text-[8px] tracking-[0.10em] uppercase text-gmt-stone leading-none truncate">
           {card.stepLabel}
         </span>
@@ -535,7 +535,7 @@ export function EstimateForm() {
             {selectionCards.length > 0 && (
               <div className="mb-10">
                 <div
-                  className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2"
+                  className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2"
                   role="navigation"
                   aria-label="Your selections so far"
                 >
