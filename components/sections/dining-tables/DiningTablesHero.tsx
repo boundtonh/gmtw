@@ -5,7 +5,7 @@ import { FadeUp } from '@/components/ui/FadeUp'
 
 export function DiningTablesHero() {
   return (
-    <section className="relative min-h-[calc(100vh-126px)] md:min-h-[calc(100vh-72px)] lg:min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen md:min-h-[calc(68vh+105px)] flex items-center justify-center overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0 w-full h-full">
         <Image
