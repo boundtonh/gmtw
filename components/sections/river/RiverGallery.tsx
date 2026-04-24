@@ -38,7 +38,7 @@ const GALLERY_IMAGES = [
   { src: '/images/river/download-(8).webp', alt: 'Live edge river slab table — Green Mountain Tableworx' },
   { src: '/images/river/download-(9).webp', alt: 'Custom river table New England — Green Mountain Tableworx' },
   { src: '/images/river/download-(10).webp', alt: 'River table with colored epoxy inlay — Green Mountain Tableworx' },
-  { src: '/images/river/download-(11).webp', alt: 'Handcrafted two slab river table — Green Mountain Tableworx' },
+  { src: '/images/river/river-replace.png', alt: 'Custom river table with blue epoxy — Green Mountain Tableworx' },
 ]
 
 export function RiverGallery() {
