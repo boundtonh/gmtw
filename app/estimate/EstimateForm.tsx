@@ -137,7 +137,7 @@ const SPECIALTY_THEMES = [
   { value: 'basic-river',  label: 'Basic River',                 img: '/images/start-build-bg.jpg' },
   { value: 'ocean-style',  label: 'Ocean Style — Our Specialty', img: '/images/ocean/ocean-style.webp' },
   { value: 'media-style',  label: 'Media Style',                 subtitle: 'Stones, Rocks, Shells, Sand, Memorabilia', img: '/estimate/resin-themes/Black Walnut RR Media Style.png' },
-  { value: 'artisan-series', label: 'Artisan Series',            img: '/estimate/resin-themes/Artisan Series.jpg' },
+  { value: 'artisan-series', label: 'Artisan Series',            subtitle: 'Marbling or Artistically Blended Colors', img: '/estimate/resin-themes/Artisan Series.jpg' },
 ]
 
 const ENGRAVING_OPTIONS = [
@@ -199,6 +199,7 @@ export function EstimateForm() {
     control,
     watch,
     setValue,
+    getValues,
     trigger,
     formState: { errors },
     handleSubmit,
@@ -222,14 +223,17 @@ export function EstimateForm() {
 
   const deliveryOption = watch('deliveryOption')
   const tableShape = watch('tableShape')
-  const backgroundColor = watch('backgroundColor')
+  const epoxyColor = watch('epoxyColor')
 
-  // Auto-select rectangle table shape when any resin theme is chosen
+  // When a resin color is chosen, auto-select Basic River if no theme is set yet
   useEffect(() => {
-    if (backgroundColor && backgroundColor !== 'none' && backgroundColor !== '') {
-      setValue('tableShape', 'rectangle')
+    if (epoxyColor && epoxyColor !== 'none') {
+      const current = getValues('backgroundColor')
+      if (!current || current === 'none') {
+        setValue('backgroundColor', 'basic-river')
+      }
     }
-  }, [backgroundColor, setValue])
+  }, [epoxyColor, getValues, setValue])
 
   // Tier 2 (premium/exotic) species — everything else is Tier 1
   const TIER2_SPECIES = new Set(['acacia', 'buckeye-burl', 'claro-walnut', 'olivewood', 'monkey-pod'])
@@ -694,7 +698,7 @@ export function EstimateForm() {
                     control={control}
                     render={({ field }) => (
                       <ThumbnailGrid
-                        options={SPECIALTY_THEMES}
+                        options={epoxyColor && epoxyColor !== 'none' ? SPECIALTY_THEMES.filter(t => t.value !== 'none') : SPECIALTY_THEMES}
                         selected={field.value}
                         onSelect={field.onChange}
                         cols="3"
