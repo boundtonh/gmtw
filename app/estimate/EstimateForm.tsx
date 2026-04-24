@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
+import Image from 'next/image'
 import { useForm, Controller } from 'react-hook-form'
 import { Container } from '@/components/layout/Container'
 import { ThumbnailGrid } from '@/components/estimate/ThumbnailGrid'
@@ -27,6 +28,15 @@ export interface EstimateFormData {
   deliveryState?: string
   deliveryZip?: string
   notes: string
+}
+
+interface SelectionCard {
+  stepIndex: number
+  stepLabel: string
+  valueLabel: string
+  img?: string
+  placeholder?: string
+  objectPosition?: string
 }
 
 // ─── Placeholder option data ──────────────────────────────────────────────────
@@ -184,6 +194,50 @@ const STEPS = [
   { title: 'Your Information' },
 ]
 
+// ─── Selection Chip Component ─────────────────────────────────────────────────
+
+function SelectionChip({
+  card,
+  onClick,
+}: {
+  card: SelectionCard
+  onClick: () => void
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      title={`Go back to ${card.stepLabel}`}
+      className="group flex items-center gap-2 bg-gmt-charcoal border border-gmt-stone/20 hover:border-gmt-green/60 transition-colors duration-200 rounded-sm overflow-hidden flex-shrink-0 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gmt-green focus-visible:ring-offset-1 focus-visible:ring-offset-gmt-offwhite w-[140px]"
+    >
+      {/* Thumbnail */}
+      <div className="relative w-10 h-10 flex-shrink-0">
+        {card.img ? (
+          <Image
+            src={card.img}
+            fill
+            alt={card.valueLabel}
+            sizes="40px"
+            className="object-cover"
+            style={card.objectPosition ? { objectPosition: card.objectPosition } : undefined}
+          />
+        ) : (
+          <div className={cn('w-full h-full', card.placeholder ?? 'bg-gmt-stone/30')} />
+        )}
+      </div>
+      {/* Text */}
+      <div className="flex flex-col justify-center pr-2 min-w-0">
+        <span className="font-body text-[9px] tracking-[0.10em] uppercase text-gmt-stone/70 leading-none truncate">
+          {card.stepLabel}
+        </span>
+        <span className="font-body text-[11px] text-white leading-tight truncate mt-0.5">
+          {card.valueLabel}
+        </span>
+      </div>
+    </button>
+  )
+}
+
 // ─── Main component ───────────────────────────────────────────────────────────
 
 export function EstimateForm() {
@@ -235,11 +289,69 @@ export function EstimateForm() {
     }
   }, [epoxyColor, getValues, setValue])
 
+  // Build selection cards for the strip
+  function buildSelectionCards(): SelectionCard[] {
+    const cards: SelectionCard[] = []
+    const findOpt = <T extends { value: string; label?: string; img?: string; placeholder?: string; objectPosition?: string }>(arr: T[], value: string): T | undefined => arr.find(o => o.value === value)
+
+    if (currentStep > 0) {
+      const ft = findOpt(FURNITURE_TYPES, formValues.furnitureType)
+      if (ft) cards.push({ stepIndex: 0, stepLabel: 'Furniture', valueLabel: ft.label, img: ft.img, objectPosition: ft.objectPosition })
+      if ((formValues.length || 0) > 0 && (formValues.width || 0) > 0) {
+        cards.push({ stepIndex: 0, stepLabel: 'Size', valueLabel: `${formValues.length}" × ${formValues.width}"`, placeholder: 'bg-gmt-charcoal' })
+      }
+    }
+
+    if (currentStep > 1 && formValues.woodSpecies) {
+      const allWood = [...WOOD_TIER1, ...WOOD_TIER2]
+      let opt = findOpt(allWood, formValues.woodSpecies)
+      if (!opt) {
+        if (MAPLE_VALUES.has(formValues.woodSpecies)) opt = findOpt(WOOD_TIER1, 'maple')
+        else if (ELM_VALUES.has(formValues.woodSpecies)) opt = findOpt(WOOD_TIER1, 'elm')
+        else if (WALNUT_VALUES.has(formValues.woodSpecies)) opt = findOpt(WOOD_TIER1, 'walnut')
+      }
+      const subLabel = findOpt([...MAPLE_VARIETIES, ...ELM_VARIETIES, ...WALNUT_VARIETIES], formValues.woodSpecies)
+      const label = subLabel?.label ?? opt?.label ?? formValues.woodSpecies
+      if (opt) cards.push({ stepIndex: 1, stepLabel: 'Wood', valueLabel: label, img: opt.img })
+    }
+
+    if (currentStep > 2 && formValues.tableShape) {
+      const opt = findOpt(TABLE_SHAPES, formValues.tableShape)
+      if (opt) cards.push({ stepIndex: 2, stepLabel: 'Shape', valueLabel: opt.label, img: opt.img })
+    }
+
+    if (currentStep > 3 && formValues.edgeStyle) {
+      const opt = findOpt(EDGE_STYLES, formValues.edgeStyle)
+      if (opt) cards.push({ stepIndex: 3, stepLabel: 'Edge', valueLabel: opt.label, placeholder: opt.placeholder })
+    }
+
+    if (currentStep > 4) {
+      if (formValues.epoxyColor) {
+        const opt = findOpt(EPOXY_COLORS, formValues.epoxyColor)
+        if (opt) cards.push({ stepIndex: 4, stepLabel: 'Resin', valueLabel: opt.label, placeholder: opt.placeholder })
+      }
+      if (formValues.backgroundColor && formValues.backgroundColor !== 'none') {
+        const opt = findOpt(SPECIALTY_THEMES, formValues.backgroundColor)
+        if (opt) cards.push({ stepIndex: 4, stepLabel: 'Theme', valueLabel: opt.label, img: opt.img, placeholder: opt.placeholder })
+      }
+    }
+
+    if (currentStep > 5 && formValues.tableBase) {
+      const allBases = [...TABLE_BASES_STANDARD_IRON, ...TABLE_BASES_ELEGANT_IRON, ...TABLE_BASES_WOOD]
+      const opt = findOpt(allBases, formValues.tableBase)
+      if (opt) cards.push({ stepIndex: 5, stepLabel: 'Base', valueLabel: opt.label, img: opt.img })
+    }
+
+    return cards
+  }
+
   // Tier 2 (premium/exotic) species — everything else is Tier 1
   const TIER2_SPECIES = new Set(['acacia', 'buckeye-burl', 'claro-walnut', 'olivewood', 'monkey-pod'])
 
   // Client-side price estimate (mirrors API formula — for testing only)
   const formValues = watch()
+
+  const selectionCards = useMemo(() => buildSelectionCards(), [formValues, currentStep])
   const liveEstimate = (() => {
     const sqFt = ((formValues.length || 0) * (formValues.width || 0)) / 144
     const linearFeet = (formValues.length || 0) / 12
@@ -419,6 +531,29 @@ export function EstimateForm() {
             {/* Steps — hidden after submission */}
             {!submitSuccess && (
             <>
+            {/* Selection Strip */}
+            {selectionCards.length > 0 && (
+              <div className="mb-10 -mx-4 px-4 md:mx-0 md:px-0">
+                <div
+                  className="flex gap-2 overflow-x-auto pb-2"
+                  style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                  role="navigation"
+                  aria-label="Your selections so far"
+                >
+                  {selectionCards.map((card, i) => (
+                    <SelectionChip
+                      key={`${card.stepIndex}-${card.valueLabel}-${i}`}
+                      card={card}
+                      onClick={() => {
+                        setCurrentStep(card.stepIndex)
+                        window.scrollTo({ top: 0, behavior: 'smooth' })
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+
             <h2 className="font-display text-3xl md:text-4xl text-gmt-forest mb-10 text-center">
               {STEPS[currentStep].title.split('<br>').map((line, idx) => (
                 <div key={idx}>{line}</div>
