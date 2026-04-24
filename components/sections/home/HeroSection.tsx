@@ -16,11 +16,11 @@ export function HeroSection() {
       <div className="relative z-10 flex flex-col items-center justify-center h-full pt-[126px] lg:pt-[72px] text-center px-6">
         <FadeUp delay={0.1}>
           <Image
-            src="/images/logo/gmt-logo-no-bg.jpg"
+            src="/images/logo/Untitled.png"
             alt="Green Mountain Tableworx logo"
-            width={120}
-            height={120}
-            className="mb-6"
+            width={140}
+            height={81}
+            className="min-w-[12rem] mb-6"
           />
         </FadeUp>
 
