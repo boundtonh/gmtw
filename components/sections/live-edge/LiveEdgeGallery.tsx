@@ -8,11 +8,26 @@ import { Lightbox } from '@/components/ui/Lightbox'
 // Add client photos here as they arrive.
 // Format: { src: '/images/live-edge/filename.jpg', alt: 'descriptive alt text' }
 const GALLERY_IMAGES = [
-  { src: '/images/live-edge/Live-Edge.jpg', alt: 'Custom live edge dining table in black walnut — Green Mountain Tableworx' },
-  { src: '/images/live-edge/Live-Edge.jpg', alt: 'Live edge river table with blue epoxy inlay, New England' },
-  { src: '/images/live-edge/Live-Edge.jpg', alt: 'Live edge conference table with steel base, Concord NH' },
-  { src: '/images/live-edge/Live-Edge.jpg', alt: 'Live edge coffee table in cherry wood, custom order Rhode Island' },
-  { src: '/images/live-edge/Live-Edge.jpg', alt: 'Live edge bench in white ash — Green Mountain Tableworx' },
+  { src: '/images/live-edge/Live-Edge.jpg',            alt: 'Custom live edge dining table — Green Mountain Tableworx' },
+  { src: '/images/live-edge/live-edge-horiz.jpg',      alt: 'Live edge table horizontal view — Green Mountain Tableworx' },
+  { src: '/images/live-edge/rs=w_1160,h_870.webp',     alt: 'Handcrafted live edge table — Green Mountain Tableworx' },
+  { src: '/images/live-edge/rs=w_1160,h_870-(1).webp', alt: 'Live edge dining table New England — Green Mountain Tableworx' },
+  { src: '/images/live-edge/rs=w_1160,h_965.webp',     alt: 'Custom live edge slab table — Green Mountain Tableworx' },
+  { src: '/images/live-edge/rs=w_1160,h_1547.webp',    alt: 'Tall live edge table — Green Mountain Tableworx' },
+  { src: '/images/live-edge/rs=w_1160,h_1547-(1).webp', alt: 'Live edge table with natural contours — Green Mountain Tableworx' },
+  { src: '/images/live-edge/rs=w_1160,h_1547-(2).webp', alt: 'Live edge wood slab furniture — Green Mountain Tableworx' },
+  { src: '/images/live-edge/rs=w_1160,h_1547-(3).webp', alt: 'Custom live edge piece — Green Mountain Tableworx' },
+  { src: '/images/live-edge/rs=w_1160,h_1547-(4).webp', alt: 'Live edge table handcrafted in New England — Green Mountain Tableworx' },
+  { src: '/images/live-edge/rs=w_984,h_738.webp',      alt: 'Live edge dining table — Green Mountain Tableworx' },
+  { src: '/images/live-edge/rs=w_984,h_738-(1).webp',  alt: 'Custom live edge table with wood base — Green Mountain Tableworx' },
+  { src: '/images/live-edge/rs=w_984,h_767.webp',      alt: 'Live edge slab table — Green Mountain Tableworx' },
+  { src: '/images/live-edge/download.webp',             alt: 'Handcrafted live edge furniture — Green Mountain Tableworx' },
+  { src: '/images/live-edge/download-(1).webp',         alt: 'Live edge table New England — Green Mountain Tableworx' },
+  { src: '/images/live-edge/download-(2).webp',         alt: 'Custom live edge dining table — Green Mountain Tableworx' },
+  { src: '/images/live-edge/download-(3).webp',         alt: 'Live edge table with natural edge — Green Mountain Tableworx' },
+  { src: '/images/live-edge/download-(4).webp',         alt: 'Live edge wood table — Green Mountain Tableworx' },
+  { src: '/images/live-edge/download-(5).webp',         alt: 'Custom live edge piece New England — Green Mountain Tableworx' },
+  { src: '/images/live-edge/download-(6).webp',         alt: 'Handcrafted live edge table — Green Mountain Tableworx' },
 ]
 
 export function LiveEdgeGallery() {
@@ -120,13 +135,14 @@ export function LiveEdgeGallery() {
                   }}
                   aria-label={`View full size: ${image.alt}`}
                 >
-                  <div className="relative aspect-[3/4] overflow-hidden rounded-sm">
+                  <div className="overflow-hidden rounded-sm">
                     <Image
                       src={image.src}
-                      fill
-                      alt={image.alt}
+                      width={0}
+                      height={0}
                       sizes="(max-width: 768px) 80vw, 40vw"
-                      className="object-cover"
+                      alt={image.alt}
+                      className="w-full h-auto"
                     />
                   </div>
                 </button>
