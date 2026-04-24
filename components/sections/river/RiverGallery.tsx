@@ -5,7 +5,6 @@ import Image from 'next/image'
 import { Lightbox } from '@/components/ui/Lightbox'
 
 const GALLERY_IMAGES = [
-  { src: '/images/river/River-Table.jpg', alt: 'Custom river table with blue epoxy inlay — Green Mountain Tableworx' },
   { src: '/images/river/rs=w_1160,h_870.webp', alt: 'Custom river table with epoxy inlay — Green Mountain Tableworx' },
   { src: '/images/river/rs=w_1160,h_870-(1).webp', alt: 'Live edge river table with flowing epoxy — Green Mountain Tableworx' },
   { src: '/images/river/rs=w_1160,h_870-(2).webp', alt: 'River table with custom epoxy color — Green Mountain Tableworx' },
@@ -31,7 +30,6 @@ const GALLERY_IMAGES = [
   { src: '/images/river/rs=w_984,h_1099.webp', alt: 'Tall live edge river table — Green Mountain Tableworx' },
   { src: '/images/river/download.webp', alt: 'River table with colored epoxy accent — Green Mountain Tableworx' },
   { src: '/images/river/download-(1).webp', alt: 'Custom two slab river table — Green Mountain Tableworx' },
-  { src: '/images/river/download-(2).webp', alt: 'Live edge river table showcase — Green Mountain Tableworx' },
   { src: '/images/river/download-(3).webp', alt: 'Handcrafted river dining furniture — Green Mountain Tableworx' },
   { src: '/images/river/download-(4).webp', alt: 'River table with epoxy river feature — Green Mountain Tableworx' },
   { src: '/images/river/download-(5).webp', alt: 'Custom river table with live edges — Green Mountain Tableworx' },
