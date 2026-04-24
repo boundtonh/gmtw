@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { Container } from '@/components/layout/Container'
 import { ThumbnailGrid } from '@/components/estimate/ThumbnailGrid'
@@ -97,8 +97,8 @@ const WOOD_TIER2 = [
   { value: 'acacia',        label: 'Indonesian / Mexican Acacia', img: `${BASE}/acacia.webp` },
   { value: 'buckeye-burl',  label: 'Buckeye Burl',                img: `${BASE}/Buckeye-burl.jpg` },
   { value: 'claro-walnut',  label: 'Claro Walnut',                img: `${BASE}/ClaroWalnut.jpg` },
-  { value: 'olivewood',     label: 'Olivewood',                   img: `${BASE}/olive-wood.jpg` },
-  { value: 'monkey-pod',    label: 'Costa Rican Monkey Pod',      img: `${BASE}/gunacoste.jpg` },
+  { value: 'olivewood',     label: 'Olivewood',                   img: `${BASE}/olivewood-2.png` },
+  { value: 'monkey-pod',    label: 'Costa Rican Monkey Pod',      img: `${BASE}/olive-wood.jpg` },
 ]
 
 const TABLE_SHAPES = [
@@ -134,6 +134,7 @@ const EPOXY_COLORS = [
 
 const SPECIALTY_THEMES = [
   { value: 'none',         label: 'None',                        placeholder: 'bg-stone-100' },
+  { value: 'basic-river',  label: 'Basic River',                 img: '/images/start-build-bg.jpg' },
   { value: 'ocean-style',  label: 'Ocean Style — Our Specialty', img: '/images/ocean/ocean-style.webp' },
   { value: 'media-style',  label: 'Media Style',                 subtitle: 'Stones, Rocks, Shells, Sand, Memorabilia', img: '/estimate/resin-themes/Black Walnut RR Media Style.png' },
   { value: 'artisan-series', label: 'Artisan Series',            img: '/estimate/resin-themes/Artisan Series.jpg' },
@@ -197,6 +198,7 @@ export function EstimateForm() {
     register,
     control,
     watch,
+    setValue,
     trigger,
     formState: { errors },
     handleSubmit,
@@ -220,6 +222,14 @@ export function EstimateForm() {
 
   const deliveryOption = watch('deliveryOption')
   const tableShape = watch('tableShape')
+  const backgroundColor = watch('backgroundColor')
+
+  // Auto-select rectangle table shape when any resin theme is chosen
+  useEffect(() => {
+    if (backgroundColor && backgroundColor !== 'none' && backgroundColor !== '') {
+      setValue('tableShape', 'rectangle')
+    }
+  }, [backgroundColor, setValue])
 
   // Tier 2 (premium/exotic) species — everything else is Tier 1
   const TIER2_SPECIES = new Set(['acacia', 'buckeye-burl', 'claro-walnut', 'olivewood', 'monkey-pod'])
@@ -234,6 +244,7 @@ export function EstimateForm() {
     let subtotal = sqFt * woodRate
     if (formValues.epoxyColor && formValues.epoxyColor !== 'none') subtotal += 75 * linearFeet
     if (formValues.backgroundColor === 'ocean-style') subtotal *= 1.10
+    else if (formValues.backgroundColor === 'basic-river') {} // No additional charge for basic river
     else if (formValues.backgroundColor === 'media-style' || formValues.backgroundColor === 'artisan-series') subtotal += 15 * linearFeet
     if ((formValues.tableShape === 'circle' || formValues.tableShape === 'oval') && (formValues.length || 0) > 60) subtotal += 200
     return { min: Math.round(subtotal * 0.80), max: Math.round(subtotal * 1.20) }

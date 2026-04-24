@@ -1,7 +1,7 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { HeroVideo } from '@/components/layout/HeroVideo'
 import { FadeUp } from '@/components/ui/FadeUp'
-import { SectionLabel } from '@/components/ui/SectionLabel'
 
 export function HeroSection() {
   return (
@@ -15,9 +15,13 @@ export function HeroSection() {
       {/* Content — centered in visible area below nav */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full pt-[126px] lg:pt-[72px] text-center px-6">
         <FadeUp delay={0.1}>
-          <SectionLabel className="text-gmt-sage mb-6">
-            Green Mountain Tableworx
-          </SectionLabel>
+          <Image
+            src="/images/logo/gmt-logo-no-bg.jpg"
+            alt="Green Mountain Tableworx logo"
+            width={120}
+            height={120}
+            className="mb-6"
+          />
         </FadeUp>
 
         <FadeUp delay={0.25}>
