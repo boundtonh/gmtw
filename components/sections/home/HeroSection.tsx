@@ -20,7 +20,7 @@ export function HeroSection() {
             alt="Green Mountain Tableworx logo"
             width={140}
             height={81}
-            className="min-w-[12rem] mb-6"
+            className="min-w-[15rem] mb-6"
           />
         </FadeUp>
 
