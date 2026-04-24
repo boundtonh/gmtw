@@ -7,7 +7,7 @@ import { RevealOnScroll } from '@/components/ui/RevealOnScroll'
 const DIFFERENTIATORS = [
   {
     title: 'Distinctive Shapes',
-    body: 'Boat-shaped for boardrooms, rectangular for clean lines, or custom contours. Seating 8 to 20+ around.',
+    body: 'Rectangular for clean lines, or custom contours. Seating 8 to 20+ around.',
   },
   {
     title: 'Premium Wood Selection',
@@ -20,6 +20,10 @@ const DIFFERENTIATORS = [
   {
     title: 'Commercial-Grade Durability',
     body: 'Heavy-duty bases, reinforced aprons, and durable finishes rated for daily commercial use.',
+  },
+  {
+    title: 'Custom Branding & Logos',
+    body: 'Add your company logo or custom branding inlaid directly into the table surface for a personalized touch.',
   },
 ]
 
@@ -36,7 +40,7 @@ export function ConferenceTablesAbout() {
               Make a Statement<br className="hidden md:block" /> in the Boardroom
             </h2>
             <p className="font-body text-base md:text-lg text-gmt-stone leading-relaxed">
-              A conference table is the centerpiece of your boardroom—where decisions are made and teams collaborate. Our custom conference tables command respect, whether boat-shaped for executive presence, rectangular for efficiency, or artistically contoured. Each piece is handcrafted from premium solid wood and finished to exacting standards.
+              A conference table is the centerpiece of your boardroom—where decisions are made and teams collaborate. Our custom conference tables command respect, whether rectangular for efficiency or artistically contoured. Each piece is handcrafted from premium solid wood and finished to exacting standards.
             </p>
           </div>
         </RevealOnScroll>

@@ -10,8 +10,8 @@ const DIFFERENTIATORS = [
     body: 'Starting at $500, a custom GMT coffee table is an investment in beauty and craftsmanship that lasts.',
   },
   {
-    title: 'Three Design Styles',
-    body: 'Live edge reveals natural contours. River tables split two slabs with flowing epoxy. Ocean tables feature organic color and movement.',
+    title: 'Design Styles',
+    body: 'Live edge reveals natural contours. River tables split two slabs with flowing epoxy. Ocean tables feature organic color and movement. It can also be a solid top—whether a solid top without epoxy, river, or ocean styling.',
   },
   {
     title: 'Custom Dimensions',

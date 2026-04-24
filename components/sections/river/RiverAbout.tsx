@@ -6,8 +6,8 @@ import { RevealOnScroll } from '@/components/ui/RevealOnScroll'
 
 const DIFFERENTIATORS = [
   {
-    title: 'Two Slabs, One Statement',
-    body: 'A river table is built from two matching live edge slabs placed face-to-face with a channel of epoxy running between them. The result is a piece that feels like a landscape — wood on both sides, water in the middle.',
+    title: 'Two or More Slabs, One Statement',
+    body: 'A river table is built from two or more live edge slabs placed face-to-face with a channel of epoxy running between them. The result is a piece that feels like a landscape — wood on both sides, water in the middle.',
   },
   {
     title: 'The River Is Yours to Design',
@@ -36,7 +36,7 @@ export function RiverAbout() {
               Wood and water, captured<br className="hidden md:block" /> in a single piece
             </h2>
             <p className="font-body text-base md:text-lg text-gmt-stone leading-relaxed">
-              A river table combines two live edge slabs with a flowing channel of poured epoxy between them. The epoxy — often colored to resemble water — fills the natural space between the slabs and creates the illusion of a river running through the piece. It is one of the most visually striking forms of custom furniture available today.
+              A river table combines two or more live edge slabs with a flowing channel of poured epoxy between them. The epoxy — often colored to resemble water — fills the natural space between the slabs and creates the illusion of a river running through the piece. It is one of the most visually striking forms of custom furniture available today.
             </p>
           </div>
         </RevealOnScroll>

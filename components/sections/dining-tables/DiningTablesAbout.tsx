@@ -7,15 +7,15 @@ import { RevealOnScroll } from '@/components/ui/RevealOnScroll'
 const DIFFERENTIATORS = [
   {
     title: 'Solid Wood Construction',
-    body: 'Hand-selected wood slabs from walnut, maple, cherry, and reclaimed species. Every grain pattern is unique.',
+    body: 'Hand-selected wood slabs featuring various wood species. Every grain pattern is unique.',
   },
   {
     title: 'Custom Sizing',
-    body: 'Design to your exact dimensions. From intimate 4-tops to grand 12+ seat tables for entertaining.',
+    body: 'Design to your exact dimensions. From intimate 2-tops to grand 12+ seat tables for entertaining.',
   },
   {
     title: 'Choice of Design',
-    body: 'Live edge keeps natural bark and contours. River tables split two slabs with epoxy. Ocean tables feature poured color and wave patterns.',
+    body: 'Live edge keeps natural edge and contours. River tables split two slabs with epoxy. Ocean tables feature poured color and wave patterns.',
   },
   {
     title: 'Professional Finishing',
