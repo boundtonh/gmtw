@@ -56,7 +56,7 @@ export function BasesHero() {
           transition={{ duration: shouldReduce ? 0 : 0.7, delay: shouldReduce ? 0 : 0.6, ease }}
           className="font-body text-base md:text-lg text-white/80 max-w-xl leading-relaxed mb-10"
         >
-          Choose from durable black iron standards, refined Flowyline elegant iron, or fully custom handcrafted wood bases matched to your slab.
+          Choose from durable black iron standards, premium iron designs, or fully custom handcrafted wood bases matched to your slab.
         </motion.p>
 
         <motion.div
