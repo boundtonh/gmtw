@@ -139,8 +139,8 @@ export function RiverGallery() {
                   }}
                   aria-label={`View full size: ${image.alt}`}
                 >
-                  <div className="relative aspect-[3/4] overflow-hidden rounded-sm">
-                    <Image src={image.src} fill alt={image.alt} sizes="(max-width: 768px) 80vw, 40vw" className="object-cover" />
+                  <div className="overflow-hidden rounded-sm">
+                    <Image src={image.src} width={0} height={0} sizes="(max-width: 768px) 80vw, 40vw" alt={image.alt} className="w-full h-auto" />
                   </div>
                 </button>
               </li>
