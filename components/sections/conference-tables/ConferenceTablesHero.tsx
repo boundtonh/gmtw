@@ -5,7 +5,7 @@ import { FadeUp } from '@/components/ui/FadeUp'
 
 export function ConferenceTablesHero() {
   return (
-    <section className="relative min-h-screen md:min-h-[calc(68vh+105px)] flex items-center overflow-hidden">
+    <section className="relative min-h-screen md:min-h-[calc(68vh+105px)] flex items-center justify-center overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0 w-full h-full">
         <Image
@@ -21,12 +21,8 @@ export function ConferenceTablesHero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 w-full h-full flex flex-col justify-center px-6 md:px-12 py-20">
+      <div className="relative z-10 w-full px-6 md:px-12 py-20">
         <div className="max-w-[1320px] mx-auto w-full">
-          <FadeUp delay={0.1}>
-            <p className="section-label text-gmt-sage md:text-white mb-4">Professional Spaces</p>
-          </FadeUp>
-
           <FadeUp delay={0.25}>
             <h1 className="font-display text-[2.5rem] md:text-[4rem] text-white leading-tight mb-6 max-w-2xl">
               Custom Conference Tables for Your Boardroom
