@@ -208,16 +208,16 @@ function SelectionChip({
       type="button"
       onClick={onClick}
       title={`Go back to ${card.stepLabel}`}
-      className="group flex items-center gap-2 bg-gmt-charcoal border border-gmt-stone/20 hover:border-gmt-green/60 transition-colors duration-200 rounded-sm overflow-hidden flex-shrink-0 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gmt-green focus-visible:ring-offset-1 focus-visible:ring-offset-gmt-offwhite w-[140px]"
+      className="group flex items-center gap-2 bg-white border border-gmt-stone/20 hover:border-gmt-green/40 transition-colors duration-200 rounded-sm overflow-hidden cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gmt-green focus-visible:ring-offset-1 focus-visible:ring-offset-gmt-offwhite px-3 py-2"
     >
       {/* Thumbnail */}
-      <div className="relative w-10 h-10 flex-shrink-0">
+      <div className="relative w-8 h-8 flex-shrink-0">
         {card.img ? (
           <Image
             src={card.img}
             fill
             alt={card.valueLabel}
-            sizes="40px"
+            sizes="32px"
             className="object-cover"
             style={card.objectPosition ? { objectPosition: card.objectPosition } : undefined}
           />
@@ -226,11 +226,11 @@ function SelectionChip({
         )}
       </div>
       {/* Text */}
-      <div className="flex flex-col justify-center pr-2 min-w-0">
-        <span className="font-body text-[9px] tracking-[0.10em] uppercase text-gmt-stone/70 leading-none truncate">
+      <div className="flex flex-col justify-center min-w-0">
+        <span className="font-body text-[8px] tracking-[0.10em] uppercase text-gmt-stone leading-none truncate">
           {card.stepLabel}
         </span>
-        <span className="font-body text-[11px] text-white leading-tight truncate mt-0.5">
+        <span className="font-body text-[10px] text-gmt-forest leading-tight truncate mt-0.5">
           {card.valueLabel}
         </span>
       </div>
@@ -533,10 +533,9 @@ export function EstimateForm() {
             <>
             {/* Selection Strip */}
             {selectionCards.length > 0 && (
-              <div className="mb-10 -mx-4 px-4 md:mx-0 md:px-0">
+              <div className="mb-10">
                 <div
-                  className="flex gap-2 overflow-x-auto pb-2"
-                  style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                  className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2"
                   role="navigation"
                   aria-label="Your selections so far"
                 >
