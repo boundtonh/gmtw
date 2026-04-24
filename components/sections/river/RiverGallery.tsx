@@ -73,11 +73,11 @@ export function RiverGallery() {
 
       splideMain.current = new Splide(mainRef.current, {
         type:         'loop',
-        perPage:      3,
+        perPage:      1,
         perMove:      1,
         focus:        'center',
-        gap:          '1rem',
-        padding:      '6%',
+        gap:          '1.5rem',
+        padding:      '22%',
         arrows:       true,
         pagination:   false,
         autoplay:     true,
@@ -86,7 +86,7 @@ export function RiverGallery() {
         speed:        700,
         easing:       'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
         breakpoints: {
-          768: { perPage: 1, padding: '12%', gap: '0.75rem' },
+          768: { perPage: 1, padding: '10%', gap: '0.75rem' },
         },
       })
 
@@ -163,8 +163,8 @@ export function RiverGallery() {
 
       <style>{`
         .splide-river-main .splide__slide {
-          opacity: 0.3;
-          transform: scale(0.88);
+          opacity: 0.35;
+          transform: scale(0.78);
           transition: opacity 0.5s ease, transform 0.5s ease;
         }
         .splide-river-main .splide__slide.is-active {
