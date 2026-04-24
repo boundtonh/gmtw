@@ -32,15 +32,6 @@ export function RiverHero() {
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-[1320px] mx-auto px-6 md:px-12 xl:px-24 pb-16 md:pb-24">
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: shouldReduce ? 0 : 0.6, delay: shouldReduce ? 0 : 0.2, ease }}
-          className="font-body text-xs tracking-[0.14em] uppercase text-gmt-green mb-4"
-        >
-          Green Mountain Tableworx
-        </motion.p>
-
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
