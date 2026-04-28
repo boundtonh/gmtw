@@ -164,14 +164,17 @@ const TABLE_BASES_STANDARD_IRON = [
 ]
 
 const TABLE_BASES_ELEGANT_IRON = [
-  { value: 'haru-pedestal',         label: 'Haru Pedestal',         img: '/images/bases/haru-pedestal.webp' },
-  { value: 'wine-glass',            label: 'Wine Glass',            img: '/images/bases/wine-glass.webp' },
-  { value: 'lithe-pedestal',        label: 'Lithe Pedestal',        img: '/images/bases/lithe-pedestal.webp' },
-  { value: 'summa',                 label: 'Summa',                 img: '/images/bases/Summa.webp' },
-  { value: 'center-prong',          label: 'Center Prong',          img: '/images/bases/center-prong.webp' },
-  { value: 'x-cross',               label: 'X Cross',               img: '/images/bases/x-cross.webp' },
-  { value: 'contemporary-hairpins', label: 'Contemporary Hairpins', img: '/images/bases/contemporary-hairpins.webp' },
-  { value: 'center-arch-pedestal',  label: 'Center Arch Pedestal',  img: '/images/bases/center-arch-pedestal.webp' },
+  { value: 'cleo',      label: 'Cleo',      img: '/images/bases/cleo.jpg' },
+  { value: 'curva',     label: 'Curva',     img: '/images/bases/curva.jpg' },
+  { value: 'draco',     label: 'Draco',     img: '/images/bases/draco.jpg' },
+  { value: 'faras',     label: 'Faras',     img: '/images/bases/faras.jpg' },
+  { value: 'lithe',     label: 'Lithe',     img: '/images/bases/lithe.jpg' },
+  { value: 'norah',     label: 'Norah',     img: '/images/bases/norah.jpg' },
+  { value: 'summa',     label: 'Summa',     img: '/images/bases/summa.jpg' },
+  { value: 'tulipe',    label: 'Tulipe',    img: '/images/bases/tulipe.jpg' },
+  { value: 'wineglass', label: 'Wineglass', img: '/images/bases/wineglass.jpg' },
+  { value: 'wishbone',  label: 'Wishbone',  img: '/images/bases/wishbone.jpg' },
+  { value: 'xeni',      label: 'Xeni',      img: '/images/bases/xeni.jpg' },
 ]
 
 const TABLE_BASES_WOOD = [
