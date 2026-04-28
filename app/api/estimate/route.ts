@@ -13,16 +13,22 @@ function calculatePrice(data: any) {
   const woodRate = TIER2_SPECIES.has(data.woodSpecies) ? 225 : 168
   let subtotal = sqFt * woodRate
 
-  // Resin & Color: $75/lin ft if any epoxy selected
+  // Resin pricing — depends on style
   if (data.epoxyColor && data.epoxyColor !== 'none') {
-    subtotal += 75 * linearFeet
-  }
-
-  // Specialty Resin Themes
-  if (data.backgroundColor === 'ocean-style') {
-    subtotal *= 1.10                                          // +10%
-  } else if (data.backgroundColor === 'media-style' || data.backgroundColor === 'artisan-series') {
-    subtotal += 15 * linearFeet                              // +$15/lin ft
+    if (data.backgroundColor === 'ocean-style') {
+      // Ocean: $75/lin ft + 10% of total price
+      subtotal += 75 * linearFeet
+      subtotal *= 1.10
+    } else if (data.backgroundColor === 'media-style') {
+      // Media: $75/lin ft + $15/lin ft = $90/lin ft
+      subtotal += 90 * linearFeet
+    } else if (data.backgroundColor === 'artisan-series') {
+      // Artisan: $125/lin ft
+      subtotal += 125 * linearFeet
+    } else {
+      // Base epoxy: $75/lin ft
+      subtotal += 75 * linearFeet
+    }
   }
 
   // Surface Finish: High-Gloss Resin +20%
