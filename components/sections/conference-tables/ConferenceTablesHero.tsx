@@ -16,8 +16,7 @@ export function ConferenceTablesHero() {
           className="object-cover object-[center_92%] md:object-[center_92%]"
           sizes="100vw"
         />
-        {/* Dark gradient overlay for text legibility */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/40 to-transparent md:bg-gradient-to-br md:from-black/50 md:via-transparent md:to-transparent" />
+        <div className="absolute inset-0 bg-black/50" />
       </div>
 
       {/* Content */}
