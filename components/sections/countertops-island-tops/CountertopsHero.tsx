@@ -1,0 +1,49 @@
+'use client'
+import Image from 'next/image'
+import Link from 'next/link'
+import { FadeUp } from '@/components/ui/FadeUp'
+
+export function CountertopsHero() {
+  return (
+    <section className="relative min-h-screen md:min-h-[calc(68vh+105px)] flex items-center justify-center overflow-hidden">
+      <div className="absolute inset-0 w-full h-full">
+        <Image
+          src="/images/furniture-types/countertops-main.JPG"
+          alt="Custom wood countertop and kitchen island top by Green Mountain Tableworx"
+          fill
+          priority
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-black/50" />
+      </div>
+
+      <div className="relative z-10 w-full px-6 md:px-12 py-20">
+        <div className="max-w-[1320px] mx-auto w-full">
+          <FadeUp delay={0.25}>
+            <h1 className="font-display text-[2.5rem] md:text-[4rem] text-white leading-tight mb-6 max-w-2xl">
+              Custom Wood Countertops &amp; Island Tops
+            </h1>
+          </FadeUp>
+
+          <FadeUp delay={0.4}>
+            <p className="font-body text-base md:text-lg text-white/90 max-w-md mb-10">
+              Live edge or straight, any wood species — precision-fit to your kitchen dimensions. Pricing based on size and species. Inquire for a custom quote.
+            </p>
+          </FadeUp>
+
+          <FadeUp delay={0.55}>
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href="/estimate"
+                className="font-body text-sm text-white bg-gmt-green px-8 py-4 hover:bg-gmt-forest transition-colors duration-300"
+              >
+                Get an Instant Estimate
+              </Link>
+            </div>
+          </FadeUp>
+        </div>
+      </div>
+    </section>
+  )
+}
