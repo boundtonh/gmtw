@@ -5,7 +5,6 @@ import Image from 'next/image'
 import { Lightbox } from '@/components/ui/Lightbox'
 
 const GALLERY_IMAGES = [
-  { src: '/images/river/rs=w_1160,h_870.webp', alt: 'Custom river table with epoxy inlay — Green Mountain Tableworx' },
   { src: '/images/river/rs=w_1160,h_870-(1).webp', alt: 'Live edge river table with flowing epoxy — Green Mountain Tableworx' },
   { src: '/images/river/rs=w_1160,h_870-(2).webp', alt: 'River table with custom epoxy color — Green Mountain Tableworx' },
   { src: '/images/river/rs=w_1160,h_870-(3).webp', alt: 'Handcrafted river dining table — Green Mountain Tableworx' },
