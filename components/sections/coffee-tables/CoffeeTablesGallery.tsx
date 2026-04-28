@@ -5,33 +5,23 @@ import Splide from '@splidejs/splide'
 import { Container } from '@/components/layout/Container'
 import { Lightbox } from '@/components/ui/Lightbox'
 
-// Gallery images - update with actual coffee table images
 const GALLERY_IMAGES = [
-  {
-    src: '/images/furniture-types/coffee-table.webp',
-    alt: 'Walnut live edge coffee table',
-    title: 'Walnut Live Edge Coffee Table',
-  },
-  {
-    src: '/images/furniture-types/coffee-table.webp',
-    alt: 'Coffee table with river epoxy inlay',
-    title: 'River Coffee Table — Glacier Blue',
-  },
-  {
-    src: '/images/furniture-types/coffee-table.webp',
-    alt: 'Round coffee table with natural finish',
-    title: 'Round Coffee Table',
-  },
-  {
-    src: '/images/furniture-types/coffee-table.webp',
-    alt: 'Oval coffee table with ocean wave design',
-    title: 'Ocean Coffee Table — Wave Pattern',
-  },
-  {
-    src: '/images/furniture-types/coffee-table.webp',
-    alt: 'Modern coffee table with mixed woods',
-    title: 'Mixed Wood Coffee Table',
-  },
+  { src: '/images/furniture-types/coffee-tables/ct1.webp', alt: 'Custom live edge coffee table', title: 'Live Edge Coffee Table' },
+  { src: '/images/furniture-types/coffee-tables/ct2.webp', alt: 'River epoxy coffee table', title: 'River Coffee Table' },
+  { src: '/images/furniture-types/coffee-tables/ct3.webp', alt: 'Walnut coffee table with natural grain', title: 'Walnut Coffee Table' },
+  { src: '/images/furniture-types/coffee-tables/ct4.webp', alt: 'Ocean style coffee table', title: 'Ocean Coffee Table' },
+  { src: '/images/furniture-types/coffee-tables/ct5.webp', alt: 'Custom coffee table with steel base', title: 'Coffee Table — Steel Base' },
+  { src: '/images/furniture-types/coffee-tables/ct6.webp', alt: 'Live edge coffee table in maple', title: 'Maple Live Edge Coffee Table' },
+  { src: '/images/furniture-types/coffee-tables/ct7.webp', alt: 'Custom coffee table with matte finish', title: 'Matte Finish Coffee Table' },
+  { src: '/images/furniture-types/coffee-tables/ct8.webp', alt: 'Handcrafted coffee table with natural edge', title: 'Handcrafted Coffee Table' },
+  { src: '/images/furniture-types/coffee-tables/ct9.webp', alt: 'Custom coffee table — natural wood slab', title: 'Natural Slab Coffee Table' },
+  { src: '/images/furniture-types/coffee-tables/c9.webp', alt: 'Coffee table with organic live edge', title: 'Organic Live Edge Coffee Table' },
+  { src: '/images/furniture-types/coffee-tables/ct10.webp', alt: 'Coffee table with river inlay detail', title: 'River Inlay Coffee Table' },
+  { src: '/images/furniture-types/coffee-tables/ct11.webp', alt: 'Custom coffee table with gloss finish', title: 'Gloss Finish Coffee Table' },
+  { src: '/images/furniture-types/coffee-tables/ct12.webp', alt: 'Live edge coffee table with wood base', title: 'Wood Base Coffee Table' },
+  { src: '/images/furniture-types/coffee-tables/ct13.webp', alt: 'Custom coffee table in walnut', title: 'Walnut Custom Coffee Table' },
+  { src: '/images/furniture-types/coffee-tables/ct14.webp', alt: 'Handcrafted coffee table — Green Mountain Tableworx', title: 'Handcrafted Coffee Table' },
+  { src: '/images/furniture-types/coffee-tables/c10.webp', alt: 'Custom coffee table with natural finish', title: 'Natural Finish Coffee Table' },
 ]
 
 export function CoffeeTablesGallery() {

@@ -6,14 +6,19 @@ import { Container } from '@/components/layout/Container'
 import { Lightbox } from '@/components/ui/Lightbox'
 
 const GALLERY_IMAGES = [
-  { src: '/images/furniture-types/signs/s1.webp', alt: 'Custom wood business signage', title: 'Custom Business Sign' },
-  { src: '/images/furniture-types/signs/s2.webp', alt: 'Handcrafted wood wall art', title: 'Handcrafted Wall Art' },
-  { src: '/images/furniture-types/signs/IMG_3223.jpg', alt: 'Custom wood sign — Green Mountain Tableworx', title: 'Custom Wood Sign' },
-  { src: '/images/furniture-types/signs/thumbnail_IMG_2192.jpg', alt: 'Personalized wood wall art piece', title: 'Personalized Wood Art' },
-  { src: '/images/furniture-types/signs/thumbnail_IMG_2243.jpg', alt: 'Custom wood art with natural grain', title: 'Custom Wood Art' },
+  { src: '/images/furniture-types/countertops/ct-boards-112.png', alt: 'Custom wood countertop slab', title: 'Wood Countertop Slab' },
+  { src: '/images/furniture-types/countertops/ct-boards-5.png', alt: 'Handcrafted wood countertop', title: 'Handcrafted Countertop' },
+  { src: '/images/furniture-types/countertops/IMG_0972.JPG', alt: 'Custom wood countertop installation', title: 'Countertop Installation' },
+  { src: '/images/furniture-types/countertops/ct-olivewood-ocean.jpg', alt: 'Olivewood ocean bar and countertop', title: 'Olivewood Ocean Countertop' },
+  { src: '/images/furniture-types/countertops/ct-pine-bar.png', alt: 'Pine bar counter surface', title: 'Pine Bar Counter' },
+  { src: '/images/furniture-types/countertops/ct-tiki-bar-counter-2.jpg', alt: 'Custom tiki bar countertop', title: 'Tiki Bar Counter' },
+  { src: '/images/furniture-types/countertops/ct-tiki-bar.jpg', alt: 'Live edge tiki bar top', title: 'Live Edge Bar Top' },
+  { src: '/images/furniture-types/countertops/thumbnail_IMG_2426.jpg', alt: 'Custom wood island top', title: 'Custom Island Top' },
+  { src: '/images/furniture-types/countertops/thumbnail_IMG_9460.jpg', alt: 'Wood countertop with live edge', title: 'Live Edge Countertop' },
+  { src: '/images/furniture-types/countertops/thumbnail_IMG_9462.jpg', alt: 'Custom kitchen countertop in wood', title: 'Kitchen Countertop' },
 ]
 
-export function WallArtGallery() {
+export function CountertopsGallery() {
   const mainRef = useRef(null)
   const thumbRef = useRef<HTMLDivElement>(null)
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)

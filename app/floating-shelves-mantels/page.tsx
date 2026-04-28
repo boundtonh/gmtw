@@ -3,6 +3,7 @@ import { buildMetadata } from '@/lib/seo'
 import { ShelvesHero } from '@/components/sections/floating-shelves-mantels/ShelvesHero'
 import { ShelvesAbout } from '@/components/sections/floating-shelves-mantels/ShelvesAbout'
 import { ShelvesEstimatePromo } from '@/components/sections/floating-shelves-mantels/ShelvesEstimatePromo'
+import { ShelvesGallery } from '@/components/sections/floating-shelves-mantels/ShelvesGallery'
 import { CTABanner } from '@/components/ui/CTABanner'
 import { FurnitureByType } from '@/components/ui/FurnitureByType'
 import { ReviewsSection } from '@/components/ui/ReviewsSection'
@@ -20,6 +21,9 @@ export default function ShelvesPage() {
       <ShelvesHero />
       <ShelvesAbout />
       <ShelvesEstimatePromo />
+      <section id="gallery" className="scroll-mt-20">
+        <ShelvesGallery />
+      </section>
       <FurnitureByType />
       <ReviewsSection />
       <CTABanner

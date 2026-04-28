@@ -6,14 +6,22 @@ import { Container } from '@/components/layout/Container'
 import { Lightbox } from '@/components/ui/Lightbox'
 
 const GALLERY_IMAGES = [
-  { src: '/images/furniture-types/signs/s1.webp', alt: 'Custom wood business signage', title: 'Custom Business Sign' },
-  { src: '/images/furniture-types/signs/s2.webp', alt: 'Handcrafted wood wall art', title: 'Handcrafted Wall Art' },
-  { src: '/images/furniture-types/signs/IMG_3223.jpg', alt: 'Custom wood sign — Green Mountain Tableworx', title: 'Custom Wood Sign' },
-  { src: '/images/furniture-types/signs/thumbnail_IMG_2192.jpg', alt: 'Personalized wood wall art piece', title: 'Personalized Wood Art' },
-  { src: '/images/furniture-types/signs/thumbnail_IMG_2243.jpg', alt: 'Custom wood art with natural grain', title: 'Custom Wood Art' },
+  { src: '/images/furniture-types/mantels/mantel-boards-100.png', alt: 'Custom wood mantel slab', title: 'Custom Mantel Slab' },
+  { src: '/images/furniture-types/mantels/mantel-boards-178.png', alt: 'Handcrafted floating shelf', title: 'Floating Shelf' },
+  { src: '/images/furniture-types/mantels/IMG_3818.jpg', alt: 'Fireplace mantel installation', title: 'Fireplace Mantel' },
+  { src: '/images/furniture-types/mantels/IMG_3819.jpg', alt: 'Custom wood fireplace mantel', title: 'Custom Fireplace Mantel' },
+  { src: '/images/furniture-types/mantels/IMG_3820.jpg', alt: 'Live edge mantel with natural grain', title: 'Live Edge Mantel' },
+  { src: '/images/furniture-types/mantels/IMG_3821.jpg', alt: 'Wood mantel on stone fireplace', title: 'Mantel on Stone Fireplace' },
+  { src: '/images/furniture-types/mantels/IMG_8443.jpg', alt: 'Custom floating shelf installation', title: 'Floating Shelf Installation' },
+  { src: '/images/furniture-types/mantels/IMG_9495.jpg', alt: 'Wood shelf with concealed hardware', title: 'Concealed Hardware Shelf' },
+  { src: '/images/furniture-types/mantels/mantel-rod-mount.png', alt: 'Mantel mounted with hidden rods', title: 'Rod-Mount Mantel' },
+  { src: '/images/furniture-types/mantels/mantel-corbels.png', alt: 'Live edge mantel with corbels', title: 'Mantel with Corbels' },
+  { src: '/images/furniture-types/mantels/thumbnail_IMG_4159.jpg', alt: 'Custom mantel detail', title: 'Mantel Detail' },
+  { src: '/images/furniture-types/mantels/thumbnail_IMG_4160.jpg', alt: 'Floating shelf in walnut', title: 'Walnut Floating Shelf' },
+  { src: '/images/furniture-types/mantels/thumbnail_IMG_4161.jpg', alt: 'Custom wood shelf with natural finish', title: 'Natural Finish Shelf' },
 ]
 
-export function WallArtGallery() {
+export function ShelvesGallery() {
   const mainRef = useRef(null)
   const thumbRef = useRef<HTMLDivElement>(null)
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)

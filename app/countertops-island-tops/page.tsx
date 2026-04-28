@@ -3,6 +3,7 @@ import { buildMetadata } from '@/lib/seo'
 import { CountertopsHero } from '@/components/sections/countertops-island-tops/CountertopsHero'
 import { CountertopsAbout } from '@/components/sections/countertops-island-tops/CountertopsAbout'
 import { CountertopsEstimatePromo } from '@/components/sections/countertops-island-tops/CountertopsEstimatePromo'
+import { CountertopsGallery } from '@/components/sections/countertops-island-tops/CountertopsGallery'
 import { CTABanner } from '@/components/ui/CTABanner'
 import { FurnitureByType } from '@/components/ui/FurnitureByType'
 import { ReviewsSection } from '@/components/ui/ReviewsSection'
@@ -20,6 +21,9 @@ export default function CountertopsPage() {
       <CountertopsHero />
       <CountertopsAbout />
       <CountertopsEstimatePromo />
+      <section id="gallery" className="scroll-mt-20">
+        <CountertopsGallery />
+      </section>
       <FurnitureByType />
       <ReviewsSection />
       <CTABanner

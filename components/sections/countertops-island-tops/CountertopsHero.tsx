@@ -40,6 +40,12 @@ export function CountertopsHero() {
               >
                 Get an Instant Estimate
               </Link>
+              <a
+                href="#gallery"
+                className="font-body text-sm text-white border border-white/40 px-8 py-4 hover:border-white hover:bg-white/10 transition-colors duration-300"
+              >
+                View Gallery
+              </a>
             </div>
           </FadeUp>
         </div>

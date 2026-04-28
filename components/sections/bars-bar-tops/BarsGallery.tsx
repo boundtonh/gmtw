@@ -14,6 +14,9 @@ const GALLERY_IMAGES = [
   { src: '/images/furniture-types/bar-tops/bt6.webp', alt: 'Commercial bar surface in live edge', title: 'Commercial Bar Top' },
   { src: '/images/furniture-types/bar-tops/bt7.webp', alt: 'Bar top with straight edge profile', title: 'Straight Edge Bar Top' },
   { src: '/images/furniture-types/bar-tops/bt8.webp', alt: 'Custom bar top installation', title: 'Custom Bar Installation' },
+  { src: '/images/furniture-types/bar-tops/bt-walnut-river-rock-lit.jpg', alt: 'Black walnut live edge river rock lit bar top', title: 'Walnut River Rock Bar — Lit' },
+  { src: '/images/furniture-types/bar-tops/bt-maple-live-edge.jpg', alt: 'Live edge maple bar top', title: 'Maple Live Edge Bar Top' },
+  { src: '/images/furniture-types/bar-tops/bt-maple-river-rock-pearl.jpg', alt: 'Maple live edge river rock on pearl bar top', title: 'Maple River Rock — Pearl' },
 ]
 
 export function BarsGallery() {

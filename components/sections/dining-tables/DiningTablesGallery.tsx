@@ -5,33 +5,22 @@ import Splide from '@splidejs/splide'
 import { Container } from '@/components/layout/Container'
 import { Lightbox } from '@/components/ui/Lightbox'
 
-// Gallery images - update with actual dining table images
 const GALLERY_IMAGES = [
-  {
-    src: '/images/furniture-types/dining-table.jpg',
-    alt: 'Walnut dining table with natural live edge',
-    title: 'Walnut Live Edge Dining Table',
-  },
-  {
-    src: '/images/furniture-types/dining-table.jpg',
-    alt: 'River table dining set with blue epoxy',
-    title: 'River Dining Table — Glacier Blue',
-  },
-  {
-    src: '/images/furniture-types/dining-table.jpg',
-    alt: 'Cherry wood dining table with custom base',
-    title: 'Cherry Wood Dining Table',
-  },
-  {
-    src: '/images/furniture-types/dining-table.jpg',
-    alt: 'Large reclaimed wood dining table',
-    title: 'Reclaimed Wood Dining Table',
-  },
-  {
-    src: '/images/furniture-types/dining-table.jpg',
-    alt: 'Modern dining table with walnut and maple',
-    title: 'Mixed Wood Dining Table',
-  },
+  { src: '/images/furniture-types/dining-tables/dt1.webp', alt: 'Custom live edge dining table', title: 'Live Edge Dining Table' },
+  { src: '/images/furniture-types/dining-tables/dt2.webp', alt: 'River epoxy dining table', title: 'River Dining Table' },
+  { src: '/images/furniture-types/dining-tables/dt3.webp', alt: 'Walnut dining table with natural grain', title: 'Walnut Dining Table' },
+  { src: '/images/furniture-types/dining-tables/dt4.webp', alt: 'Live edge dining table with steel base', title: 'Live Edge with Steel Base' },
+  { src: '/images/furniture-types/dining-tables/dt5.webp', alt: 'Ocean epoxy dining table', title: 'Ocean Dining Table' },
+  { src: '/images/furniture-types/dining-tables/dt6.webp', alt: 'Custom dining table in maple', title: 'Maple Dining Table' },
+  { src: '/images/furniture-types/dining-tables/dt7.webp', alt: 'Handcrafted dining table with live edge slab', title: 'Handcrafted Live Edge Table' },
+  { src: '/images/furniture-types/dining-tables/dt8.webp', alt: 'Dining table with river epoxy inlay', title: 'River Table — Blue Epoxy' },
+  { src: '/images/furniture-types/dining-tables/dt9.webp', alt: 'Custom dining table with wood base', title: 'Wood Base Dining Table' },
+  { src: '/images/furniture-types/dining-tables/dt10.webp', alt: 'Live edge dining table in walnut', title: 'Walnut Live Edge' },
+  { src: '/images/furniture-types/dining-tables/dt11.webp', alt: 'Custom dining table with natural finish', title: 'Natural Finish Dining Table' },
+  { src: '/images/furniture-types/dining-tables/dt12.webp', alt: 'Dining table with ocean style epoxy', title: 'Ocean Style Table' },
+  { src: '/images/furniture-types/dining-tables/dt13.webp', alt: 'Live edge slab dining table', title: 'Live Edge Slab Table' },
+  { src: '/images/furniture-types/dining-tables/dt14.webp', alt: 'Handcrafted dining table with matte finish', title: 'Matte Finish Dining Table' },
+  { src: '/images/furniture-types/dining-tables/dt15.webp', alt: 'Custom dining table — Green Mountain Tableworx', title: 'Custom Dining Table' },
 ]
 
 export function DiningTablesGallery() {
