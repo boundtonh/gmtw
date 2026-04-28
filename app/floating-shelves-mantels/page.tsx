@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { buildMetadata } from '@/lib/seo'
 import { ShelvesHero } from '@/components/sections/floating-shelves-mantels/ShelvesHero'
 import { ShelvesAbout } from '@/components/sections/floating-shelves-mantels/ShelvesAbout'
-import { ShelvesEstimatePromo } from '@/components/sections/floating-shelves-mantels/ShelvesEstimatePromo'
 import { ShelvesGallery } from '@/components/sections/floating-shelves-mantels/ShelvesGallery'
 import { CTABanner } from '@/components/ui/CTABanner'
 import { FurnitureByType } from '@/components/ui/FurnitureByType'
@@ -20,7 +19,6 @@ export default function ShelvesPage() {
     <>
       <ShelvesHero />
       <ShelvesAbout />
-      <ShelvesEstimatePromo />
       <section id="gallery" className="scroll-mt-20">
         <ShelvesGallery />
       </section>
@@ -29,7 +27,7 @@ export default function ShelvesPage() {
       <CTABanner
         headline="Start Your Custom Shelf or Mantel"
         body="Tell us your dimensions, wood species, and finish — we'll build a custom quote for your floating shelves or fireplace mantel."
-        cta="Get an Instant Estimate"
+        cta="Inquire for Pricing"
         href="/estimate"
       />
     </>

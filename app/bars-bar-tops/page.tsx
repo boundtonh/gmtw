@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { buildMetadata } from '@/lib/seo'
 import { BarsHero } from '@/components/sections/bars-bar-tops/BarsHero'
 import { BarsAbout } from '@/components/sections/bars-bar-tops/BarsAbout'
-import { BarsEstimatePromo } from '@/components/sections/bars-bar-tops/BarsEstimatePromo'
 import { BarsGallery } from '@/components/sections/bars-bar-tops/BarsGallery'
 import { CTABanner } from '@/components/ui/CTABanner'
 import { FurnitureByType } from '@/components/ui/FurnitureByType'
@@ -20,7 +19,6 @@ export default function BarsPage() {
     <>
       <BarsHero />
       <BarsAbout />
-      <BarsEstimatePromo />
       <section id="gallery" className="scroll-mt-20">
         <BarsGallery />
       </section>
@@ -29,7 +27,7 @@ export default function BarsPage() {
       <CTABanner
         headline="Start Your Custom Bar Top"
         body="Spec your bar top — wood species, dimensions, edge style, and epoxy design. We'll put together a custom quote within 24 hours."
-        cta="Get an Instant Estimate"
+        cta="Inquire for Pricing"
         href="/estimate"
       />
     </>

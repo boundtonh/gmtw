@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { buildMetadata } from '@/lib/seo'
 import { WallArtHero } from '@/components/sections/wall-art-signage/WallArtHero'
 import { WallArtAbout } from '@/components/sections/wall-art-signage/WallArtAbout'
-import { WallArtEstimatePromo } from '@/components/sections/wall-art-signage/WallArtEstimatePromo'
 import { WallArtGallery } from '@/components/sections/wall-art-signage/WallArtGallery'
 import { CTABanner } from '@/components/ui/CTABanner'
 import { FurnitureByType } from '@/components/ui/FurnitureByType'
@@ -20,7 +19,6 @@ export default function WallArtPage() {
     <>
       <WallArtHero />
       <WallArtAbout />
-      <WallArtEstimatePromo />
       <section id="gallery" className="scroll-mt-20">
         <WallArtGallery />
       </section>
@@ -29,7 +27,7 @@ export default function WallArtPage() {
       <CTABanner
         headline="Start Your Custom Wall Art or Sign"
         body="Tell us your size, species, and vision — we'll build a custom quote for your wood wall art or business signage."
-        cta="Get an Instant Estimate"
+        cta="Inquire for Pricing"
         href="/estimate"
       />
     </>

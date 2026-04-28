@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { buildMetadata } from '@/lib/seo'
 import { CountertopsHero } from '@/components/sections/countertops-island-tops/CountertopsHero'
 import { CountertopsAbout } from '@/components/sections/countertops-island-tops/CountertopsAbout'
-import { CountertopsEstimatePromo } from '@/components/sections/countertops-island-tops/CountertopsEstimatePromo'
 import { CountertopsGallery } from '@/components/sections/countertops-island-tops/CountertopsGallery'
 import { CTABanner } from '@/components/ui/CTABanner'
 import { FurnitureByType } from '@/components/ui/FurnitureByType'
@@ -20,7 +19,6 @@ export default function CountertopsPage() {
     <>
       <CountertopsHero />
       <CountertopsAbout />
-      <CountertopsEstimatePromo />
       <section id="gallery" className="scroll-mt-20">
         <CountertopsGallery />
       </section>
@@ -29,7 +27,7 @@ export default function CountertopsPage() {
       <CTABanner
         headline="Start Your Custom Countertop"
         body="Tell us your dimensions, wood species preference, and edge style — we'll put together a custom quote within 24 hours."
-        cta="Get an Instant Estimate"
+        cta="Inquire for Pricing"
         href="/estimate"
       />
     </>
