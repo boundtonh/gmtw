@@ -9,7 +9,6 @@ import { Lightbox } from '@/components/ui/Lightbox'
 // Format: { src: '/images/live-edge/filename.jpg', alt: 'descriptive alt text' }
 const GALLERY_IMAGES = [
   { src: '/images/live-edge/Live-Edge.jpg',            alt: 'Custom live edge dining table — Green Mountain Tableworx' },
-  { src: '/images/live-edge/live-edge-horiz.jpg',      alt: 'Live edge table horizontal view — Green Mountain Tableworx' },
   { src: '/images/live-edge/rs=w_1160,h_870.webp',     alt: 'Handcrafted live edge table — Green Mountain Tableworx' },
   { src: '/images/live-edge/rs=w_1160,h_870-(1).webp', alt: 'Live edge dining table New England — Green Mountain Tableworx' },
   { src: '/images/live-edge/rs=w_1160,h_965.webp',     alt: 'Custom live edge slab table — Green Mountain Tableworx' },
