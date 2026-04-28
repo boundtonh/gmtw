@@ -5,7 +5,7 @@ import { LiveEdgeAbout } from '@/components/sections/live-edge/LiveEdgeAbout'
 import { LiveEdgeEstimatePromo } from '@/components/sections/live-edge/LiveEdgeEstimatePromo'
 import { LiveEdgeGallery } from '@/components/sections/live-edge/LiveEdgeGallery'
 import { CTABanner } from '@/components/ui/CTABanner'
-import { FurnitureByType } from '@/components/ui/FurnitureByType'
+import { AllFurnitureTypes } from '@/components/sections/home/AllFurnitureTypes'
 import { ReviewsSection } from '@/components/ui/ReviewsSection'
 
 export const metadata: Metadata = buildMetadata({
@@ -24,7 +24,7 @@ export default function LiveEdgeTablesPage() {
       <section id="gallery" className="scroll-mt-20">
         <LiveEdgeGallery />
       </section>
-      <FurnitureByType />
+      <AllFurnitureTypes />
       <ReviewsSection />
       <CTABanner
         headline="Start Your Custom Live Edge Table"

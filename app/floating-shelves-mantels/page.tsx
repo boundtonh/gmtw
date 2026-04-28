@@ -4,7 +4,7 @@ import { ShelvesHero } from '@/components/sections/floating-shelves-mantels/Shel
 import { ShelvesAbout } from '@/components/sections/floating-shelves-mantels/ShelvesAbout'
 import { ShelvesGallery } from '@/components/sections/floating-shelves-mantels/ShelvesGallery'
 import { CTABanner } from '@/components/ui/CTABanner'
-import { FurnitureByType } from '@/components/ui/FurnitureByType'
+import { AllFurnitureTypes } from '@/components/sections/home/AllFurnitureTypes'
 import { ReviewsSection } from '@/components/ui/ReviewsSection'
 
 export const metadata: Metadata = buildMetadata({
@@ -22,7 +22,7 @@ export default function ShelvesPage() {
       <section id="gallery" className="scroll-mt-20">
         <ShelvesGallery />
       </section>
-      <FurnitureByType />
+      <AllFurnitureTypes />
       <ReviewsSection />
       <CTABanner
         headline="Start Your Custom Shelf or Mantel"

@@ -5,7 +5,7 @@ import { DiningTablesAbout } from '@/components/sections/dining-tables/DiningTab
 import { DiningTablesEstimatePromo } from '@/components/sections/dining-tables/DiningTablesEstimatePromo'
 import { DiningTablesGallery } from '@/components/sections/dining-tables/DiningTablesGallery'
 import { CTABanner } from '@/components/ui/CTABanner'
-import { FurnitureByType } from '@/components/ui/FurnitureByType'
+import { AllFurnitureTypes } from '@/components/sections/home/AllFurnitureTypes'
 import { ReviewsSection } from '@/components/ui/ReviewsSection'
 
 export const metadata: Metadata = buildMetadata({
@@ -24,7 +24,7 @@ export default function DiningTablesPage() {
       <section id="gallery" className="scroll-mt-20">
         <DiningTablesGallery />
       </section>
-      <FurnitureByType />
+      <AllFurnitureTypes />
       <ReviewsSection />
       <CTABanner
         headline="Start Your Custom Dining Table"

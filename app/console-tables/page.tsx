@@ -5,7 +5,7 @@ import { ConsoleTablesAbout } from '@/components/sections/console-tables/Console
 import { ConsoleTablesEstimatePromo } from '@/components/sections/console-tables/ConsoleTablesEstimatePromo'
 import { ConsoleTablesGallery } from '@/components/sections/console-tables/ConsoleTablesGallery'
 import { CTABanner } from '@/components/ui/CTABanner'
-import { FurnitureByType } from '@/components/ui/FurnitureByType'
+import { AllFurnitureTypes } from '@/components/sections/home/AllFurnitureTypes'
 import { ReviewsSection } from '@/components/ui/ReviewsSection'
 
 export const metadata: Metadata = buildMetadata({
@@ -24,7 +24,7 @@ export default function ConsoleTablesPage() {
       <section id="gallery" className="scroll-mt-20">
         <ConsoleTablesGallery />
       </section>
-      <FurnitureByType />
+      <AllFurnitureTypes />
       <ReviewsSection />
       <CTABanner
         headline="Start Your Custom Console Table"

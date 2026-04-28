@@ -5,7 +5,7 @@ import { ConferenceTablesAbout } from '@/components/sections/conference-tables/C
 import { ConferenceTablesEstimatePromo } from '@/components/sections/conference-tables/ConferenceTablesEstimatePromo'
 import { ConferenceTablesGallery } from '@/components/sections/conference-tables/ConferenceTablesGallery'
 import { CTABanner } from '@/components/ui/CTABanner'
-import { FurnitureByType } from '@/components/ui/FurnitureByType'
+import { AllFurnitureTypes } from '@/components/sections/home/AllFurnitureTypes'
 import { ReviewsSection } from '@/components/ui/ReviewsSection'
 
 export const metadata: Metadata = buildMetadata({
@@ -24,7 +24,7 @@ export default function ConferenceTablesPage() {
       <section id="gallery" className="scroll-mt-20">
         <ConferenceTablesGallery />
       </section>
-      <FurnitureByType />
+      <AllFurnitureTypes />
       <ReviewsSection />
       <CTABanner
         headline="Start Your Custom Conference Table"

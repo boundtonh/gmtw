@@ -5,7 +5,7 @@ import { RiverAbout } from '@/components/sections/river/RiverAbout'
 import { RiverEstimatePromo } from '@/components/sections/river/RiverEstimatePromo'
 import { RiverGallery } from '@/components/sections/river/RiverGallery'
 import { CTABanner } from '@/components/ui/CTABanner'
-import { FurnitureByType } from '@/components/ui/FurnitureByType'
+import { AllFurnitureTypes } from '@/components/sections/home/AllFurnitureTypes'
 import { ReviewsSection } from '@/components/ui/ReviewsSection'
 
 export const metadata: Metadata = buildMetadata({
@@ -24,7 +24,7 @@ export default function RiverTablesPage() {
       <section id="gallery" className="scroll-mt-20">
         <RiverGallery />
       </section>
-      <FurnitureByType />
+      <AllFurnitureTypes />
       <ReviewsSection />
       <CTABanner
         headline="Start Your Custom River Table"

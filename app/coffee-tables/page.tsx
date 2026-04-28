@@ -5,7 +5,7 @@ import { CoffeeTablesAbout } from '@/components/sections/coffee-tables/CoffeeTab
 import { CoffeeTablesEstimatePromo } from '@/components/sections/coffee-tables/CoffeeTablesEstimatePromo'
 import { CoffeeTablesGallery } from '@/components/sections/coffee-tables/CoffeeTablesGallery'
 import { CTABanner } from '@/components/ui/CTABanner'
-import { FurnitureByType } from '@/components/ui/FurnitureByType'
+import { AllFurnitureTypes } from '@/components/sections/home/AllFurnitureTypes'
 import { ReviewsSection } from '@/components/ui/ReviewsSection'
 
 export const metadata: Metadata = buildMetadata({
@@ -24,7 +24,7 @@ export default function CoffeeTablesPage() {
       <section id="gallery" className="scroll-mt-20">
         <CoffeeTablesGallery />
       </section>
-      <FurnitureByType />
+      <AllFurnitureTypes />
       <ReviewsSection />
       <CTABanner
         headline="Start Your Custom Coffee Table"

@@ -5,7 +5,7 @@ import { OceanAbout } from '@/components/sections/ocean/OceanAbout'
 import { OceanEstimatePromo } from '@/components/sections/ocean/OceanEstimatePromo'
 import { OceanGallery } from '@/components/sections/ocean/OceanGallery'
 import { CTABanner } from '@/components/ui/CTABanner'
-import { FurnitureByType } from '@/components/ui/FurnitureByType'
+import { AllFurnitureTypes } from '@/components/sections/home/AllFurnitureTypes'
 import { ReviewsSection } from '@/components/ui/ReviewsSection'
 
 export const metadata: Metadata = buildMetadata({
@@ -24,7 +24,7 @@ export default function OceanTablesPage() {
       <section id="gallery" className="scroll-mt-20">
         <OceanGallery />
       </section>
-      <FurnitureByType />
+      <AllFurnitureTypes />
       <ReviewsSection />
       <CTABanner
         headline="Start Your Custom Ocean Table"

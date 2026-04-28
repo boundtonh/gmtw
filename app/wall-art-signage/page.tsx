@@ -4,7 +4,7 @@ import { WallArtHero } from '@/components/sections/wall-art-signage/WallArtHero'
 import { WallArtAbout } from '@/components/sections/wall-art-signage/WallArtAbout'
 import { WallArtGallery } from '@/components/sections/wall-art-signage/WallArtGallery'
 import { CTABanner } from '@/components/ui/CTABanner'
-import { FurnitureByType } from '@/components/ui/FurnitureByType'
+import { AllFurnitureTypes } from '@/components/sections/home/AllFurnitureTypes'
 import { ReviewsSection } from '@/components/ui/ReviewsSection'
 
 export const metadata: Metadata = buildMetadata({
@@ -22,7 +22,7 @@ export default function WallArtPage() {
       <section id="gallery" className="scroll-mt-20">
         <WallArtGallery />
       </section>
-      <FurnitureByType />
+      <AllFurnitureTypes />
       <ReviewsSection />
       <CTABanner
         headline="Start Your Custom Wall Art or Sign"

@@ -5,7 +5,7 @@ import { BenchesAbout } from '@/components/sections/benches/BenchesAbout'
 import { BenchesEstimatePromo } from '@/components/sections/benches/BenchesEstimatePromo'
 import { BenchesGallery } from '@/components/sections/benches/BenchesGallery'
 import { CTABanner } from '@/components/ui/CTABanner'
-import { FurnitureByType } from '@/components/ui/FurnitureByType'
+import { AllFurnitureTypes } from '@/components/sections/home/AllFurnitureTypes'
 import { ReviewsSection } from '@/components/ui/ReviewsSection'
 
 export const metadata: Metadata = buildMetadata({
@@ -24,7 +24,7 @@ export default function BenchesPage() {
       <section id="gallery" className="scroll-mt-20">
         <BenchesGallery />
       </section>
-      <FurnitureByType />
+      <AllFurnitureTypes />
       <ReviewsSection />
       <CTABanner
         headline="Start Your Custom Bench"

@@ -4,7 +4,7 @@ import { BarsHero } from '@/components/sections/bars-bar-tops/BarsHero'
 import { BarsAbout } from '@/components/sections/bars-bar-tops/BarsAbout'
 import { BarsGallery } from '@/components/sections/bars-bar-tops/BarsGallery'
 import { CTABanner } from '@/components/ui/CTABanner'
-import { FurnitureByType } from '@/components/ui/FurnitureByType'
+import { AllFurnitureTypes } from '@/components/sections/home/AllFurnitureTypes'
 import { ReviewsSection } from '@/components/ui/ReviewsSection'
 
 export const metadata: Metadata = buildMetadata({
@@ -22,7 +22,7 @@ export default function BarsPage() {
       <section id="gallery" className="scroll-mt-20">
         <BarsGallery />
       </section>
-      <FurnitureByType />
+      <AllFurnitureTypes />
       <ReviewsSection />
       <CTABanner
         headline="Start Your Custom Bar Top"
