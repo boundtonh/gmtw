@@ -184,8 +184,6 @@ const TABLE_BASES_WOOD = [
   { value: 'classic-turned-legs', label: 'Classic Turned Legs', img: '/images/bases/classic-turned-legs.webp' },
 ]
 
-const WOOD_BASE_VALUES = new Set(TABLE_BASES_WOOD.map(b => b.value))
-
 const STEPS = [
   { title: 'Build Your Table Online<br>Get An Instant Quote<br>Sent To Your Email' },
   { title: 'Wood Species' },
@@ -353,7 +351,7 @@ export function EstimateForm() {
   // Client-side price estimate (mirrors API formula — for testing only)
   const formValues = watch()
 
-  const selectionCards = useMemo(() => buildSelectionCards(), [formValues, currentStep])
+  const selectionCards = useMemo(() => buildSelectionCards(), [formValues, currentStep, buildSelectionCards])
   const liveEstimate = (() => {
     const sqFt = ((formValues.length || 0) * (formValues.width || 0)) / 144
     const linearFeet = (formValues.length || 0) / 12

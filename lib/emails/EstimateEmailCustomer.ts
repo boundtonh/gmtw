@@ -20,11 +20,24 @@ function formatPrice(price: number): string {
 const ELEGANT_IRON_BASES = new Set(['cleo', 'curva', 'draco', 'faras', 'lithe', 'norah', 'summa', 'tulipe', 'wineglass', 'wishbone', 'xeni'])
 const HANDCRAFTED_WOOD_BASES = new Set(['live-edge-live', 'live-edge-slab', 'hand-turned', 'x-frame', 'hairpin-legs'])
 
+interface EstimateData {
+  name: string
+  email: string
+  furnitureType?: string
+  length?: number
+  width?: number
+  woodSpecies?: string
+  tableShape?: string
+  edgeStyle?: string
+  epoxyColor?: string
+  backgroundColor?: string
+  tableBase?: string
+}
+
 export function buildCustomerEmailHtml(
-  data: any,
+  data: EstimateData,
   quotePrice: { min: number; max: number; itemized: ItemizedLine[] }
 ): string {
-  const subtotal = quotePrice.itemized.reduce((sum, line) => sum + line.price, 0)
 
   // Build selections grid (only show non-empty selections)
   const selections = [
