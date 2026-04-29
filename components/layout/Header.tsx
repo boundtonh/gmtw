@@ -175,7 +175,7 @@ export function Header() {
                   return (
                     <div
                       key={item.label}
-                      className="relative"
+                      className="relative cursor-pointer"
                       onMouseEnter={() => handleMouseEnter(item.label)}
                       onMouseLeave={handleMouseLeave}
                     >

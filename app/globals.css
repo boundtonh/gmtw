@@ -26,9 +26,17 @@
   }
 }
 
-/* Override Tailwind preflight and any utility classes */
-a, button, [role="button"], label[for], summary {
+/* Pointer cursor on all interactive elements and their descendants */
+a, a *,
+button, button *,
+[role="button"], [role="button"] *,
+label[for], label[for] *,
+summary, summary * {
   cursor: pointer !important;
+}
+/* Re-allow not-allowed on disabled states */
+button:disabled, button:disabled * {
+  cursor: not-allowed !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
