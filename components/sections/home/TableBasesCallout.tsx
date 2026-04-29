@@ -8,7 +8,7 @@ const basePlaceholders = [
   { id: 1, name: 'Haru Pedestal', img: 'haru-pedestal.webp' },
   { id: 2, name: 'Wine Glass', img: 'wine-glass.webp' },
   { id: 3, name: 'Lithe Pedestal', img: 'lithe-pedestal.webp' },
-  { id: 4, name: 'Summa', img: 'Summa.webp' },
+  { id: 4, name: 'Summa', img: 'summa.webp' },
 ]
 
 export function TableBasesCallout() {
