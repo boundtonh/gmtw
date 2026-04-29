@@ -66,7 +66,7 @@ export async function POST(request: Request) {
     const teamEmails = ['jamie@greenmountaintable.com', 'nikki@greenmountaintable.com']
     for (const email of teamEmails) {
       await resend.emails.send({
-        from: 'estimates@greenmountaintableworx.com',
+        from: 'jamie@greenmountaintable.com',
         to: email,
         subject: `New Estimate Request — ${data.name}`,
         html: buildTeamEmailHtml(data, quotePrice),
