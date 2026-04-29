@@ -170,7 +170,7 @@ const TABLE_BASES_ELEGANT_IRON = [
   { value: 'faras',     label: 'Faras',     img: '/images/bases/faras.jpg' },
   { value: 'lithe',     label: 'Lithe',     img: '/images/bases/lithe.jpg' },
   { value: 'norah',     label: 'Norah',     img: '/images/bases/norah.jpg' },
-  { value: 'summa',     label: 'Summa',     img: '/images/bases/Summa.webp' },
+  { value: 'summa',     label: 'Summa',     img: '/images/bases/summa.webp' },
   { value: 'tulipe',    label: 'Tulipe',    img: '/images/bases/tulipe.jpg' },
   { value: 'wineglass', label: 'Wineglass', img: '/images/bases/wineglass.jpg' },
   { value: 'wishbone',  label: 'Wishbone',  img: '/images/bases/wishbone.jpg' },
@@ -470,63 +470,8 @@ export function EstimateForm() {
                   <p className="font-display text-4xl text-gmt-forest">
                     ${submittedPrice.min.toLocaleString()} — ${submittedPrice.max.toLocaleString()}
                   </p>
-                  <p className="font-body text-xs text-gmt-stone mt-2">±20% range to account for wood variation, hardware, and finishing details.</p>
+                  <p className="font-body text-xs text-gmt-stone mt-2">A detailed breakdown will be provided in the email sent to you.</p>
                 </div>
-
-                {/* Logic breakdown */}
-                {(() => {
-                  const sqFt = ((submittedValues.length || 0) * (submittedValues.width || 0)) / 144
-                  const linFt = (submittedValues.length || 0) / 12
-                  const woodRate = TIER2_SPECIES.has(submittedValues.woodSpecies) ? 225 : 168
-                  const isTier2 = TIER2_SPECIES.has(submittedValues.woodSpecies)
-                  const base = sqFt * woodRate
-                  const hasEpoxy = submittedValues.epoxyColor && submittedValues.epoxyColor !== 'none'
-                  const epoxyAdd = hasEpoxy ? 75 * linFt : 0
-                  const isOcean = submittedValues.backgroundColor === 'ocean-style'
-                  const isMedia = submittedValues.backgroundColor === 'media-style'
-                  const isArtisan = submittedValues.backgroundColor === 'artisan-series'
-                  const preTheme = base + epoxyAdd
-                  const themeAdd = isOcean ? preTheme * 0.10 : (isMedia || isArtisan) ? 15 * linFt : 0
-                  const subtotal = preTheme + themeAdd
-                  const isRoundUpcharge = (submittedValues.tableShape === 'circle' || submittedValues.tableShape === 'oval') && (submittedValues.length || 0) > 60
-                  const finalSubtotal = subtotal + (isRoundUpcharge ? 200 : 0)
-
-                  const rows: { label: string; value: number }[] = [
-                    { label: `Wood slab — ${sqFt.toFixed(1)} sq ft @ $${woodRate}/sq ft${isTier2 ? ' (Tier 2)' : ''}`, value: Math.round(base) },
-                    ...(hasEpoxy ? [{ label: `Resin & color — ${linFt.toFixed(1)} lin ft @ $75/ft`, value: Math.round(epoxyAdd) }] : []),
-                    ...(isOcean ? [{ label: 'Ocean Style theme (+10% of subtotal)', value: Math.round(themeAdd) }] : []),
-                    ...(isMedia ? [{ label: `Media Style — ${linFt.toFixed(1)} lin ft @ $15/ft`, value: Math.round(themeAdd) }] : []),
-                    ...(isArtisan ? [{ label: `Artisan Series — ${linFt.toFixed(1)} lin ft @ $15/ft`, value: Math.round(themeAdd) }] : []),
-                    ...(isRoundUpcharge ? [{ label: 'Round/oval top over 60" — size upcharge', value: 200 }] : []),
-                  ]
-
-                  return (
-                    <>
-                      <div className="bg-white border border-gmt-stone/20 rounded-sm px-6 py-5 text-left">
-                        <p className="font-body text-xs tracking-[0.12em] uppercase text-gmt-stone mb-4">How we got there</p>
-                        <div className="space-y-2">
-                          {rows.map((row, i) => (
-                            <div key={i} className="flex justify-between gap-4 font-body text-sm text-gmt-stone">
-                              <span>{row.label}</span>
-                              <span className="flex-shrink-0 font-medium text-gmt-forest">${row.value.toLocaleString()}</span>
-                            </div>
-                          ))}
-                        </div>
-                        <div className="flex justify-between gap-4 font-body text-sm text-gmt-forest font-semibold border-t border-gmt-stone/20 pt-3 mt-3">
-                          <span>Subtotal</span>
-                          <span>${Math.round(finalSubtotal).toLocaleString()}</span>
-                        </div>
-                      </div>
-                      {WOOD_BASE_VALUES.has(submittedValues?.tableBase) && (
-                        <div className="bg-amber-50 border border-amber-200 rounded-sm px-5 py-3 text-center">
-                          <p className="font-body text-xs text-amber-800">
-                            Your table base is not included in the price range above, as our handcrafted wood bases are fully custom. Our team will reach out to discuss base pricing.
-                          </p>
-                        </div>
-                      )}
-                    </>
-                  )
-                })()}
               </div>
             )}
 
@@ -935,71 +880,9 @@ export function EstimateForm() {
             {/* ── Step 6: Your Information ── */}
             {currentStep === 6 && (
               <div className="space-y-6 max-w-xl mx-auto">
-                <p className="font-body text-gmt-stone text-base mb-2 text-center">
-                  A general price range will be sent to you via email based on your specs. A member of our sales team will be in touch with you shortly to confirm the estimate.
+                <p className="font-body text-gmt-stone text-base mb-6 text-center leading-relaxed">
+                  A general price range will be sent to you via email based on your specs. A member of our sales team will be in touch with you shortly to confirm the estimate. The above prices are based on the parameters you put in. It could change based on discounts available, errors in specifications input. These are general prices, but are very close. Your final estimate is valid for 30 days.
                 </p>
-
-                {/* Live price estimate + breakdown — testing only */}
-                {liveEstimate && (() => {
-                  const sqFt = ((formValues.length || 0) * (formValues.width || 0)) / 144
-                  const linFt = (formValues.length || 0) / 12
-                  const woodRate = TIER2_SPECIES.has(formValues.woodSpecies) ? 225 : 168
-                  const isTier2 = TIER2_SPECIES.has(formValues.woodSpecies)
-                  const base = sqFt * woodRate
-                  const hasEpoxy = formValues.epoxyColor && formValues.epoxyColor !== 'none'
-                  const epoxyAdd = hasEpoxy ? 75 * linFt : 0
-                  const isOcean = formValues.backgroundColor === 'ocean-style'
-                  const isMedia = formValues.backgroundColor === 'media-style'
-                  const isArtisan = formValues.backgroundColor === 'artisan-series'
-                  const preTheme = base + epoxyAdd
-                  const themeAdd = isOcean ? preTheme * 0.10 : (isMedia || isArtisan) ? 15 * linFt : 0
-                  const subtotal = preTheme + themeAdd
-                  const isRoundUpcharge = (formValues.tableShape === 'circle' || formValues.tableShape === 'oval') && (formValues.length || 0) > 60
-                  const finalSubtotal = subtotal + (isRoundUpcharge ? 200 : 0)
-
-                  const rows: { label: string; value: number }[] = [
-                    { label: `Wood slab — ${sqFt.toFixed(1)} sq ft @ $${woodRate}/sq ft${isTier2 ? ' (Tier 2)' : ''}`, value: Math.round(base) },
-                    ...(hasEpoxy ? [{ label: `Resin & color — ${linFt.toFixed(1)} lin ft @ $75/ft`, value: Math.round(epoxyAdd) }] : []),
-                    ...(isOcean ? [{ label: 'Ocean Style theme (+10% of subtotal)', value: Math.round(themeAdd) }] : []),
-                    ...(isMedia ? [{ label: `Media Style — ${linFt.toFixed(1)} lin ft @ $15/ft`, value: Math.round(themeAdd) }] : []),
-                    ...(isArtisan ? [{ label: `Artisan Series — ${linFt.toFixed(1)} lin ft @ $15/ft`, value: Math.round(themeAdd) }] : []),
-                    ...(isRoundUpcharge ? [{ label: 'Round/oval top over 60" — size upcharge', value: 200 }] : []),
-                  ]
-
-                  return (
-                    <div className="space-y-3">
-                      <div className="bg-gmt-mist/60 border border-gmt-sage rounded-sm px-6 py-4 text-center">
-                        <p className="font-body text-xs tracking-[0.12em] uppercase text-gmt-stone mb-1">Estimated Price Range</p>
-                        <p className="font-display text-2xl text-gmt-forest">
-                          ${liveEstimate.min.toLocaleString()} — ${liveEstimate.max.toLocaleString()}
-                        </p>
-                      </div>
-                      <div className="bg-white border border-gmt-stone/20 rounded-sm px-5 py-4">
-                        <p className="font-body text-xs tracking-[0.12em] uppercase text-gmt-stone mb-3">How we got there</p>
-                        <div className="space-y-2">
-                          {rows.map((row, i) => (
-                            <div key={i} className="flex justify-between gap-4 font-body text-xs text-gmt-stone">
-                              <span>{row.label}</span>
-                              <span className="flex-shrink-0 font-medium text-gmt-forest">${row.value.toLocaleString()}</span>
-                            </div>
-                          ))}
-                        </div>
-                        <div className="flex justify-between gap-4 font-body text-xs text-gmt-forest font-semibold border-t border-gmt-stone/20 pt-2 mt-2">
-                          <span>Subtotal</span>
-                          <span>${Math.round(finalSubtotal).toLocaleString()}</span>
-                        </div>
-                        <p className="font-body text-xs text-gmt-stone/60 pt-2">±20% range accounts for wood variation, hardware, and finishing details.</p>
-                      </div>
-                      {WOOD_BASE_VALUES.has(formValues.tableBase) && (
-                        <div className="bg-amber-50 border border-amber-200 rounded-sm px-5 py-3 text-center">
-                          <p className="font-body text-xs text-amber-800">
-                            Your table base is not included in the price range above, as our handcrafted wood bases are fully custom. Our team will reach out to discuss base pricing.
-                          </p>
-                        </div>
-                      )}
-                    </div>
-                  )
-                })()}
 
                 {/* Name */}
                 <div>
@@ -1192,8 +1075,8 @@ export function EstimateForm() {
             )}
 
             {currentStep === STEPS.length - 1 && (
-              <p className="mt-4 font-body text-xs text-gmt-stone leading-relaxed max-w-xl mx-auto text-center">
-                By submitting this form you agree to be contacted by Green Mountain Tableworx regarding your custom furniture estimate. We will never share your information.
+              <p className="mt-6 font-body text-xs text-gmt-stone leading-relaxed max-w-xl mx-auto text-center">
+                By submitting your information, you agree to be contacted by our team to verify the accuracy of the instant estimate tool.
               </p>
             )}
           </div>}
