@@ -289,6 +289,16 @@ export function EstimateForm() {
     }
   }, [epoxyColor, getValues, setValue])
 
+  // Scroll to step heading when step changes
+  useEffect(() => {
+    setTimeout(() => {
+      const heading = document.getElementById('step-heading')
+      if (heading) {
+        heading.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    }, 0)
+  }, [currentStep])
+
   // Build selection cards for the strip
   function buildSelectionCards(): SelectionCard[] {
     const cards: SelectionCard[] = []
@@ -498,7 +508,7 @@ export function EstimateForm() {
               </div>
             )}
 
-            <h2 className="font-display text-3xl md:text-4xl text-gmt-forest mb-10 text-center">
+            <h2 id="step-heading" className="font-display text-3xl md:text-4xl text-gmt-forest mb-10 text-center">
               {STEPS[currentStep].title.split('<br>').map((line, idx) => (
                 <div key={idx}>{line}</div>
               ))}
