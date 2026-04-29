@@ -23,14 +23,14 @@ export function DimensionInput({ register, errors }: DimensionInputProps) {
             type="number"
             inputMode="numeric"
             min={12}
-            max={240}
+            max={96}
             placeholder="96"
             aria-required="true"
             {...register('length', {
               required: 'Length is required',
               valueAsNumber: true,
               min: { value: 12, message: 'Minimum 12 inches' },
-              max: { value: 240, message: 'Maximum 240 inches' },
+              max: { value: 96, message: 'The estimator is accurate up until 96 inches or 8 feet. For tables that exceed this, please inquire within.' },
             })}
             className={cn(
               'w-full font-body text-base bg-white border px-4 py-3 pr-16 rounded-sm focus:outline-none focus:ring-2 focus:ring-gmt-green transition-colors',
@@ -44,6 +44,9 @@ export function DimensionInput({ register, errors }: DimensionInputProps) {
         {errors.length && (
           <p className="mt-1 font-body text-xs text-red-500" role="alert">
             {errors.length.message}
+            {errors.length.message?.includes('inquire') && (
+              <> <a href="/contact" className="underline font-semibold hover:text-red-600">Contact us</a></>
+            )}
           </p>
         )}
       </div>

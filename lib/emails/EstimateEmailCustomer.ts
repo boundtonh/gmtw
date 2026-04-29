@@ -17,6 +17,9 @@ function formatPrice(price: number): string {
   }).format(price)
 }
 
+const ELEGANT_IRON_BASES = new Set(['cleo', 'curva', 'draco', 'faras', 'lithe', 'norah', 'summa', 'tulipe', 'wineglass', 'wishbone', 'xeni'])
+const HANDCRAFTED_WOOD_BASES = new Set(['live-edge-live', 'live-edge-slab', 'hand-turned', 'x-frame', 'hairpin-legs'])
+
 export function buildCustomerEmailHtml(
   data: any,
   quotePrice: { min: number; max: number; itemized: ItemizedLine[] }
@@ -190,21 +193,25 @@ export function buildCustomerEmailHtml(
                     ${line.label}
                   </td>
                   <td style="padding: 12px 0; font-size: 14px; color: #1A3D21; text-align: right; border-bottom: 1px solid #EFF5EC;">
-                    ${formatPrice(line.price)}
+                    ${formatPrice(Math.round(line.price * 0.9))} – ${formatPrice(Math.round(line.price * 1.1))}
                   </td>
                 </tr>
               `
                   )
                   .join('')}
-                <tr>
-                  <td style="padding: 16px 0; font-size: 15px; font-weight: 600; color: #1A3D21;">
-                    Estimated Subtotal
-                  </td>
-                  <td style="padding: 16px 0; font-size: 15px; font-weight: 600; color: #1A3D21; text-align: right;">
-                    ${formatPrice(subtotal)}
-                  </td>
-                </tr>
               </table>
+
+              ${
+                data.tableBase && (ELEGANT_IRON_BASES.has(data.tableBase.toLowerCase()) || HANDCRAFTED_WOOD_BASES.has(data.tableBase.toLowerCase()))
+                  ? `
+              <p style="margin: 24px 0 24px 0; font-size: 13px; color: #1A3D21; line-height: 1.6; padding: 16px; background-color: #EFF5EC; border-radius: 4px;">
+                Your selected table base is not included in the price range above, as our ${
+                  ELEGANT_IRON_BASES.has(data.tableBase.toLowerCase()) ? 'elegant iron' : 'handcrafted wood'
+                } bases can range vastly in pricing. Our team will reach out to discuss table base pricing.
+              </p>
+              `
+                  : ''
+              }
 
               <!-- Price Range Box -->
               <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 32px;">

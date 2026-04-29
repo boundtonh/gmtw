@@ -59,8 +59,8 @@ function calculatePrice(data: any) {
   }
 
   return {
-    min: Math.round(subtotal * 0.80),
-    max: Math.round(subtotal * 1.20),
+    min: Math.round(subtotal * 0.90),
+    max: Math.round(subtotal * 1.10),
     itemized,
   }
 }

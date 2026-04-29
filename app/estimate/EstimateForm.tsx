@@ -170,7 +170,7 @@ const TABLE_BASES_ELEGANT_IRON = [
   { value: 'faras',     label: 'Faras',     img: '/images/bases/faras.jpg' },
   { value: 'lithe',     label: 'Lithe',     img: '/images/bases/lithe.jpg' },
   { value: 'norah',     label: 'Norah',     img: '/images/bases/norah.jpg' },
-  { value: 'summa',     label: 'Summa',     img: '/images/bases/summa.jpg' },
+  { value: 'summa',     label: 'Summa',     img: '/images/bases/Summa.webp' },
   { value: 'tulipe',    label: 'Tulipe',    img: '/images/bases/tulipe.jpg' },
   { value: 'wineglass', label: 'Wineglass', img: '/images/bases/wineglass.jpg' },
   { value: 'wishbone',  label: 'Wishbone',  img: '/images/bases/wishbone.jpg' },
@@ -182,7 +182,6 @@ const TABLE_BASES_WOOD = [
   { value: 'arch-trestle',        label: 'Arch Trestle',        img: '/images/bases/arch-trestle.webp' },
   { value: 'stump-base',          label: 'Stump Base',          img: '/images/bases/stump-base.webp' },
   { value: 'classic-turned-legs', label: 'Classic Turned Legs', img: '/images/bases/classic-turned-legs.webp' },
-  { value: 'namu-pedestal',        label: 'Namu Pedestal',       img: '/images/bases/namu-pedestal.webp' },
 ]
 
 const WOOD_BASE_VALUES = new Set(TABLE_BASES_WOOD.map(b => b.value))
