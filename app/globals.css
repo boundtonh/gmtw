@@ -26,9 +26,9 @@
   }
 }
 
-/* Outside any @layer so it wins over Tailwind preflight */
+/* Override Tailwind preflight and any utility classes */
 a, button, [role="button"], label[for], summary {
-  cursor: pointer;
+  cursor: pointer !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
