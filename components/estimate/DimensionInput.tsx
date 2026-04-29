@@ -45,7 +45,7 @@ export function DimensionInput({ register, errors }: DimensionInputProps) {
           <p className="mt-1 font-body text-xs text-red-500" role="alert">
             {errors.length.message}
             {errors.length.message?.includes('inquire') && (
-              <> <a href="/contact" className="underline font-semibold hover:text-red-600">Contact us</a></>
+              <> <a href="/locations" className="underline font-semibold hover:text-red-600">Contact us</a></>
             )}
           </p>
         )}
