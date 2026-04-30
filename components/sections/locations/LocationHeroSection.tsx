@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { HeroVideo } from '@/components/layout/HeroVideo'
 import { FadeUp } from '@/components/ui/FadeUp'
+import { PhoneLink } from '@/components/ui/PhoneLink'
 
 interface LocationHeroSectionProps {
   headline: string
@@ -82,12 +83,10 @@ export function LocationHeroSection({
               <span className="text-white/90 font-medium">{city}, {state}</span> — {address}, {city}, {state} {zip}
             </p>
             <span className="hidden sm:block text-white/30">·</span>
-            <a
-              href={`tel:${phone.replace(/\D/g, '')}`}
+            <PhoneLink
+              number={phone}
               className="font-body text-sm text-gmt-green hover:text-white transition-colors duration-200"
-            >
-              {phone}
-            </a>
+            />
           </div>
           <p className="font-body text-xs text-white/40 tracking-[0.15em] uppercase mt-3">
             Also serving {otherCity}, {otherState} &nbsp;·&nbsp; In-room delivery across New England

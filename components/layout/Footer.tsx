@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Container } from './Container'
 import { SectionLabel } from '@/components/ui/SectionLabel'
+import { PhoneLink } from '@/components/ui/PhoneLink'
 import { locations } from '@/lib/locations'
 
 const exploreLinks = [
@@ -92,12 +93,10 @@ export function Footer() {
                     <br />
                     {loc.city}, {loc.state} {loc.zip}
                   </p>
-                  <a
-                    href={`tel:${loc.phone.replace(/\D/g, '')}`}
+                  <PhoneLink
+                    number={loc.phone}
                     className="font-body text-gmt-stone text-sm hover:text-white transition-colors duration-200 mt-1 block"
-                  >
-                    {loc.phone}
-                  </a>
+                  />
                 </div>
               ))}
               <p className="font-body text-gmt-stone text-sm">
