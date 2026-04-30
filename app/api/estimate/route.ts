@@ -79,17 +79,15 @@ export async function POST(request: Request) {
 
     const quotePrice = calculatePrice(data)
 
-    // Send email to team (both Jamie and Nikki)
+    // Send one team email with CC
     const resend = new Resend(process.env.RESEND_API_KEY)
-    const teamEmails = ['jamie@greenmountaintable.com', 'nikki@greenmountaintable.com']
-    for (const email of teamEmails) {
-      await resend.emails.send({
-        from: 'Green Mountain Tableworx <estimates@greenmountaintable.com>',
-        to: email,
-        subject: `New Estimate Request — ${data.name}`,
-        html: buildTeamEmailHtml(data, quotePrice),
-      })
-    }
+    await resend.emails.send({
+      from: 'Green Mountain Tableworx <estimates@greenmountaintable.com>',
+      to: 'jamie@greenmountaintable.com',
+      cc: ['nikki@greenmountaintable.com', 'contact@inboundnh.com'],
+      subject: `New Estimate Request — ${data.name}`,
+      html: buildTeamEmailHtml(data, quotePrice),
+    })
 
     // Send email to customer
     await resend.emails.send({
