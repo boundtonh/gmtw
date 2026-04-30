@@ -246,8 +246,6 @@ export function EstimateForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
-  const [submittedPrice, setSubmittedPrice] = useState<{ min: number; max: number } | null>(null)
-  const [submittedValues, setSubmittedValues] = useState<EstimateFormData | null>(null)
   const {
     register,
     control,
@@ -356,25 +354,11 @@ export function EstimateForm() {
   }
 
   // Tier 2 (premium/exotic) species — everything else is Tier 1
-  const TIER2_SPECIES = new Set(['acacia', 'buckeye-burl', 'claro-walnut', 'olivewood', 'monkey-pod'])
 
   // Client-side price estimate (mirrors API formula — for testing only)
   const formValues = watch()
 
   const selectionCards = useMemo(() => buildSelectionCards(), [formValues, currentStep, buildSelectionCards])
-  const liveEstimate = (() => {
-    const sqFt = ((formValues.length || 0) * (formValues.width || 0)) / 144
-    const linearFeet = (formValues.length || 0) / 12
-    if (sqFt === 0) return null
-    const woodRate = TIER2_SPECIES.has(formValues.woodSpecies) ? 225 : 168
-    let subtotal = sqFt * woodRate
-    if (formValues.epoxyColor && formValues.epoxyColor !== 'none') subtotal += 75 * linearFeet
-    if (formValues.backgroundColor === 'ocean-style') subtotal *= 1.10
-    else if (formValues.backgroundColor === 'basic-river') {} // No additional charge for basic river
-    else if (formValues.backgroundColor === 'media-style' || formValues.backgroundColor === 'artisan-series') subtotal += 15 * linearFeet
-    if ((formValues.tableShape === 'circle' || formValues.tableShape === 'oval') && (formValues.length || 0) > 60) subtotal += 200
-    return { min: Math.round(subtotal * 0.80), max: Math.round(subtotal * 1.20) }
-  })()
 
   const onSubmit = async (data: EstimateFormData) => {
     setIsSubmitting(true)
@@ -395,8 +379,6 @@ export function EstimateForm() {
         return
       }
 
-      setSubmittedPrice(liveEstimate)
-      setSubmittedValues(data)
       setSubmitSuccess(true)
       setIsSubmitting(false)
     } catch {
@@ -462,24 +444,15 @@ export function EstimateForm() {
           <div className="mx-auto max-w-4xl">
 
             {/* ── Success state ── */}
-            {submitSuccess && submittedPrice && submittedValues && (
-              <div className="max-w-xl mx-auto text-center space-y-8">
-                <div>
-                  <svg className="w-12 h-12 text-gmt-green mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <h2 className="font-display text-3xl text-gmt-forest mb-2">Your Estimate</h2>
-                  <p className="font-body text-gmt-stone text-sm">Our team will be in touch shortly to confirm the details.</p>
-                </div>
-
-                {/* Price range */}
-                <div className="bg-gmt-mist/60 border border-gmt-sage rounded-sm px-8 py-6">
-                  <p className="font-body text-xs tracking-[0.12em] uppercase text-gmt-stone mb-2">Estimated Price Range</p>
-                  <p className="font-display text-4xl text-gmt-forest">
-                    ${submittedPrice.min.toLocaleString()} — ${submittedPrice.max.toLocaleString()}
-                  </p>
-                  <p className="font-body text-xs text-gmt-stone mt-2">A detailed breakdown will be provided in the email sent to you.</p>
-                </div>
+            {submitSuccess && (
+              <div className="max-w-xl mx-auto text-center space-y-6">
+                <svg className="w-12 h-12 text-gmt-green mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <h2 className="font-display text-3xl text-gmt-forest">Estimate Received!</h2>
+                <p className="font-body text-gmt-stone">
+                  Check your email — your price estimate and a full breakdown of your selections are on their way. A member of our team will follow up shortly to confirm the details.
+                </p>
               </div>
             )}
 
