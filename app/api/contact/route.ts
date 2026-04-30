@@ -36,9 +36,12 @@ export async function POST(request: Request) {
 
     return Response.json({ success: true })
   } catch (error) {
-    console.error('Contact form error:', error)
+    const detail = error instanceof Error
+      ? error.message
+      : (typeof error === 'object' ? JSON.stringify(error) : String(error))
+    console.error('Contact form error:', detail, error)
     return Response.json(
-      { error: 'Failed to submit form', detail: String(error) },
+      { error: 'Failed to submit form', detail },
       { status: 500 }
     )
   }
