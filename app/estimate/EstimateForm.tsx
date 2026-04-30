@@ -1008,7 +1008,7 @@ export function EstimateForm() {
 
           {/* Navigation — hidden after submission */}
           {!submitSuccess && <div className="mt-16 mx-auto max-w-4xl">
-            <div className="flex items-center justify-between border-t border-gmt-stone/20 pt-8 gap-6">
+            <div className="flex flex-col-reverse lg:flex-row items-stretch lg:items-center lg:justify-between border-t border-gmt-stone/20 pt-8 gap-4">
               <button
                 type="button"
                 onClick={handlePrev}
