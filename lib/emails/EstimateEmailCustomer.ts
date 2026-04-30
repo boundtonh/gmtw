@@ -263,7 +263,7 @@ export function buildCustomerEmailHtml(
               </p>
               <p style="margin: 0; line-height: 1.5;">
                 In-room delivery available anywhere in New England.<br>
-                <a href="https://greenmountaintableworx.com" style="color: #C8DFC0; text-decoration: none;">greenmountaintableworx.com</a>
+                <a href="https://greenmountaintable.com" style="color: #C8DFC0; text-decoration: none;">greenmountaintable.com</a>
               </p>
             </td>
           </tr>
