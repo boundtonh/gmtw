@@ -6,21 +6,14 @@ import { Container } from '@/components/layout/Container'
 import { Lightbox } from '@/components/ui/Lightbox'
 
 const GALLERY_IMAGES = [
-  { src: '/images/furniture-types/dining-tables/dt1.webp', alt: 'Custom live edge conference table', title: 'Live Edge Conference Table' },
-  { src: '/images/furniture-types/dining-tables/dt2.webp', alt: 'River epoxy conference table', title: 'River Conference Table' },
-  { src: '/images/furniture-types/dining-tables/dt3.webp', alt: 'Walnut conference table with natural grain', title: 'Walnut Conference Table' },
-  { src: '/images/furniture-types/dining-tables/dt4.webp', alt: 'Live edge conference table with steel base', title: 'Live Edge with Steel Base' },
-  { src: '/images/furniture-types/dining-tables/dt5.webp', alt: 'Ocean epoxy conference table', title: 'Ocean Conference Table' },
-  { src: '/images/furniture-types/dining-tables/dt6.webp', alt: 'Custom conference table in maple', title: 'Maple Conference Table' },
-  { src: '/images/furniture-types/dining-tables/dt7.webp', alt: 'Handcrafted conference table with live edge slab', title: 'Handcrafted Live Edge' },
-  { src: '/images/furniture-types/dining-tables/dt8.webp', alt: 'Conference table with river epoxy inlay', title: 'River Table — Blue Epoxy' },
-  { src: '/images/furniture-types/dining-tables/dt9.webp', alt: 'Custom conference table with wood base', title: 'Wood Base Conference Table' },
-  { src: '/images/furniture-types/dining-tables/dt10.webp', alt: 'Live edge conference table in walnut', title: 'Walnut Live Edge' },
-  { src: '/images/furniture-types/dining-tables/dt11.webp', alt: 'Custom conference table with natural finish', title: 'Natural Finish' },
-  { src: '/images/furniture-types/dining-tables/dt12.webp', alt: 'Conference table with ocean style epoxy', title: 'Ocean Style Table' },
-  { src: '/images/furniture-types/dining-tables/dt13.webp', alt: 'Live edge slab conference table', title: 'Live Edge Slab Table' },
-  { src: '/images/furniture-types/dining-tables/dt14.webp', alt: 'Handcrafted conference table with matte finish', title: 'Matte Finish Table' },
-  { src: '/images/furniture-types/dining-tables/dt15.webp', alt: 'Custom conference table — Green Mountain Tableworx', title: 'Custom Conference Table' },
+  { src: '/images/furniture-types/conference-tables/359f5f43-de75-4717-a146-d34ea97c6eac.jpg', alt: 'Custom conference table — Green Mountain Tableworx', title: 'Custom Conference Table' },
+  { src: '/images/furniture-types/conference-tables/IMG_4487 (1).jpeg', alt: 'Handcrafted conference table', title: 'Handcrafted Conference Table' },
+  { src: '/images/furniture-types/conference-tables/delResearch.jpg', alt: 'Conference table with live edge', title: 'Live Edge Conference Table' },
+  { src: '/images/furniture-types/conference-tables/thumbnail_Boards Image_Original.jpg', alt: 'Conference table with boards design', title: 'Boards Design Table' },
+  { src: '/images/furniture-types/conference-tables/thumbnail_Boards Image_Original (1).jpg', alt: 'Conference table boards pattern', title: 'Boards Pattern Table' },
+  { src: '/images/furniture-types/conference-tables/thumbnail_Cherry w- copper.jpg', alt: 'Cherry and copper conference table', title: 'Cherry & Copper Table' },
+  { src: '/images/furniture-types/conference-tables/thumbnail_IMG_1569_Original.jpg', alt: 'Custom conference table detail', title: 'Conference Table Detail' },
+  { src: '/images/furniture-types/conference-tables/thumbnail_IMG_4017_Original.jpg', alt: 'Conference table finish detail', title: 'Table Finish' },
 ]
 
 export function ConferenceTablesGallery() {

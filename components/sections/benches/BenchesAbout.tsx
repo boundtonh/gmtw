@@ -43,7 +43,7 @@ export function BenchesAbout() {
         <RevealOnScroll>
           <div className="mt-14 overflow-hidden rounded-sm">
             <Image
-              src="/images/furniture-types/benches-main.jpg"
+              src="/images/furniture-types/horiz-pics/bench-horiz.jpg"
               alt="Handcrafted live edge bench — Green Mountain Tableworx"
               width={0}
               height={0}

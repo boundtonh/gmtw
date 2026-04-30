@@ -49,7 +49,7 @@ export function ConferenceTablesAbout() {
         <RevealOnScroll>
           <div className="mt-14 overflow-hidden rounded-sm">
             <Image
-              src="/images/furniture-types/conference-table.jpg"
+              src="/images/furniture-types/horiz-pics/conference-table-horiz.jpg"
               alt="Custom conference table for professional spaces — Green Mountain Tableworx"
               width={0}
               height={0}

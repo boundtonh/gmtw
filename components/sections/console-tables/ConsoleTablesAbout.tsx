@@ -43,7 +43,7 @@ export function ConsoleTablesAbout() {
         <RevealOnScroll>
           <div className="mt-14 overflow-hidden rounded-sm">
             <Image
-              src="/images/furniture-types/console-tables-main.jpg"
+              src="/images/furniture-types/horiz-pics/console-table-horiz.jpeg"
               alt="Handcrafted live edge console table — Green Mountain Tableworx"
               width={0}
               height={0}

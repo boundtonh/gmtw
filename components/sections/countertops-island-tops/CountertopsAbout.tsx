@@ -43,7 +43,7 @@ export function CountertopsAbout() {
         <RevealOnScroll>
           <div className="mt-14 overflow-hidden rounded-sm">
             <Image
-              src="/images/furniture-types/countertops-main.JPG"
+              src="/images/furniture-types/horiz-pics/countertop-horiz.jpg"
               alt="Custom wood countertop and kitchen island top — Green Mountain Tableworx"
               width={0}
               height={0}

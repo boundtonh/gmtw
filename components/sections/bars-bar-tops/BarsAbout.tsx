@@ -43,7 +43,7 @@ export function BarsAbout() {
         <RevealOnScroll>
           <div className="mt-14 overflow-hidden rounded-sm">
             <Image
-              src="/images/furniture-types/standalone-bartops-main.jpg"
+              src="/images/furniture-types/horiz-pics/bar-top-horiz.jpg"
               alt="Custom live edge bar top — Green Mountain Tableworx"
               width={0}
               height={0}

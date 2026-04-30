@@ -43,7 +43,7 @@ export function ShelvesAbout() {
         <RevealOnScroll>
           <div className="mt-14 overflow-hidden rounded-sm">
             <Image
-              src="/images/furniture-types/mantels-main.jpg"
+              src="/images/furniture-types/horiz-pics/mantel-horiz.jpg"
               alt="Custom wood floating shelf and fireplace mantel — Green Mountain Tableworx"
               width={0}
               height={0}
