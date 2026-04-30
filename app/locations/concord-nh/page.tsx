@@ -12,7 +12,7 @@ import { SingleShowroomSpot } from '@/components/sections/locations/SingleShowro
 import { ContactFormBanner } from '@/components/ui/ContactFormBanner'
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Custom Live Edge & River Tables | Green Mountain Tableworx — Concord, NH',
+  title: 'Custom Wood Furniture in Concord, NH | Green Mountain Tableworx',
   description:
     'Handcrafted live edge, river & ocean tables in Concord, New Hampshire. Custom dining tables, benches, countertops & more starting at $1,500. Visit our showroom at 84 N Main St or get an instant quote online.',
   path: '/locations/concord-nh',

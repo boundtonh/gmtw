@@ -12,7 +12,7 @@ import { SingleShowroomSpot } from '@/components/sections/locations/SingleShowro
 import { ContactFormBanner } from '@/components/ui/ContactFormBanner'
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Custom Live Edge & River Tables | Green Mountain Tableworx — Smithfield, RI',
+  title: 'Custom Wood Furniture in Smithfield, RI | Green Mountain Tableworx',
   description:
     'Handcrafted live edge, river & ocean tables in Smithfield, Rhode Island. Custom dining tables, benches, countertops & more starting at $1,500. Visit our showroom at 2 Esmond St or get an instant quote online.',
   path: '/locations/smithfield-ri',
