@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect, useMemo, useRef, useCallback } from 'react'
 import Image from 'next/image'
 import { useForm, Controller } from 'react-hook-form'
 import { Container } from '@/components/layout/Container'
@@ -241,6 +241,7 @@ function SelectionChip({
 // ─── Main component ───────────────────────────────────────────────────────────
 
 export function EstimateForm() {
+  const formTopRef = useRef<HTMLDivElement>(null)
   const [currentStep, setCurrentStep] = useState(0)
   const [activeGroup, setActiveGroup] = useState<'maple' | 'elm' | 'walnut' | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -287,15 +288,12 @@ export function EstimateForm() {
     }
   }, [epoxyColor, getValues, setValue])
 
-  // Scroll to step heading when step changes
-  useEffect(() => {
-    setTimeout(() => {
-      const heading = document.getElementById('step-heading')
-      if (heading) {
-        heading.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }
-    }, 0)
-  }, [currentStep])
+  const scrollToTop = useCallback(() => {
+    if (formTopRef.current) {
+      const offset = formTopRef.current.getBoundingClientRect().top + window.scrollY - 90
+      window.scrollTo({ top: offset, behavior: 'smooth' })
+    }
+  }, [])
 
   // Build selection cards for the strip
   function buildSelectionCards(): SelectionCard[] {
@@ -394,19 +392,19 @@ export function EstimateForm() {
     }
     if (currentStep < STEPS.length - 1) {
       setCurrentStep(currentStep + 1)
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      scrollToTop()
     }
   }
 
   const handlePrev = () => {
     if (currentStep > 0) {
       setCurrentStep(currentStep - 1)
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      scrollToTop()
     }
   }
 
   return (
-    <div className="min-h-screen bg-gmt-offwhite py-12 md:py-16">
+    <div ref={formTopRef} className="min-h-screen bg-gmt-offwhite py-12 md:py-16">
       <Container>
         {/* Step indicator dots */}
         <div className="flex justify-center gap-3 mb-12">
@@ -473,7 +471,7 @@ export function EstimateForm() {
                       card={card}
                       onClick={() => {
                         setCurrentStep(card.stepIndex)
-                        window.scrollTo({ top: 0, behavior: 'smooth' })
+                        scrollToTop()
                       }}
                     />
                   ))}
@@ -490,8 +488,8 @@ export function EstimateForm() {
             {/* ── Step 0: Introduction & Dimensions ── */}
             {currentStep === 0 && (
               <div className="space-y-12">
-                <div className="bg-gmt-mist/50 border-l-4 border-gmt-green p-8 rounded-sm max-w-2xl mx-auto">
-                  <p className="font-body text-base text-gmt-forest leading-relaxed">
+                <div className="hidden md:block bg-gmt-mist/50 border-l-4 border-gmt-green px-6 py-4 rounded-sm max-w-2xl mx-auto">
+                  <p className="font-body text-sm text-gmt-forest leading-relaxed">
                     Use our instant estimator to spec your custom table. You&rsquo;ll walk through wood species, dimensions, edge style, epoxy colors, and more. Your personalized table quote will be sent via email ASAP, and our team will reach out to confirm the details.
                   </p>
                 </div>
