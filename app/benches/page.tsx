@@ -4,7 +4,7 @@ import { BenchesHero } from '@/components/sections/benches/BenchesHero'
 import { BenchesAbout } from '@/components/sections/benches/BenchesAbout'
 import { BenchesEstimatePromo } from '@/components/sections/benches/BenchesEstimatePromo'
 import { BenchesGallery } from '@/components/sections/benches/BenchesGallery'
-import { CTABanner } from '@/components/ui/CTABanner'
+import { ContactFormBanner } from '@/components/ui/ContactFormBanner'
 import { AllFurnitureTypes } from '@/components/sections/home/AllFurnitureTypes'
 import { ReviewsSection } from '@/components/ui/ReviewsSection'
 
@@ -26,11 +26,9 @@ export default function BenchesPage() {
       </section>
       <AllFurnitureTypes />
       <ReviewsSection />
-      <CTABanner
+      <ContactFormBanner
         headline="Start Your Custom Bench"
-        body="Choose your wood species, dimensions, edge style, and base — get an instant quote starting at $500."
-        cta="Get an Instant Estimate"
-        href="/estimate"
+        subtitle="Leave your information, or build your table online and receive an instant quote to your email."
       />
     </>
   )

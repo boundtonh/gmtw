@@ -16,6 +16,11 @@ interface SingleShowroomSpotProps {
   bodyText: string
 }
 
+const LOCATION_DIRECTIONS: Record<string, string> = {
+  'concord-nh': 'https://www.google.com/maps?cid=13034891393976729473&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA&hl=en&gl=US&source=embed',
+  'smithfield-ri': 'https://www.google.com/maps?cid=9369539338549098596&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA&hl=en&gl=US&source=embed',
+}
+
 const LOCATION_IMAGES: Record<string, string> = {
   'concord-nh': '/images/locations/gmtw-nh-location.jpg',
   'smithfield-ri': '/images/locations/gmtw-ri-location.webp',
@@ -90,7 +95,7 @@ export function SingleShowroomSpot({
                     <polygon points="3 11 22 2 13 21 11 13 3 11" />
                   </svg>
                   <a
-                    href={`https://maps.google.com/?q=${coords.lat},${coords.lng}`}
+                    href={LOCATION_DIRECTIONS[slug] ?? `https://maps.google.com/?q=${coords.lat},${coords.lng}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-body text-white text-sm underline underline-offset-4 hover:text-gmt-green transition-colors duration-200"

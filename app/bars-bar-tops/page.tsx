@@ -3,7 +3,7 @@ import { buildMetadata } from '@/lib/seo'
 import { BarsHero } from '@/components/sections/bars-bar-tops/BarsHero'
 import { BarsAbout } from '@/components/sections/bars-bar-tops/BarsAbout'
 import { BarsGallery } from '@/components/sections/bars-bar-tops/BarsGallery'
-import { CTABanner } from '@/components/ui/CTABanner'
+import { ContactFormBanner } from '@/components/ui/ContactFormBanner'
 import { AllFurnitureTypes } from '@/components/sections/home/AllFurnitureTypes'
 import { ReviewsSection } from '@/components/ui/ReviewsSection'
 
@@ -24,11 +24,9 @@ export default function BarsPage() {
       </section>
       <AllFurnitureTypes />
       <ReviewsSection />
-      <CTABanner
+      <ContactFormBanner
         headline="Start Your Custom Bar Top"
-        body="Spec your bar top — wood species, dimensions, edge style, and epoxy design. We'll put together a custom quote within 24 hours."
-        cta="Inquire for Pricing"
-        href="/estimate"
+        subtitle="Leave your information, or build your table online and receive an instant quote to your email."
       />
     </>
   )

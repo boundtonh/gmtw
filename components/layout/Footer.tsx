@@ -10,7 +10,6 @@ const exploreLinks = [
   { label: 'Ocean Tables', href: '/ocean-tables' },
   { label: 'All Furniture Types', href: '/dining-tables' },
   { label: 'Table Bases', href: '/table-bases' },
-  { label: 'Locations', href: '/locations' },
   { label: 'Get an Estimate', href: '/estimate' },
 ]
 

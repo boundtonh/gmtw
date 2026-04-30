@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { buildMetadata } from '@/lib/seo'
 import { BasesHero } from '@/components/sections/table-bases/BasesHero'
 import { BasesGallery } from '@/components/sections/table-bases/BasesGallery'
-import { CTABanner } from '@/components/ui/CTABanner'
+import { ContactFormBanner } from '@/components/ui/ContactFormBanner'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Table Bases — Iron & Handcrafted Wood | Green Mountain Tableworx',
@@ -18,11 +18,9 @@ export default function TableBasesPage() {
       <section id="gallery" className="scroll-mt-20">
         <BasesGallery />
       </section>
-      <CTABanner
-        headline="Ready to spec your table base?"
-        body="Use our online estimator to choose your slab, dimensions, edge style, and base — get a quote in minutes."
-        cta="Get an Instant Estimate"
-        href="/estimate"
+      <ContactFormBanner
+        headline="Ready to Spec Your Table Base?"
+        subtitle="Leave your information, or build your table online and receive an instant quote to your email."
       />
     </>
   )

@@ -4,7 +4,7 @@ import { CoffeeTablesHero } from '@/components/sections/coffee-tables/CoffeeTabl
 import { CoffeeTablesAbout } from '@/components/sections/coffee-tables/CoffeeTablesAbout'
 import { CoffeeTablesEstimatePromo } from '@/components/sections/coffee-tables/CoffeeTablesEstimatePromo'
 import { CoffeeTablesGallery } from '@/components/sections/coffee-tables/CoffeeTablesGallery'
-import { CTABanner } from '@/components/ui/CTABanner'
+import { ContactFormBanner } from '@/components/ui/ContactFormBanner'
 import { AllFurnitureTypes } from '@/components/sections/home/AllFurnitureTypes'
 import { ReviewsSection } from '@/components/ui/ReviewsSection'
 
@@ -26,11 +26,9 @@ export default function CoffeeTablesPage() {
       </section>
       <AllFurnitureTypes />
       <ReviewsSection />
-      <CTABanner
+      <ContactFormBanner
         headline="Start Your Custom Coffee Table"
-        body="Choose your wood species, dimensions, edge style, and design — get an instant quote starting at $500."
-        cta="Get an Instant Estimate"
-        href="/estimate"
+        subtitle="Leave your information, or build your table online and receive an instant quote to your email."
       />
     </>
   )

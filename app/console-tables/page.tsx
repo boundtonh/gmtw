@@ -4,7 +4,7 @@ import { ConsoleTablesHero } from '@/components/sections/console-tables/ConsoleT
 import { ConsoleTablesAbout } from '@/components/sections/console-tables/ConsoleTablesAbout'
 import { ConsoleTablesEstimatePromo } from '@/components/sections/console-tables/ConsoleTablesEstimatePromo'
 import { ConsoleTablesGallery } from '@/components/sections/console-tables/ConsoleTablesGallery'
-import { CTABanner } from '@/components/ui/CTABanner'
+import { ContactFormBanner } from '@/components/ui/ContactFormBanner'
 import { AllFurnitureTypes } from '@/components/sections/home/AllFurnitureTypes'
 import { ReviewsSection } from '@/components/ui/ReviewsSection'
 
@@ -26,11 +26,9 @@ export default function ConsoleTablesPage() {
       </section>
       <AllFurnitureTypes />
       <ReviewsSection />
-      <CTABanner
+      <ContactFormBanner
         headline="Start Your Custom Console Table"
-        body="Choose your wood species, dimensions, edge style, and base — get an instant quote starting at $750."
-        cta="Get an Instant Estimate"
-        href="/estimate"
+        subtitle="Leave your information, or build your table online and receive an instant quote to your email."
       />
     </>
   )

@@ -3,7 +3,7 @@ import { buildMetadata } from '@/lib/seo'
 import { CountertopsHero } from '@/components/sections/countertops-island-tops/CountertopsHero'
 import { CountertopsAbout } from '@/components/sections/countertops-island-tops/CountertopsAbout'
 import { CountertopsGallery } from '@/components/sections/countertops-island-tops/CountertopsGallery'
-import { CTABanner } from '@/components/ui/CTABanner'
+import { ContactFormBanner } from '@/components/ui/ContactFormBanner'
 import { AllFurnitureTypes } from '@/components/sections/home/AllFurnitureTypes'
 import { ReviewsSection } from '@/components/ui/ReviewsSection'
 
@@ -24,11 +24,9 @@ export default function CountertopsPage() {
       </section>
       <AllFurnitureTypes />
       <ReviewsSection />
-      <CTABanner
+      <ContactFormBanner
         headline="Start Your Custom Countertop"
-        body="Tell us your dimensions, wood species preference, and edge style — we'll put together a custom quote within 24 hours."
-        cta="Inquire for Pricing"
-        href="/estimate"
+        subtitle="Leave your information, or build your table online and receive an instant quote to your email."
       />
     </>
   )

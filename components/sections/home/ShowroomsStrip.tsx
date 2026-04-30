@@ -10,6 +10,11 @@ const LOCATION_IMAGES: Record<string, string> = {
   'smithfield-ri': 'gmtw-ri-location.webp',
 }
 
+const LOCATION_DIRECTIONS: Record<string, string> = {
+  'concord-nh': 'https://www.google.com/maps?cid=13034891393976729473&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA&hl=en&gl=US&source=embed',
+  'smithfield-ri': 'https://www.google.com/maps?cid=9369539338549098596&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA&hl=en&gl=US&source=embed',
+}
+
 const LOCATION_MAPS: Record<string, string> = {
   'concord-nh': 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2908.140430861595!2d-71.53601379999999!3d43.2065438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e1cb92b3099b75%3A0xb4e53ca937c77f81!2sGreen%20Mountain%20Tableworx!5e0!3m2!1sen!2sus!4v1775235502684!5m2!1sen!2sus',
   'smithfield-ri': 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2970.74045656283!2d-71.50356788835644!3d41.87693026536748!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e44774a0844d21%3A0x82074a62ef447864!2sGreen%20Mountain%20Tableworx!5e0!3m2!1sen!2sus!4v1775235527814!5m2!1sen!2sus',
@@ -79,7 +84,7 @@ export function ShowroomsStrip() {
                         <polygon points="3 11 22 2 13 21 11 13 3 11" />
                       </svg>
                       <a
-                        href={`https://maps.google.com/?q=${loc.coords.lat},${loc.coords.lng}`}
+                        href={LOCATION_DIRECTIONS[loc.slug] ?? `https://maps.google.com/?q=${loc.coords.lat},${loc.coords.lng}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="font-body text-white text-sm underline underline-offset-4 hover:text-gmt-green transition-colors duration-200"

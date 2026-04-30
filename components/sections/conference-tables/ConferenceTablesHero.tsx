@@ -23,13 +23,13 @@ export function ConferenceTablesHero() {
       <div className="relative z-10 w-full px-6 md:px-12 py-20">
         <div className="max-w-[1320px] mx-auto w-full">
           <FadeUp delay={0.25}>
-            <h1 className="font-display text-[2.5rem] md:text-[4rem] text-white leading-tight mb-6 max-w-2xl">
+            <h1 className="font-display text-[2.5rem] md:text-[4rem] text-white leading-tight mb-6 max-w-3xl">
               Custom Conference Tables for Your Boardroom
             </h1>
           </FadeUp>
 
           <FadeUp delay={0.4}>
-            <p className="font-body text-base md:text-lg text-white/90 max-w-md mb-10">
+            <p className="font-body text-base md:text-lg text-white/90 max-w-xl mb-10">
               Distinctive wooden conference tables that make an impression. Boat-shaped, rectangular, or custom contours. Live edge or refined finishes. Built to impress clients and inspire teams.
             </p>
           </FadeUp>

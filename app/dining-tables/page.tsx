@@ -4,7 +4,7 @@ import { DiningTablesHero } from '@/components/sections/dining-tables/DiningTabl
 import { DiningTablesAbout } from '@/components/sections/dining-tables/DiningTablesAbout'
 import { DiningTablesEstimatePromo } from '@/components/sections/dining-tables/DiningTablesEstimatePromo'
 import { DiningTablesGallery } from '@/components/sections/dining-tables/DiningTablesGallery'
-import { CTABanner } from '@/components/ui/CTABanner'
+import { ContactFormBanner } from '@/components/ui/ContactFormBanner'
 import { AllFurnitureTypes } from '@/components/sections/home/AllFurnitureTypes'
 import { ReviewsSection } from '@/components/ui/ReviewsSection'
 
@@ -26,11 +26,9 @@ export default function DiningTablesPage() {
       </section>
       <AllFurnitureTypes />
       <ReviewsSection />
-      <CTABanner
+      <ContactFormBanner
         headline="Start Your Custom Dining Table"
-        body="Tell us your seating capacity, wood species, dimensions, edge style, and base — get an accurate quote in minutes."
-        cta="Get an Instant Estimate"
-        href="/estimate"
+        subtitle="Leave your information, or build your table online and receive an instant quote to your email."
       />
     </>
   )

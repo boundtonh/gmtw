@@ -4,7 +4,7 @@ import { LiveEdgeHero } from '@/components/sections/live-edge/LiveEdgeHero'
 import { LiveEdgeAbout } from '@/components/sections/live-edge/LiveEdgeAbout'
 import { LiveEdgeEstimatePromo } from '@/components/sections/live-edge/LiveEdgeEstimatePromo'
 import { LiveEdgeGallery } from '@/components/sections/live-edge/LiveEdgeGallery'
-import { CTABanner } from '@/components/ui/CTABanner'
+import { ContactFormBanner } from '@/components/ui/ContactFormBanner'
 import { AllFurnitureTypes } from '@/components/sections/home/AllFurnitureTypes'
 import { ReviewsSection } from '@/components/ui/ReviewsSection'
 
@@ -26,11 +26,9 @@ export default function LiveEdgeTablesPage() {
       </section>
       <AllFurnitureTypes />
       <ReviewsSection />
-      <CTABanner
+      <ContactFormBanner
         headline="Start Your Custom Live Edge Table"
-        body="Tell us your dimensions, wood species, edge style, and base — get an accurate quote in minutes without leaving home."
-        cta="Get an Instant Estimate"
-        href="/estimate"
+        subtitle="Leave your information, or build your table online and receive an instant quote to your email."
       />
     </>
   )

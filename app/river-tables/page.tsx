@@ -4,7 +4,7 @@ import { RiverHero } from '@/components/sections/river/RiverHero'
 import { RiverAbout } from '@/components/sections/river/RiverAbout'
 import { RiverEstimatePromo } from '@/components/sections/river/RiverEstimatePromo'
 import { RiverGallery } from '@/components/sections/river/RiverGallery'
-import { CTABanner } from '@/components/ui/CTABanner'
+import { ContactFormBanner } from '@/components/ui/ContactFormBanner'
 import { AllFurnitureTypes } from '@/components/sections/home/AllFurnitureTypes'
 import { ReviewsSection } from '@/components/ui/ReviewsSection'
 
@@ -26,11 +26,9 @@ export default function RiverTablesPage() {
       </section>
       <AllFurnitureTypes />
       <ReviewsSection />
-      <CTABanner
+      <ContactFormBanner
         headline="Start Your Custom River Table"
-        body="Tell us your dimensions, wood species, epoxy color, and base — get an accurate quote in minutes without leaving home."
-        cta="Get an Instant Estimate"
-        href="/estimate"
+        subtitle="Leave your information, or build your table online and receive an instant quote to your email."
       />
     </>
   )

@@ -21,9 +21,9 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <EstimatePromo />
       <ThreePillars />
       <AllFurnitureTypes />
+      <EstimatePromo />
       <HowItWorks />
       <GallerySection />
       <TableBasesCallout />

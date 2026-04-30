@@ -4,7 +4,7 @@ import { ConferenceTablesHero } from '@/components/sections/conference-tables/Co
 import { ConferenceTablesAbout } from '@/components/sections/conference-tables/ConferenceTablesAbout'
 import { ConferenceTablesEstimatePromo } from '@/components/sections/conference-tables/ConferenceTablesEstimatePromo'
 import { ConferenceTablesGallery } from '@/components/sections/conference-tables/ConferenceTablesGallery'
-import { CTABanner } from '@/components/ui/CTABanner'
+import { ContactFormBanner } from '@/components/ui/ContactFormBanner'
 import { AllFurnitureTypes } from '@/components/sections/home/AllFurnitureTypes'
 import { ReviewsSection } from '@/components/ui/ReviewsSection'
 
@@ -26,11 +26,9 @@ export default function ConferenceTablesPage() {
       </section>
       <AllFurnitureTypes />
       <ReviewsSection />
-      <CTABanner
+      <ContactFormBanner
         headline="Start Your Custom Conference Table"
-        body="Tell us your seating capacity, wood species, table shape, dimensions, and base — get an instant quote for your boardroom."
-        cta="Get an Instant Estimate"
-        href="/estimate"
+        subtitle="Leave your information, or build your table online and receive an instant quote to your email."
       />
     </>
   )
