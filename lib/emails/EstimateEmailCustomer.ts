@@ -100,10 +100,13 @@ export function buildCustomerEmailHtml(
         <table width="100%" max-width="600" cellpadding="0" cellspacing="0" style="max-width: 600px; background-color: #FFFFFF;">
           <!-- Header Bar -->
           <tr>
-            <td style="background-color: #009440; padding: 24px 20px; text-align: left;">
-              <span style="font-size: 18px; font-weight: bold; color: #FFFFFF; letter-spacing: 0.05em;">
-                ████ GREEN MOUNTAIN TABLEWORX
-              </span>
+            <td style="background-color: #111714; padding: 0; text-align: center;">
+              <img
+                src="https://greenmountaintable.com/images/logo/new-logo.jpg"
+                alt="Green Mountain Tableworx"
+                width="600"
+                style="display: block; width: 100%; max-width: 600px;"
+              />
             </td>
           </tr>
 
