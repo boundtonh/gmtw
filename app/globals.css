@@ -9,6 +9,10 @@
     scroll-behavior: smooth;
   }
 
+  html, body {
+    overflow-x: hidden;
+  }
+
   body {
     @apply bg-gmt-offwhite text-gmt-charcoal font-body antialiased;
   }
