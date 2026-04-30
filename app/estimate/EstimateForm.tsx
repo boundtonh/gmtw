@@ -185,14 +185,24 @@ const TABLE_BASES_WOOD = [
 ]
 
 const STEPS = [
-  { title: 'Build Your Table Online<br>Get An Instant Quote<br>Sent To Your Email' },
-  { title: 'Wood Species' },
-  { title: 'Table Shape' },
-  { title: 'Edge Style' },
-  { title: 'Epoxy & Finish' },
-  { title: 'Table Base' },
-  { title: 'Your Information' },
+  { title: 'Build Your Table Online<br>Get An Instant Quote<br>Sent To Your Email', trackingName: 'Dimensions & Furniture Type' },
+  { title: 'Wood Species',     trackingName: 'Wood Species' },
+  { title: 'Table Shape',      trackingName: 'Table Shape' },
+  { title: 'Edge Style',       trackingName: 'Edge Style' },
+  { title: 'Epoxy & Finish',   trackingName: 'Epoxy & Finish' },
+  { title: 'Table Base',       trackingName: 'Table Base' },
+  { title: 'Your Information', trackingName: 'Your Information' },
 ]
+
+function pushStepEvent(stepNumber: number, stepName: string) {
+  if (typeof window === 'undefined') return
+  window.dataLayer = (window as any).dataLayer || []
+  ;(window as any).dataLayer.push({
+    event: 'estimator_step_complete',
+    estimator_step: stepNumber,
+    estimator_step_name: stepName,
+  })
+}
 
 // ─── Selection Chip Component ─────────────────────────────────────────────────
 
@@ -377,6 +387,9 @@ export function EstimateForm() {
         return
       }
 
+      pushStepEvent(7, STEPS[6].trackingName)
+      ;(window as any).dataLayer = (window as any).dataLayer || []
+      ;(window as any).dataLayer.push({ event: 'estimator_submitted' })
       setSubmitSuccess(true)
       setIsSubmitting(false)
     } catch {
@@ -391,6 +404,7 @@ export function EstimateForm() {
       if (!valid) return
     }
     if (currentStep < STEPS.length - 1) {
+      pushStepEvent(currentStep + 1, STEPS[currentStep].trackingName)
       setCurrentStep(currentStep + 1)
       scrollToTop()
     }
