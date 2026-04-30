@@ -1,6 +1,12 @@
 'use client'
 
-import { useState, useEffect, useMemo, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
+
+declare global {
+  interface Window {
+    dataLayer: Record<string, unknown>[]
+  }
+}
 import Image from 'next/image'
 import { useForm, Controller } from 'react-hook-form'
 import { Container } from '@/components/layout/Container'
@@ -196,8 +202,8 @@ const STEPS = [
 
 function pushStepEvent(stepNumber: number, stepName: string) {
   if (typeof window === 'undefined') return
-  window.dataLayer = (window as any).dataLayer || []
-  ;(window as any).dataLayer.push({
+  window.dataLayer = window.dataLayer || []
+  window.dataLayer.push({
     event: 'estimator_step_complete',
     estimator_step: stepNumber,
     estimator_step_name: stepName,
@@ -366,7 +372,7 @@ export function EstimateForm() {
   // Client-side price estimate (mirrors API formula — for testing only)
   const formValues = watch()
 
-  const selectionCards = useMemo(() => buildSelectionCards(), [formValues, currentStep, buildSelectionCards])
+  const selectionCards = buildSelectionCards()
 
   const onSubmit = async (data: EstimateFormData) => {
     setIsSubmitting(true)
@@ -388,8 +394,8 @@ export function EstimateForm() {
       }
 
       pushStepEvent(7, STEPS[6].trackingName)
-      ;(window as any).dataLayer = (window as any).dataLayer || []
-      ;(window as any).dataLayer.push({ event: 'estimator_submitted' })
+      window.dataLayer = window.dataLayer || []
+      window.dataLayer.push({ event: 'estimator_submitted' })
       setSubmitSuccess(true)
       setIsSubmitting(false)
     } catch {
