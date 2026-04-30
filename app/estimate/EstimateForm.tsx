@@ -397,6 +397,7 @@ export function EstimateForm() {
       window.dataLayer = window.dataLayer || []
       window.dataLayer.push({ event: 'estimator_submitted' })
       setSubmitSuccess(true)
+      window.scrollTo({ top: 0, behavior: 'smooth' })
       setIsSubmitting(false)
     } catch {
       setSubmitError('An error occurred. Please try again or contact us directly.')
