@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { TopBanner } from '@/components/layout/TopBanner'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import { ScrollToTop } from '@/components/layout/ScrollToTop'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -30,6 +31,7 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
+        <ScrollToTop />
         <TopBanner />
         <Header />
         <main id="main-content">{children}</main>
