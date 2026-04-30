@@ -35,9 +35,9 @@ export default function ConcordNHPage() {
         otherCity="Smithfield"
         otherState="RI"
       />
-      <EstimatePromo />
       <ThreePillars />
       <AllFurnitureTypes />
+      <EstimatePromo />
       <HowItWorks />
       <GallerySection />
       <TableBasesCallout />

@@ -35,9 +35,9 @@ export default function SmithfieldRIPage() {
         otherCity="Concord"
         otherState="NH"
       />
-      <EstimatePromo />
       <ThreePillars />
       <AllFurnitureTypes />
+      <EstimatePromo />
       <HowItWorks />
       <GallerySection />
       <TableBasesCallout />
