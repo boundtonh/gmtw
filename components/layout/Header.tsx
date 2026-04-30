@@ -43,6 +43,13 @@ const NAV_ITEMS: NavItem[] = [
     ],
   },
   { label: 'Table Bases', href: '/table-bases' },
+  {
+    label: 'Locations',
+    dropdown: [
+      { label: 'Concord, NH', href: '/locations/concord-nh' },
+      { label: 'Smithfield, RI', href: '/locations/smithfield-ri' },
+    ],
+  },
 ]
 
 // Items for the desktop mega menu — matches the dropdown array above
