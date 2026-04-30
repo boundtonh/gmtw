@@ -19,7 +19,7 @@ export async function POST(request: Request) {
     }
 
     await resend.emails.send({
-      from: 'Green Mountain Tableworx <jamie@greenmountaintable.com>',
+      from: 'Green Mountain Tableworx <estimates@greenmountaintable.com>',
       to: ['jamie@greenmountaintable.com', 'nikki@greenmountaintable.com', 'contact@inboundnh.com'],
       subject: `New Project Inquiry — ${escape(name)}`,
       html: `
