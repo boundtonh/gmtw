@@ -1,6 +1,12 @@
 'use client'
 
 import { useState } from 'react'
+
+declare global {
+  interface Window {
+    dataLayer: Record<string, unknown>[]
+  }
+}
 import Image from 'next/image'
 import { Container } from '@/components/layout/Container'
 import { cn } from '@/lib/utils'
@@ -44,6 +50,8 @@ export function ContactFormBanner({ headline, subtitle }: ContactFormBannerProps
         throw new Error(body.detail || body.error || 'Failed to submit form')
       }
 
+      window.dataLayer = window.dataLayer || []
+      window.dataLayer.push({ event: 'contact_form_submitted' })
       setSubmitSuccess(true)
       setFormData({ name: '', email: '', phone: '', city: '', project: '' })
       setTimeout(() => setSubmitSuccess(false), 5000)
