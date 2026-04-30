@@ -3,6 +3,10 @@ function fmt(value: string | undefined) {
   return value.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase())
 }
 
+function escape(s: string) {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+}
+
 function formatPrice(price: number) {
   return `$${price.toLocaleString()}`
 }
@@ -31,17 +35,17 @@ export function buildTeamEmailHtml(data: any, quotePrice: { min: number; max: nu
   <div style="max-width:700px;margin:0 auto;padding:40px 20px">
 
     <h1 style="color:#009440;font-size:26px;margin:0 0 6px 0">New Estimate Request</h1>
-    <p style="color:#6B7066;font-size:14px;margin:0 0 30px 0">From: <strong>${data.name}</strong></p>
+    <p style="color:#6B7066;font-size:14px;margin:0 0 30px 0">From: <strong>${escape(data.name)}</strong></p>
 
     <!-- Customer Info -->
     <div style="background:#EFF5EC;border-left:4px solid #009440;padding:20px;border-radius:4px;margin-bottom:30px">
       <h2 style="color:#1A3D21;font-size:16px;margin:0 0 15px 0">Customer Information</h2>
       <table style="width:100%;border-collapse:collapse">
-        <tr><td style="padding:8px 0;font-weight:bold;color:#1A3D21;width:30%">Name</td><td style="padding:8px 0;color:#6B7066">${data.name}</td></tr>
-        <tr><td style="padding:8px 0;font-weight:bold;color:#1A3D21">Email</td><td style="padding:8px 0;color:#6B7066">${data.email}</td></tr>
-        <tr><td style="padding:8px 0;font-weight:bold;color:#1A3D21">Phone</td><td style="padding:8px 0;color:#6B7066">${data.phone}</td></tr>
-        <tr><td style="padding:8px 0;font-weight:bold;color:#1A3D21">Delivery</td><td style="padding:8px 0;color:#6B7066">${deliveryLabel}</td></tr>
-        ${deliveryAddress ? `<tr><td style="padding:8px 0;font-weight:bold;color:#1A3D21">Address</td><td style="padding:8px 0;color:#6B7066">${deliveryAddress}</td></tr>` : ''}
+        <tr><td style="padding:8px 0;font-weight:bold;color:#1A3D21;width:30%">Name</td><td style="padding:8px 0;color:#6B7066">${escape(data.name)}</td></tr>
+        <tr><td style="padding:8px 0;font-weight:bold;color:#1A3D21">Email</td><td style="padding:8px 0;color:#6B7066">${escape(data.email)}</td></tr>
+        <tr><td style="padding:8px 0;font-weight:bold;color:#1A3D21">Phone</td><td style="padding:8px 0;color:#6B7066">${escape(data.phone)}</td></tr>
+        <tr><td style="padding:8px 0;font-weight:bold;color:#1A3D21">Delivery</td><td style="padding:8px 0;color:#6B7066">${escape(deliveryLabel)}</td></tr>
+        ${deliveryAddress ? `<tr><td style="padding:8px 0;font-weight:bold;color:#1A3D21">Address</td><td style="padding:8px 0;color:#6B7066">${escape(deliveryAddress)}</td></tr>` : ''}
       </table>
     </div>
 
@@ -72,7 +76,7 @@ export function buildTeamEmailHtml(data: any, quotePrice: { min: number; max: nu
     <!-- Notes -->
     <div style="background:#EFF5EC;padding:20px;border-radius:4px;margin-bottom:30px">
       <h2 style="color:#1A3D21;font-size:16px;margin:0 0 10px 0">Additional Notes</h2>
-      <p style="color:#6B7066;font-size:14px;line-height:1.6;margin:0;white-space:pre-wrap">${data.notes}</p>
+      <p style="color:#6B7066;font-size:14px;line-height:1.6;margin:0;white-space:pre-wrap">${escape(data.notes).replace(/\n/g, '<br />')}</p>
     </div>` : ''}
 
     <hr style="border-color:#C8DFC0;margin:30px 0">

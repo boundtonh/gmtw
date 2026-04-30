@@ -1,27 +1,34 @@
 import { Resend } from 'resend'
+import { headers } from 'next/headers'
+import { checkRateLimit } from '@/lib/rateLimit'
 
 function escape(s: string) {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 }
 
+function sanitizeHeader(s: string) {
+  return s.replace(/[\r\n\0]/g, '').trim()
+}
+
 export async function POST(request: Request) {
+  const ip = (await headers()).get('x-forwarded-for')?.split(',')[0] ?? 'unknown'
+  if (!checkRateLimit(ip, 10, 60_000)) {
+    return Response.json({ error: 'Too many requests' }, { status: 429 })
+  }
+
   const resend = new Resend(process.env.RESEND_API_KEY)
 
   try {
     const { name, email, phone, city, project } = await request.json()
 
-    // Validate required fields
     if (!name || !email || !phone || !city || !project) {
-      return Response.json(
-        { error: 'Missing required fields' },
-        { status: 400 }
-      )
+      return Response.json({ error: 'Missing required fields' }, { status: 400 })
     }
 
     await resend.emails.send({
       from: 'Green Mountain Tableworx <estimates@greenmountaintable.com>',
       to: ['jamie@greenmountaintable.com', 'nikki@greenmountaintable.com', 'contact@inboundnh.com'],
-      subject: `New Project Inquiry — ${escape(name)}`,
+      subject: `New Project Inquiry — ${sanitizeHeader(name)}`,
       html: `
         <h2>New Project Inquiry</h2>
         <p><strong>Name:</strong> ${escape(name)}</p>
@@ -36,13 +43,7 @@ export async function POST(request: Request) {
 
     return Response.json({ success: true })
   } catch (error) {
-    const detail = error instanceof Error
-      ? error.message
-      : (typeof error === 'object' ? JSON.stringify(error) : String(error))
-    console.error('Contact form error:', detail, error)
-    return Response.json(
-      { error: 'Failed to submit form', detail },
-      { status: 500 }
-    )
+    console.error('Contact form error:', error)
+    return Response.json({ error: 'Failed to submit form' }, { status: 500 })
   }
 }

@@ -1,6 +1,12 @@
 import { Resend } from 'resend'
+import { headers } from 'next/headers'
+import { checkRateLimit } from '@/lib/rateLimit'
 import { buildTeamEmailHtml } from '@/lib/emails/EstimateEmailTeam'
 import { buildCustomerEmailHtml } from '@/lib/emails/EstimateEmailCustomer'
+
+function sanitizeHeader(s: string) {
+  return s.replace(/[\r\n\0]/g, '').trim()
+}
 
 // Tier 2 (premium/exotic) species — everything else is Tier 1
 const TIER2_SPECIES = new Set(['acacia', 'buckeye-burl', 'claro-walnut', 'olivewood', 'monkey-pod'])
@@ -65,6 +71,11 @@ function calculatePrice(data: any) {
 }
 
 export async function POST(request: Request) {
+  const ip = (await headers()).get('x-forwarded-for')?.split(',')[0] ?? 'unknown'
+  if (!checkRateLimit(ip, 10, 60_000)) {
+    return Response.json({ error: 'Too many requests' }, { status: 429 })
+  }
+
   try {
     const data = await request.json()
 
@@ -84,7 +95,7 @@ export async function POST(request: Request) {
       from: 'Green Mountain Tableworx <estimates@greenmountaintable.com>',
       to: 'jamie@greenmountaintable.com',
       cc: ['nikki@greenmountaintable.com', 'contact@inboundnh.com'],
-      subject: `New Estimate Request — ${data.name}`,
+      subject: `New Estimate Request — ${sanitizeHeader(data.name)}`,
       html: buildTeamEmailHtml(data, quotePrice),
     })
 
