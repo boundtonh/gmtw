@@ -45,7 +45,7 @@ export function CoffeeTablesAbout() {
         <RevealOnScroll>
           <div className="mt-14 overflow-hidden rounded-sm">
             <Image
-              src="/images/furniture-types/coffee-table.webp"
+              src="/images/furniture-types/coffee-tables/c10.webp"
               alt="Handcrafted custom coffee table — Green Mountain Tableworx"
               width={0}
               height={0}
