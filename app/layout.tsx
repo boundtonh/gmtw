@@ -14,6 +14,16 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? 'https://greenmountaintable.com'
   ),
+  openGraph: {
+    images: [
+      {
+        url: '/images/Gmtw-og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Green Mountain Tableworx — One Of A Kind Wood Furniture',
+      },
+    ],
+  },
 }
 
 export default function RootLayout({
