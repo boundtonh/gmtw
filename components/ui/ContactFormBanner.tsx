@@ -39,7 +39,10 @@ export function ContactFormBanner({ headline, subtitle }: ContactFormBannerProps
         body: JSON.stringify(formData),
       })
 
-      if (!response.ok) throw new Error('Failed to submit form')
+      if (!response.ok) {
+        const body = await response.json().catch(() => ({}))
+        throw new Error(body.detail || body.error || 'Failed to submit form')
+      }
 
       setSubmitSuccess(true)
       setFormData({ name: '', email: '', phone: '', city: '', project: '' })

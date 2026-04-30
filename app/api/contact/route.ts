@@ -38,7 +38,7 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error('Contact form error:', error)
     return Response.json(
-      { error: 'Failed to submit form' },
+      { error: 'Failed to submit form', detail: String(error) },
       { status: 500 }
     )
   }
