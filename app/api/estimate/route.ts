@@ -31,31 +31,36 @@ function calculatePrice(data: any) {
   let subtotal = woodCost
   itemized.push({ label: 'Wood Slab', price: Math.round(woodCost) })
 
-  // Resin pricing — ocean style applies even without a resin color selection
-  const resinLabel = (data.epoxyColor && data.epoxyColor !== 'none')
+  // Resin pricing — ocean style and basic river apply even without a resin color selection
+  const colorLabel = (data.epoxyColor && data.epoxyColor !== 'none')
     ? data.epoxyColor.replace(/-/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase())
-    : 'Resin'
+    : null
 
   if (data.backgroundColor === 'ocean-style') {
-    // Ocean: $75/lin ft resin + 10% upcharge on (wood + resin) combined
     const resinCost = 75 * linearFeet
     const oceanUpcharge = (subtotal + resinCost) * 0.10
     subtotal += resinCost + oceanUpcharge
-    itemized.push({ label: `Resin — ${resinLabel} / Ocean Style`, price: Math.round(resinCost + oceanUpcharge) })
-  } else if (data.epoxyColor && data.epoxyColor !== 'none') {
-    // Non-ocean styles only apply if a resin color was chosen
+    const label = colorLabel ? `Resin — ${colorLabel} / Ocean Style` : 'Resin — Ocean Style'
+    itemized.push({ label, price: Math.round(resinCost + oceanUpcharge) })
+  } else if (data.backgroundColor === 'basic-river') {
+    const resinCost = 75 * linearFeet
+    subtotal += resinCost
+    const label = colorLabel ? `Resin — ${colorLabel} / Basic River` : 'Resin — Basic River'
+    itemized.push({ label, price: Math.round(resinCost) })
+  } else if (colorLabel) {
+    // Other themes only apply if a resin color was chosen
     if (data.backgroundColor === 'media-style') {
       const resinCost = 90 * linearFeet
       subtotal += resinCost
-      itemized.push({ label: `Resin — ${resinLabel} / Media Style`, price: Math.round(resinCost) })
+      itemized.push({ label: `Resin — ${colorLabel} / Media Style`, price: Math.round(resinCost) })
     } else if (data.backgroundColor === 'artisan-series') {
       const resinCost = 125 * linearFeet
       subtotal += resinCost
-      itemized.push({ label: `Resin — ${resinLabel} / Artisan Style`, price: Math.round(resinCost) })
+      itemized.push({ label: `Resin — ${colorLabel} / Artisan Style`, price: Math.round(resinCost) })
     } else {
       const resinCost = 75 * linearFeet
       subtotal += resinCost
-      itemized.push({ label: `Resin — ${resinLabel}`, price: Math.round(resinCost) })
+      itemized.push({ label: `Resin — ${colorLabel}`, price: Math.round(resinCost) })
     }
   }
 
