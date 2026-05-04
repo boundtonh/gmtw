@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Container } from '@/components/layout/Container'
 import { SectionLabel } from '@/components/ui/SectionLabel'
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll'
-import { EstimatorMockup } from '@/components/ui/EstimatorMockup'
+import { EstimateVideo } from '@/components/ui/EstimateVideo'
 
 const specs = [
   'Wood species & slab dimensions',
@@ -58,10 +58,10 @@ export function EstimatePromo() {
             </div>
           </RevealOnScroll>
 
-          {/* Estimator mockup */}
+          {/* Estimator video */}
           <RevealOnScroll direction="right">
             <div className="relative aspect-[4/5] rounded-sm overflow-hidden shadow-xl ring-1 ring-gmt-stone/10">
-              <EstimatorMockup />
+              <EstimateVideo />
             </div>
           </RevealOnScroll>
 
