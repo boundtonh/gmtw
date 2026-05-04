@@ -19,7 +19,7 @@ export async function POST(request: Request) {
   const resend = new Resend(process.env.RESEND_API_KEY)
 
   try {
-    const { name, email, phone, city, project } = await request.json()
+    const { name, email, phone, city, project, hearAboutUs } = await request.json()
 
     if (!name || !email || !phone || !city || !project) {
       return Response.json({ error: 'Missing required fields' }, { status: 400 })
@@ -35,6 +35,7 @@ export async function POST(request: Request) {
         <p><strong>Email:</strong> ${escape(email)}</p>
         <p><strong>Phone:</strong> ${escape(phone)}</p>
         <p><strong>City:</strong> ${escape(city)}</p>
+        ${hearAboutUs ? `<p><strong>How They Heard About Us:</strong> ${escape(hearAboutUs)}</p>` : ''}
         <hr />
         <h3>Project Details:</h3>
         <p>${escape(project).replace(/\n/g, '<br />')}</p>

@@ -45,6 +45,7 @@ export function buildTeamEmailHtml(data: any, quotePrice: { min: number; max: nu
         <tr><td style="padding:8px 0;font-weight:bold;color:#1A3D21">Email</td><td style="padding:8px 0;color:#6B7066">${escape(data.email)}</td></tr>
         <tr><td style="padding:8px 0;font-weight:bold;color:#1A3D21">Phone</td><td style="padding:8px 0;color:#6B7066">${escape(data.phone)}</td></tr>
         <tr><td style="padding:8px 0;font-weight:bold;color:#1A3D21">Delivery</td><td style="padding:8px 0;color:#6B7066">${escape(deliveryLabel)}</td></tr>
+        ${data.hearAboutUs ? `<tr><td style="padding:8px 0;font-weight:bold;color:#1A3D21">Heard About Us</td><td style="padding:8px 0;color:#6B7066">${escape(data.hearAboutUs)}</td></tr>` : ''}
         ${deliveryAddress ? `<tr><td style="padding:8px 0;font-weight:bold;color:#1A3D21">Address</td><td style="padding:8px 0;color:#6B7066">${escape(deliveryAddress)}</td></tr>` : ''}
       </table>
     </div>

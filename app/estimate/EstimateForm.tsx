@@ -33,6 +33,7 @@ export interface EstimateFormData {
   deliveryCity?: string
   deliveryState?: string
   deliveryZip?: string
+  hearAboutUs?: string
   notes: string
 }
 
@@ -1005,6 +1006,26 @@ export function EstimateForm() {
                       />
                     </div>
                   )}
+                </div>
+
+                {/* How Did You Hear About Us */}
+                <div>
+                  <label htmlFor="hearAboutUs" className="block font-body text-xs tracking-[0.12em] uppercase text-gmt-stone mb-2">
+                    How Did You Hear About Us?
+                  </label>
+                  <select
+                    id="hearAboutUs"
+                    {...register('hearAboutUs')}
+                    className="w-full font-body text-base bg-white border border-gmt-stone/30 px-4 py-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-gmt-green text-gmt-forest"
+                  >
+                    <option value="">Select an option</option>
+                    <option value="instagram">Instagram</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="google">Google</option>
+                    <option value="tv">TV</option>
+                    <option value="magazine">Magazine</option>
+                    <option value="other">Other</option>
+                  </select>
                 </div>
 
                 {/* Notes */}

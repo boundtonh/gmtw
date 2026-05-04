@@ -26,9 +26,10 @@ export function ContactFormBanner({ headline, subtitle }: ContactFormBannerProps
     phone: '',
     city: '',
     project: '',
+    hearAboutUs: '',
   })
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
   }
@@ -53,7 +54,7 @@ export function ContactFormBanner({ headline, subtitle }: ContactFormBannerProps
       window.dataLayer = window.dataLayer || []
       window.dataLayer.push({ event: 'contact_form_submitted' })
       setSubmitSuccess(true)
-      setFormData({ name: '', email: '', phone: '', city: '', project: '' })
+      setFormData({ name: '', email: '', phone: '', city: '', project: '', hearAboutUs: '' })
       setTimeout(() => setSubmitSuccess(false), 5000)
     } catch (error) {
       setSubmitError(error instanceof Error ? error.message : 'An error occurred')
@@ -147,6 +148,24 @@ export function ContactFormBanner({ headline, subtitle }: ContactFormBannerProps
                   required
                   className="w-full font-body text-base bg-white px-4 py-3 rounded-sm placeholder:text-gmt-stone/60 focus:outline-none focus:ring-2 focus:ring-gmt-green"
                 />
+              </div>
+
+              {/* How Did You Hear About Us */}
+              <div>
+                <select
+                  name="hearAboutUs"
+                  value={formData.hearAboutUs}
+                  onChange={handleChange}
+                  className="w-full font-body text-base bg-white px-4 py-3 rounded-sm text-gmt-forest focus:outline-none focus:ring-2 focus:ring-gmt-green"
+                >
+                  <option value="">How Did You Hear About Us?</option>
+                  <option value="instagram">Instagram</option>
+                  <option value="facebook">Facebook</option>
+                  <option value="google">Google</option>
+                  <option value="tv">TV</option>
+                  <option value="magazine">Magazine</option>
+                  <option value="other">Other</option>
+                </select>
               </div>
 
               {/* Project Details */}
