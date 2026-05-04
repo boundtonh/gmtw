@@ -32,7 +32,7 @@ export function EstimateVideo() {
       style={{ pointerEvents: 'none' }}
       className="w-full h-full object-cover"
     >
-      <source src="/videos/instant-estimate-example.mov" type="video/mp4" />
+      <source src="/videos/gmtw-estimator-replace-opt.mov" type="video/mp4" />
     </video>
   )
 }
