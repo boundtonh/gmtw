@@ -11,6 +11,8 @@ function sanitizeHeader(s: string) {
 // Tier 2 (premium/exotic) species — everything else is Tier 1
 const TIER2_SPECIES = new Set(['acacia', 'buckeye-burl', 'claro-walnut', 'olivewood', 'monkey-pod'])
 
+const HANDCRAFTED_WOOD_BASES = new Set(['slab-post-trestle', 'arch-trestle', 'stump-base', 'classic-turned-legs'])
+
 interface ItemizedLine {
   label: string
   price: number
@@ -61,6 +63,12 @@ function calculatePrice(data: any) {
   if ((data.tableShape === 'circle' || data.tableShape === 'oval') && (data.length || 0) > 60) {
     subtotal += 200
     itemized.push({ label: 'Round/Oval Shape Upcharge', price: 200 })
+  }
+
+  // Handcrafted wood base upcharge
+  if (HANDCRAFTED_WOOD_BASES.has(data.tableBase)) {
+    subtotal += 600
+    itemized.push({ label: 'Handcrafted Wood Base', price: 600 })
   }
 
   return {
