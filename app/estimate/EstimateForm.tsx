@@ -85,6 +85,8 @@ const FURNITURE_TYPES = [
   { value: 'coffee-tables', label: 'Coffee Table', img: '/images/furniture-types/coffee-table.webp' },
   { value: 'benches', label: 'Bench', img: '/images/furniture-types/benches-main.jpg', objectPosition: '50% 98%' },
   { value: 'console-tables', label: 'Console Table', img: '/images/furniture-types/console-tables-main.jpg' },
+  { value: 'bar-tops', label: 'Bar Top', img: '/images/furniture-types/standalone-bartops-main.jpg' },
+  { value: 'countertops', label: 'Countertop', img: '/images/furniture-types/countertops-main.JPG' },
 ]
 
 const WOOD_TIER1 = [
