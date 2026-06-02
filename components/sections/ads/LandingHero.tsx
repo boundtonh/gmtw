@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 export function LandingHero() {
   return (
-    <section className="relative h-[85vh] md:h-[85vh] min-h-[600px] overflow-hidden">
+    <section className="relative h-[70vh] md:h-[85vh] min-h-[600px] overflow-hidden">
       <HeroVideo />
       <div className="absolute inset-0 bg-black/40" />
 
