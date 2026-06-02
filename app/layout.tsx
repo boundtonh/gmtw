@@ -1,9 +1,6 @@
 import type { Metadata } from 'next'
 import Script from 'next/script'
-import { TopBanner } from '@/components/layout/TopBanner'
-import { Header } from '@/components/layout/Header'
-import { Footer } from '@/components/layout/Footer'
-import { ScrollToTop } from '@/components/layout/ScrollToTop'
+import { MainChrome } from '@/components/layout/MainChrome'
 import { PhoneProvider } from '@/components/layout/PhoneProvider'
 import './globals.css'
 
@@ -48,17 +45,7 @@ export default function RootLayout({
         </noscript>
 
         <PhoneProvider>
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-gmt-green focus:text-white focus:px-4 focus:py-2 focus:rounded"
-        >
-          Skip to main content
-        </a>
-        <ScrollToTop />
-        <TopBanner />
-        <Header />
-        <main id="main-content">{children}</main>
-        <Footer />
+          <MainChrome>{children}</MainChrome>
         </PhoneProvider>
 
         {/* GA4 */}
