@@ -22,7 +22,7 @@ const steps = [
   {
     number: '04',
     title: 'Deliver',
-    description: 'In-room delivery anywhere in New England. We bring it to you.',
+    description: 'In-home delivery anywhere in New England. We bring it to you.',
   },
 ]
 

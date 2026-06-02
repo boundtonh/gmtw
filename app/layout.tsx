@@ -10,7 +10,7 @@ import './globals.css'
 export const metadata: Metadata = {
   title: 'Green Mountain Tableworx | Custom Live Edge Furniture — NH & RI',
   description:
-    'Handcrafted live edge, river & ocean tables. Custom orders for New England homes. Two showrooms: Concord NH & Smithfield RI. In-room delivery across New England.',
+    'Handcrafted live edge, river & ocean tables. Custom orders for New England homes. Two showrooms: Concord NH & Smithfield RI. In-home delivery across New England.',
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? 'https://greenmountaintable.com'
   ),

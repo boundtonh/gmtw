@@ -132,7 +132,7 @@ export function SingleShowroomSpot({
 
         <RevealOnScroll delay={0.2}>
           <p className="font-body text-white/70 text-sm text-center mt-10">
-            In-room delivery available anywhere in New England
+            In-home delivery available anywhere in New England
           </p>
         </RevealOnScroll>
       </Container>

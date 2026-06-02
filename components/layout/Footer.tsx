@@ -100,7 +100,7 @@ export function Footer() {
                 </div>
               ))}
               <p className="font-body text-gmt-stone text-sm">
-                In-room delivery available across New England.
+                In-home delivery available across New England.
               </p>
             </div>
           </div>

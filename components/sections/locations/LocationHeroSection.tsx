@@ -89,7 +89,7 @@ export function LocationHeroSection({
             />
           </div>
           <p className="font-body text-xs text-white/40 tracking-[0.15em] uppercase mt-3">
-            Also serving {otherCity}, {otherState} &nbsp;·&nbsp; In-room delivery across New England
+            Also serving {otherCity}, {otherState} &nbsp;·&nbsp; In-home delivery across New England
           </p>
         </FadeUp>
       </div>

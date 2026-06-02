@@ -11,7 +11,7 @@ import { ReviewsSection } from '@/components/ui/ReviewsSection'
 export const metadata: Metadata = buildMetadata({
   title: 'Custom Live Edge Tables | Green Mountain Tableworx — NH & RI',
   description:
-    'Handcrafted live edge dining, conference & coffee tables starting at $1,500. Custom orders built to your exact dimensions. Two showrooms in Concord NH & Smithfield RI. In-room delivery across New England.',
+    'Handcrafted live edge dining, conference & coffee tables starting at $1,500. Custom orders built to your exact dimensions. Two showrooms in Concord NH & Smithfield RI. In-home delivery across New England.',
   path: '/live-edge-tables',
 })
 

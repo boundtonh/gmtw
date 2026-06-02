@@ -11,7 +11,7 @@ import { ReviewsSection } from '@/components/ui/ReviewsSection'
 export const metadata: Metadata = buildMetadata({
   title: 'Custom Ocean Tables | Green Mountain Tableworx — NH & RI',
   description:
-    'Handcrafted ocean tables with hand-poured epoxy resin inspired by coastlines and open water. Custom orders built to your dimensions. Showrooms in Concord NH & Smithfield RI. In-room delivery across New England.',
+    'Handcrafted ocean tables with hand-poured epoxy resin inspired by coastlines and open water. Custom orders built to your dimensions. Showrooms in Concord NH & Smithfield RI. In-home delivery across New England.',
   path: '/ocean-tables',
 })
 

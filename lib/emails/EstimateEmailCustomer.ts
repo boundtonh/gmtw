@@ -262,7 +262,7 @@ export function buildCustomerEmailHtml(
                 <strong>Smithfield, RI:</strong> 2 Esmond St, Smithfield, RI 02917 | (401) 354-9600
               </p>
               <p style="margin: 0; line-height: 1.5;">
-                In-room delivery available anywhere in New England.<br>
+                In-home delivery available anywhere in New England.<br>
                 <a href="https://greenmountaintable.com" style="color: #C8DFC0; text-decoration: none;">greenmountaintable.com</a>
               </p>
             </td>

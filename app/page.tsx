@@ -13,7 +13,7 @@ import { ContactFormBanner } from '@/components/ui/ContactFormBanner'
 export const metadata = buildMetadata({
   title: 'Green Mountain Tableworx | Custom Live Edge Furniture — NH & RI',
   description:
-    'Handcrafted live edge, river & ocean tables. Custom orders for New England homes. Two showrooms: Concord NH & Smithfield RI. In-room delivery across New England.',
+    'Handcrafted live edge, river & ocean tables. Custom orders for New England homes. Two showrooms: Concord NH & Smithfield RI. In-home delivery across New England.',
   path: '/',
 })
 
