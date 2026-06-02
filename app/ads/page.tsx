@@ -24,7 +24,7 @@ export default function AdsPage() {
       <TrustBar />
       <ThreePillars hideExploreLink />
       <AllFurnitureTypesNoLinks />
-      <HowItWorks />
+      <HowItWorks ctaHref="#contact-form" />
       <ReviewsSection />
       <LandingContactForm />
       <StickyMobileCTA />

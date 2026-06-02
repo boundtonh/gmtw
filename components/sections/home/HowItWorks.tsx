@@ -26,7 +26,11 @@ const steps = [
   },
 ]
 
-export function HowItWorks() {
+interface HowItWorksProps {
+  ctaHref?: string
+}
+
+export function HowItWorks({ ctaHref = '/estimate' }: HowItWorksProps) {
   return (
     <section className="bg-gmt-cream py-24 md:py-32">
       <Container>
@@ -59,7 +63,7 @@ export function HowItWorks() {
           <div className="text-center mt-16">
             <p className="font-body text-gmt-stone text-sm mb-3">Ready to start?</p>
             <Link
-              href="/estimate"
+              href={ctaHref}
               className="font-body text-gmt-green text-base hover:text-gmt-forest transition-colors duration-200"
             >
               Get an Instant Estimate →
