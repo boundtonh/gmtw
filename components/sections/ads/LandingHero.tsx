@@ -8,7 +8,7 @@ export function LandingHero() {
   return (
     <section className="relative h-screen min-h-[600px] overflow-hidden">
       <HeroVideo />
-      <div className="absolute inset-0 bg-black/55" />
+      <div className="absolute inset-0 bg-black/20" />
 
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 pt-8">
         <FadeUp delay={0.1}>
