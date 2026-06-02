@@ -2,6 +2,7 @@ import { buildMetadata } from '@/lib/seo'
 import { LandingHero } from '@/components/sections/ads/LandingHero'
 import { TrustBar } from '@/components/sections/ads/TrustBar'
 import { ThreePillars } from '@/components/sections/home/ThreePillars'
+import { AllFurnitureTypesNoLinks } from '@/components/sections/ads/AllFurnitureTypesNoLinks'
 import { HowItWorks } from '@/components/sections/home/HowItWorks'
 import { ReviewsSection } from '@/components/ui/ReviewsSection'
 import { LandingContactForm } from '@/components/sections/ads/LandingContactForm'
@@ -22,6 +23,7 @@ export default function AdsPage() {
       <LandingHero />
       <TrustBar />
       <ThreePillars hideExploreLink />
+      <AllFurnitureTypesNoLinks />
       <HowItWorks />
       <ReviewsSection />
       <LandingContactForm />

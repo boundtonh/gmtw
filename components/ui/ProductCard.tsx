@@ -16,7 +16,11 @@ const IMAGE_MAP: Record<string, string | null> = {
   'bars-bar-tops': 'standalone-bartops-main.jpg',
 }
 
-export function ProductCard({ name, slug, startingPrice }: Product) {
+interface ProductCardProps extends Product {
+  disableLink?: boolean
+}
+
+export function ProductCard({ name, slug, startingPrice, disableLink = false }: ProductCardProps) {
   const imageSrc = IMAGE_MAP[slug]
 
   // Custom object positions for specific products
@@ -26,8 +30,8 @@ export function ProductCard({ name, slug, startingPrice }: Product) {
     return undefined
   }
 
-  return (
-    <Link href={`/${slug}`} className="group block">
+  const content = (
+    <>
       {/* Thumbnail */}
       <div className="relative aspect-[4/3] overflow-hidden bg-gmt-forest mb-3">
         {imageSrc ? (
@@ -49,6 +53,14 @@ export function ProductCard({ name, slug, startingPrice }: Product) {
         {name}
       </h3>
       <PriceTag price={startingPrice} />
+    </>
+  )
+
+  return disableLink ? (
+    <div className="block">{content}</div>
+  ) : (
+    <Link href={`/${slug}`} className="group block">
+      {content}
     </Link>
   )
 }
