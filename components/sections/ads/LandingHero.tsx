@@ -6,18 +6,18 @@ import Image from 'next/image'
 
 export function LandingHero() {
   return (
-    <section className="relative h-[78vh] min-h-[600px] overflow-hidden">
+    <section className="relative h-[85vh] md:h-[85vh] min-h-[600px] overflow-hidden">
       <HeroVideo />
-      <div className="absolute inset-0 bg-black/20" />
+      <div className="absolute inset-0 bg-black/40" />
 
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 pt-8">
         <FadeUp delay={0.1}>
           <Image
-            src="/images/logo/new-logo.jpg"
-            alt="Green Mountain Tableworx"
-            width={220}
-            height={128}
-            className="mb-8 w-44 md:w-56"
+            src="/images/logo/Untitled.png"
+            alt="Green Mountain Tableworx logo"
+            width={140}
+            height={81}
+            className="min-w-[15rem] mb-6"
           />
         </FadeUp>
 
