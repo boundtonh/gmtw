@@ -21,7 +21,7 @@ export default function AdsPage() {
     <>
       <LandingHero />
       <TrustBar />
-      <ThreePillars />
+      <ThreePillars hideExploreLink />
       <HowItWorks />
       <ReviewsSection />
       <LandingContactForm />

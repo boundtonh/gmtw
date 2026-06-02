@@ -27,7 +27,11 @@ const pillars = [
   },
 ]
 
-export function ThreePillars() {
+interface ThreePillarsProps {
+  hideExploreLink?: boolean
+}
+
+export function ThreePillars({ hideExploreLink = false }: ThreePillarsProps) {
   return (
     <section className="bg-gmt-forest py-24 md:py-32">
       <Container>
@@ -59,7 +63,7 @@ export function ThreePillars() {
                 <div className="absolute bottom-0 left-0 right-0 p-8">
                   <h2 className="font-display text-2xl text-white">{pillar.title}</h2>
                   <p className="font-body text-sm text-white/70 mt-2">{pillar.description}</p>
-                  <p className="font-body text-sm text-gmt-green mt-4">Explore →</p>
+                  {!hideExploreLink && <p className="font-body text-sm text-gmt-green mt-4">Explore →</p>}
                 </div>
               </Link>
             </RevealOnScroll>
