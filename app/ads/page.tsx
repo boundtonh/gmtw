@@ -1,7 +1,6 @@
 import { buildMetadata } from '@/lib/seo'
 import { LandingHero } from '@/components/sections/ads/LandingHero'
 import { TrustBar } from '@/components/sections/ads/TrustBar'
-import { GallerySection } from '@/components/sections/home/GallerySection'
 import { ThreePillars } from '@/components/sections/home/ThreePillars'
 import { HowItWorks } from '@/components/sections/home/HowItWorks'
 import { ReviewsSection } from '@/components/ui/ReviewsSection'
@@ -22,7 +21,6 @@ export default function AdsPage() {
     <>
       <LandingHero />
       <TrustBar />
-      <GallerySection />
       <ThreePillars />
       <HowItWorks />
       <ReviewsSection />
