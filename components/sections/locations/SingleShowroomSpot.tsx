@@ -15,6 +15,7 @@ interface SingleShowroomSpotProps {
   coords: { lat: number; lng: number }
   mapEmbed: string
   bodyText: string
+  hideEstimateLink?: boolean
 }
 
 const LOCATION_DIRECTIONS: Record<string, string> = {
@@ -37,6 +38,7 @@ export function SingleShowroomSpot({
   coords,
   mapEmbed,
   bodyText,
+  hideEstimateLink = false,
 }: SingleShowroomSpotProps) {
   return (
     <section id="showroom" className="bg-gmt-green py-16 scroll-mt-20">
@@ -103,12 +105,14 @@ export function SingleShowroomSpot({
                   </a>
                 </div>
 
-                <Link
-                  href="/estimate"
-                  className="mt-6 font-body text-sm text-white bg-gmt-forest px-6 py-3 hover:bg-gmt-charcoal transition-colors duration-300"
-                >
-                  Get an Instant Estimate
-                </Link>
+                {!hideEstimateLink && (
+                  <Link
+                    href="/estimate"
+                    className="mt-6 font-body text-sm text-white bg-gmt-forest px-6 py-3 hover:bg-gmt-charcoal transition-colors duration-300"
+                  >
+                    Get an Instant Estimate
+                  </Link>
+                )}
               </div>
             </div>
           </RevealOnScroll>
