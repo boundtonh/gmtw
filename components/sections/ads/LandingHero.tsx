@@ -4,9 +4,13 @@ import { HeroVideo } from '@/components/layout/HeroVideo'
 import { FadeUp } from '@/components/ui/FadeUp'
 import Image from 'next/image'
 
-export function LandingHero() {
+interface LandingHeroProps {
+  subtitle?: string
+}
+
+export function LandingHero({ subtitle = 'Live Edge · River Tables · Ocean Tables — Handcrafted in New England' }: LandingHeroProps) {
   return (
-    <section className="relative h-[70vh] md:h-[85vh] min-h-[600px] overflow-hidden">
+    <section className="relative h-[65vh] md:h-[85vh] min-h-[600px] overflow-hidden">
       <HeroVideo />
       <div className="absolute inset-0 bg-black/40" />
 
@@ -32,8 +36,7 @@ export function LandingHero() {
 
         <FadeUp delay={0.4}>
           <p className="font-body text-lg md:text-xl text-white/85 max-w-xl mx-auto mb-8">
-            Live Edge &nbsp;·&nbsp; River Tables &nbsp;·&nbsp; Ocean Tables<br />
-            Handcrafted in New England
+            {subtitle}
           </p>
         </FadeUp>
 

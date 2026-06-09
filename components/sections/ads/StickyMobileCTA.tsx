@@ -2,10 +2,12 @@
 
 import { useTrackingPhone } from '@/components/layout/PhoneProvider'
 
-const DEFAULT_PHONE = '(401) 354-9600'
+interface StickyMobileCTAProps {
+  defaultPhone?: string
+}
 
-export function StickyMobileCTA() {
-  const phone = useTrackingPhone(DEFAULT_PHONE)
+export function StickyMobileCTA({ defaultPhone = '(401) 354-9600' }: StickyMobileCTAProps) {
+  const phone = useTrackingPhone(defaultPhone)
   const digits = phone.replace(/\D/g, '')
 
   return (

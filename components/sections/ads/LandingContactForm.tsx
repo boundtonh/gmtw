@@ -10,7 +10,11 @@ declare global {
   }
 }
 
-export function LandingContactForm() {
+interface LandingContactFormProps {
+  showroomNote?: string
+}
+
+export function LandingContactForm({ showroomNote }: LandingContactFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
@@ -64,7 +68,7 @@ export function LandingContactForm() {
             Tell Us About Your Project
           </h2>
           <p className="font-body text-base text-white/70">
-            Leave your info and one of our team members will reach out within 24 hours to discuss your custom piece.
+            {showroomNote ?? 'Leave your info and one of our team members will reach out within 24 hours to discuss your custom piece.'}
           </p>
         </div>
 
