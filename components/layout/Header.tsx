@@ -43,6 +43,7 @@ const NAV_ITEMS: NavItem[] = [
     ],
   },
   { label: 'Table Bases', href: '/table-bases' },
+  { label: 'Wood Species', href: '/wood-species' },
   {
     label: 'Locations',
     dropdown: [
