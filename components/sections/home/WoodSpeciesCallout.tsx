@@ -43,9 +43,6 @@ export function WoodSpeciesCallout() {
                         className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                       />
                     </div>
-                    <p className="font-body text-gmt-stone text-xs mt-1.5 truncate group-hover:text-gmt-forest transition-colors duration-200">
-                      {species.name}
-                    </p>
                   </RevealOnScroll>
                 </Link>
               ))}
@@ -56,10 +53,10 @@ export function WoodSpeciesCallout() {
           <RevealOnScroll direction="right">
             <SectionLabel>Wood Species</SectionLabel>
             <h2 className="font-display text-4xl md:text-5xl text-gmt-forest mt-2 leading-tight">
-              From Black Walnut to Cherry — Every Slab Is One of a Kind
+              Every Slab Is One of a Kind
             </h2>
             <p className="font-body text-gmt-stone text-base leading-relaxed mt-4">
-              We work with over 34 species — Black Walnut, Cherry, Maple, White Oak, Hickory, English Walnut, and more. Each slab has its own grain character, color, and history. Browse the full gallery to find the wood that speaks to your space.
+              We work with over <strong className="text-gmt-forest font-semibold">34 species</strong> — Black Walnut, Cherry, Maple, White Oak, Hickory, English Walnut, and more. Each slab has its own grain character, color, and history. Browse the full gallery to find the wood that speaks to your space.
             </p>
             <Link
               href="/wood-species"
