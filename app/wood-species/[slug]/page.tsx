@@ -31,17 +31,17 @@ export default function SpeciesDetailPage({ params }: { params: { slug: string }
   return (
     <>
       {/* Header */}
-      <section className="bg-gmt-forest py-16 md:py-24">
+      <section className="bg-gmt-forest pt-[220px] pb-16 lg:pt-[169px]">
         <Container>
-          <Link
-            href="/wood-species"
-            className="font-body text-gmt-sage text-sm hover:text-white transition-colors duration-200 inline-flex items-center gap-2 mb-8"
-          >
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-              <path d="M9 2L4 7l5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            All species
-          </Link>
+          {/* Breadcrumb */}
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 font-body text-sm text-white/50 mb-8">
+            <Link href="/" className="hover:text-white transition-colors duration-200">Home</Link>
+            <span aria-hidden="true" className="text-white/30">/</span>
+            <Link href="/wood-species" className="hover:text-white transition-colors duration-200">Wood Species</Link>
+            <span aria-hidden="true" className="text-white/30">/</span>
+            <span className="text-white/80">{species.name}</span>
+          </nav>
+
           <SectionLabel className="text-gmt-sage">Wood Species</SectionLabel>
           <h1 className="font-display text-4xl md:text-6xl text-white mt-4 leading-tight">
             {species.name}
@@ -79,6 +79,19 @@ export default function SpeciesDetailPage({ params }: { params: { slug: string }
               Photos for this species are coming soon.
             </p>
           )}
+        </Container>
+      </section>
+
+      {/* Bottom breadcrumb */}
+      <section className="bg-gmt-offwhite py-6 border-t border-gmt-mist">
+        <Container>
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 font-body text-sm text-gmt-stone">
+            <Link href="/" className="hover:text-gmt-charcoal transition-colors duration-200">Home</Link>
+            <span aria-hidden="true" className="text-gmt-stone/40">/</span>
+            <Link href="/wood-species" className="hover:text-gmt-charcoal transition-colors duration-200">Wood Species</Link>
+            <span aria-hidden="true" className="text-gmt-stone/40">/</span>
+            <span className="text-gmt-charcoal">{species.name}</span>
+          </nav>
         </Container>
       </section>
 
