@@ -27,6 +27,7 @@ export function ContactFormBanner({ headline, subtitle }: ContactFormBannerProps
     city: '',
     project: '',
     hearAboutUs: '',
+    website: '', // honeypot — must stay empty
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -54,7 +55,7 @@ export function ContactFormBanner({ headline, subtitle }: ContactFormBannerProps
       window.dataLayer = window.dataLayer || []
       window.dataLayer.push({ event: 'contact_form_submitted' })
       setSubmitSuccess(true)
-      setFormData({ name: '', email: '', phone: '', city: '', project: '', hearAboutUs: '' })
+      setFormData({ name: '', email: '', phone: '', city: '', project: '', hearAboutUs: '', website: '' })
       setTimeout(() => setSubmitSuccess(false), 5000)
     } catch (error) {
       setSubmitError(error instanceof Error ? error.message : 'An error occurred')
@@ -185,6 +186,20 @@ export function ContactFormBanner({ headline, subtitle }: ContactFormBannerProps
               {submitError && (
                 <p className="font-body text-sm text-red-300">{submitError}</p>
               )}
+
+              {/* Honeypot — hidden from humans, bots fill it */}
+              <div className="absolute left-[-9999px] top-auto w-px h-px overflow-hidden" aria-hidden="true">
+                <label htmlFor="cb-website">Website</label>
+                <input
+                  id="cb-website"
+                  type="text"
+                  name="website"
+                  value={formData.website}
+                  onChange={handleChange}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
 
               {/* Submit button */}
               <button

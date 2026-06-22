@@ -35,6 +35,7 @@ export interface EstimateFormData {
   deliveryZip?: string
   hearAboutUs?: string
   notes: string
+  website?: string // honeypot — must stay empty
 }
 
 interface SelectionCard {
@@ -1102,6 +1103,17 @@ export function EstimateForm() {
                 By submitting your information, you agree to be contacted by our team to verify the accuracy of the instant estimate tool.
               </p>
             )}
+          {/* Honeypot — hidden from humans, bots fill it */}
+          <div className="absolute left-[-9999px] top-auto w-px h-px overflow-hidden" aria-hidden="true">
+            <label htmlFor="ef-website">Website</label>
+            <input
+              id="ef-website"
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+              {...register('website')}
+            />
+          </div>
           </div>}
         </form>
       </Container>

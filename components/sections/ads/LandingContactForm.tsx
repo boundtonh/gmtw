@@ -23,6 +23,7 @@ export function LandingContactForm({ showroomNote }: LandingContactFormProps) {
     phone: '',
     email: '',
     project: '',
+    website: '', // honeypot — must stay empty
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -155,6 +156,20 @@ export function LandingContactForm({ showroomNote }: LandingContactFormProps) {
               {submitError && (
                 <p className="font-body text-sm text-red-300" role="alert">{submitError}</p>
               )}
+
+              {/* Honeypot — hidden from humans, bots fill it */}
+              <div className="absolute left-[-9999px] top-auto w-px h-px overflow-hidden" aria-hidden="true">
+                <label htmlFor="lp-website">Website</label>
+                <input
+                  id="lp-website"
+                  type="text"
+                  name="website"
+                  value={formData.website}
+                  onChange={handleChange}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
 
               <button
                 type="submit"

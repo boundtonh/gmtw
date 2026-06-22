@@ -92,6 +92,11 @@ export async function POST(request: Request) {
   try {
     const data = await request.json()
 
+    // Honeypot — bots fill this, humans never see it
+    if (data.website) {
+      return Response.json({ success: true, message: 'Your estimate request has been received!' })
+    }
+
     // Validate required fields
     if (!data.email || !data.name || !data.phone) {
       return Response.json(
