@@ -9,7 +9,7 @@ function sanitizeHeader(s: string) {
 }
 
 // Tier 2 (premium/exotic) species — everything else is Tier 1
-const TIER2_SPECIES = new Set(['acacia', 'buckeye-burl', 'claro-walnut', 'olivewood', 'monkey-pod'])
+const TIER2_SPECIES = new Set(['buckeye-burl', 'claro-walnut', 'olivewood', 'monkey-pod'])
 
 const HANDCRAFTED_WOOD_BASES = new Set(['slab-post-trestle', 'arch-trestle', 'stump-base', 'classic-turned-legs'])
 

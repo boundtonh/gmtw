@@ -108,13 +108,11 @@ const WOOD_TIER1 = [
   { value: 'sassafras',      label: 'Sassafras',      img: `${BASE}/sassafrass.jpg` },
   { value: 'spruce',         label: 'Spruce',         img: `${BASE}/spruce.jpg` },
   { value: 'sycamore',       label: 'Sycamore',       img: `${BASE}/sycamore.jpg` },
-  { value: 'tulip',          label: 'Tulip',          img: `${BASE}/tulip.webp` },
   { value: 'walnut',         label: 'Walnut (3 Types)', img: `${BASE}/black-walnut.jpg` },
   { value: 'willow',         label: 'Willow',         img: `${BASE}/willow.jpg` },
 ]
 
 const WOOD_TIER2 = [
-  { value: 'acacia',        label: 'Indonesian / Mexican Acacia', img: `${BASE}/acacia.webp` },
   { value: 'buckeye-burl',  label: 'Buckeye Burl',                img: `${BASE}/Buckeye-burl.jpg` },
   { value: 'claro-walnut',  label: 'Claro Walnut',                img: `${BASE}/ClaroWalnut.jpg` },
   { value: 'olivewood',     label: 'Olivewood',                   img: `${BASE}/olivewood-2.png` },

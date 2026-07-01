@@ -2,16 +2,21 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { buildMetadata } from '@/lib/seo'
 import { woodSpeciesData } from '@/lib/woodSpecies.generated'
+
+const EXCLUDED_SLUGS = new Set(['rainbow-tulip'])
 import { Container } from '@/components/layout/Container'
 import { SectionLabel } from '@/components/ui/SectionLabel'
 import { SpeciesPhotoMasonry } from '@/components/sections/wood-species/SpeciesPhotoMasonry'
 import { CTABanner } from '@/components/ui/CTABanner'
 
 export async function generateStaticParams() {
-  return woodSpeciesData.map((s) => ({ slug: s.slug }))
+  return woodSpeciesData
+    .filter((s) => !EXCLUDED_SLUGS.has(s.slug))
+    .map((s) => ({ slug: s.slug }))
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
+  if (EXCLUDED_SLUGS.has(params.slug)) return {}
   const species = woodSpeciesData.find((s) => s.slug === params.slug)
   if (!species) return {}
   return buildMetadata({
@@ -22,6 +27,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 export default function SpeciesDetailPage({ params }: { params: { slug: string } }) {
+  if (EXCLUDED_SLUGS.has(params.slug)) notFound()
   const species = woodSpeciesData.find((s) => s.slug === params.slug)
   if (!species) notFound()
 

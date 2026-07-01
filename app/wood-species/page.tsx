@@ -1,5 +1,7 @@
 import { buildMetadata } from '@/lib/seo'
 import { woodSpeciesData } from '@/lib/woodSpecies.generated'
+
+const EXCLUDED_SLUGS = new Set(['rainbow-tulip'])
 import { SpeciesHero } from '@/components/sections/wood-species/SpeciesHero'
 import { SpeciesGrid } from '@/components/sections/wood-species/SpeciesGrid'
 import { CTABanner } from '@/components/ui/CTABanner'
@@ -15,7 +17,7 @@ export default function WoodSpeciesPage() {
   return (
     <>
       <SpeciesHero />
-      <SpeciesGrid species={woodSpeciesData} />
+      <SpeciesGrid species={woodSpeciesData.filter((s) => !EXCLUDED_SLUGS.has(s.slug))} />
       <CTABanner
         headline="Ready to choose your wood?"
         body="Visit a showroom to see slabs in person, or get started with our online estimate — specify your species, dimensions, and style."
